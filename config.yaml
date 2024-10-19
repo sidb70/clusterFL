@@ -1,4 +1,7 @@
 clients: 12
 num_clusters: 3
 num_rounds: 50 
-dataset: 'cifar100'
+dataset: 'cifar10'
+model: 'cnn'
+aggregator: 'fedavg'
+lr: 0.01

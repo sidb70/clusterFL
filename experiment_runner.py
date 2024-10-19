@@ -1,7 +1,8 @@
 import yaml
 from server import Server
-from dataloader import cluster_cifar100
-
+# from datasets.dataloader import cluster_cifar100
+import torch
+import torch.nn as nn
 
 
 class FLNetwork:
@@ -11,26 +12,19 @@ class FLNetwork:
         self.num_clients = config['clients']
         self.num_clusters = config['num_clusters']
         self.server = Server(config)
-        self.clustered_data = cluster_cifar100(self.num_clusters)
-        self.create_clients()
+        # self.clustered_data = cluster_cifar100(self.num_clusters)
 
-    def create_clients(self):
-        self.clients = [(i,i%self.num_clusters) for i in range(self.num_clients)]
-    def run_fl(self):
+    def run(self):
         num_rounds = config['num_rounds']
 
         for r in range(num_rounds):
             print("Round: ", r)
-            for client in self.clients:
-                # send model to client
-                # train model on client
-                # send gradient to server
-                pass
+            self.server.fl_round()
 
-            self.server.update_cluster_estimates()
-            for client in self.clients:
-                # send cluster estimate to client
-                pass
+            # self.server.update_cluster_estimates()
+            # for client in self.clients:
+            #     # send cluster estimate to client
+            #     pass
 
 
 if __name__=='__main__':
