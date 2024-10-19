@@ -20,6 +20,7 @@ class FLNetwork:
         for r in range(num_rounds):
             print("Round: ", r)
             self.server.fl_round()
+            self.server.evaluate()
 
             # self.server.update_cluster_estimates()
             # for client in self.clients:

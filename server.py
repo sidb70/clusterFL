@@ -38,3 +38,8 @@ class Server:
             gradients.append(grad)
         aggregated_gradients = self.aggregate_gradients(gradients)
         self.global_model.load_state_dict(self.global_model.state_dict() - self.lr*aggregated_gradients)
+
+    def evaluate(self):
+        for client in self.clients:
+            loss, acc = client.evaluate(self.global_model, self.global_test_set, nn.CrossEntropyLoss())
+            print(f"Client {client.id} - Loss: {loss}, Accuracy: {acc}")
