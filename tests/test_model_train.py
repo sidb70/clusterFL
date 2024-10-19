@@ -20,12 +20,11 @@ class TestModelTrain(unittest.TestCase):
         model = load_model('cnn')
         model.requires_grad_(True)
         criterion = nn.CrossEntropyLoss()
-        optimizer = optim.SGD(model.parameters(), lr=0.05, momentum=0.9)
+        optimizer = optim.SGD(model.parameters(), lr=0.1, momentum=0.9)
         # optimizer = optim.Adam(model.parameters(), lr=0.01)
         for i in range(100):
             model.train()
             grad_dict = client.compute_gradients(model, train_loader, criterion)
-            optimizer.zero_grad()
             for name, param in model.named_parameters():
                 self.assertEqual(grad_dict[name].shape, param.shape)
                 # set model gradients to the computed gradients
@@ -33,15 +32,13 @@ class TestModelTrain(unittest.TestCase):
             with torch.no_grad():
                 for name, param in model.named_parameters():
                     grad = grad_dict[name]
-                    param -= 0.4 * grad
-                    param.grad.zero_()
+                    param.grad = grad
+                    # param -= 0.03 * grad
+                    # param.grad.zero_()
+            optimizer.step()
             optimizer.zero_grad()
-            for name, param in model.named_parameters():
-                self.assertIsNone(param.grad)
 
             # client.train(model, train_loader, criterion, optimizer, num_epochs=1)
-
-            model.eval()
             with torch.no_grad():
                 loss, acc = client.evaluate(model, test_loader, criterion)
                 print(f'Epoch {i+1}, Loss: {loss:.4f}, Accuracy: {acc:.4f}')

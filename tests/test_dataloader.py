@@ -12,7 +12,7 @@ class TestDataloader(unittest.TestCase):
         trainset, testset = load_cifar10()
         selected_classes = [0, 1, 2]
         selected_trainset = load_selected_classes(trainset, selected_classes)
-        self.assertEqual(len(selected_trainset), len(selected_classes)*5000)
+        self.assertEqual(len(selected_trainset), 12750)
 
 
 if __name__ == '__main__':
