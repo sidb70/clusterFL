@@ -14,20 +14,30 @@ def load_selected_classes(dataset: Dataset, selected_classes: List[int]) -> Data
             selected_data.append(dataset[i])
     return selected_data
 
-def load_cifar10() -> Tuple[Dataset, Dataset]:
+def load_cifar10(rotated: bool = False) -> Tuple[Dataset, Dataset]:
     # Define a transform to normalize the data
-    transform = transforms.Compose([
-        transforms.ToTensor(),
-        transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))
+    if rotated:
+        transform = transforms.Compose([
+            transforms.ToTensor(),
+            transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5)),
+            transforms.RandomRotation(degrees=(89.999, 90.001)),
+        ])
+    else:
+        transform = transforms.Compose([
+            transforms.ToTensor(),
+        transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5)),
+
     ])
     # Download and load the training data
     trainset = datasets.CIFAR10('./datasets/cifar-10/', download=True, train=True, transform=transform)
     testset = datasets.CIFAR10('./datasets/cifar-10/', download=True, train=False, transform=transform)
     return trainset, testset
 
-def load_cifar100():
+def load_cifar100(rotated: bool = False) -> Tuple[Dataset, Dataset]:
     raise NotImplementedError
 
+def load_mnist(rotated: bool = False) -> Tuple[Dataset, Dataset]:
+    raise NotImplementedError
 
 def unpickle(file):
     import pickle
