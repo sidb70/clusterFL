@@ -24,19 +24,26 @@ class Server:
         self.clients = [Client(i, DEVICES[i % len(DEVICES)]) for i in range(num_clients)]
         # assign selected indices to clients
         num_clients = len(self.clients)
-        samples_per_client = len(self.global_train_set) // num_clients
+        train_samples_per_client = len(self.global_train_set) // num_clients
+        test_samples_per_client = len(self.global_test_set) // num_clients
         self.client_train_indices = {i: [] for i in range(num_clients)}
         self.client_test_indices = {i: [] for i in range(num_clients)}
         for client_id in range(num_clients):
-            train_start = client_id * samples_per_client % len(self.global_train_set)
-            train_end = train_start + samples_per_client
-            self.client_train_indices[client_id] = list(range(train_start, train_end))
-            test_start = client_id * samples_per_client % len(self.global_test_set)
-            test_end = test_start + samples_per_client
-            self.client_test_indices[client_id] = list(range(test_start, test_end))
+            train_start = client_id * train_samples_per_client % len(self.global_train_set)
+            train_end = train_start + train_samples_per_client
+            test_start = client_id * test_samples_per_client % len(self.global_test_set)
+            test_end = test_start + test_samples_per_client
             if train_end > len(self.global_train_set):
+                self.client_train_indices[client_id] = list(range(train_start, len(self.global_train_set)))
                 self.client_train_indices[client_id] += list(range(0, train_end - len(self.global_train_set)))
-                self.client_test_indices[client_id] += list(range(0, test_end - len(self.global_train_set)))
+            else:
+                self.client_train_indices[client_id] = list(range(train_start, train_end))
+            if test_end > len(self.global_test_set):
+                self.client_test_indices[client_id] = list(range(test_start, len(self.global_test_set)))
+                self.client_test_indices[client_id] += list(range(0, test_end - len(self.global_test_set)))
+            else:
+                self.client_test_indices[client_id] = list(range(test_start, test_end))
+
 
 
     def aggregate_gradients(self, gradients: List[Dict[str, torch.Tensor]]):
@@ -58,11 +65,10 @@ class Server:
             grad = client.compute_gradients(self.global_model, client_train_loader, criterion)
             gradients.append(grad)
         aggregated_gradients = self.aggregate_gradients(gradients)
-        state_dict = self.global_model.state_dict()
-        for key in state_dict.keys():
-            state_dict[key] -= self.lr * aggregated_gradients[key]
-        self.global_model.load_state_dict(state_dict)
-
+        updated_state_dict = self.global_model.state_dict()
+        for name, param in self.global_model.named_parameters():
+            updated_state_dict[name] = param.data - self.lr*aggregated_gradients[name]
+        self.global_model.load_state_dict(updated_state_dict)
     def evaluate(self, batch_size: int = 32):
         for client in self.clients:
             _, test_loader = self.get_client_data(client.id, batch_size=batch_size)
