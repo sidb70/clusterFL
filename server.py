@@ -7,7 +7,7 @@ from client import Client
 from datasets.dataloader import load_global_dataset, load_selected_classes
 from aggregation.strategies import load_aggregator
 import random
-import numpy as np
+from copy import deepcopy
 
 DEVICES = [torch.device(f'cuda:{i}') for i in range(torch.cuda.device_count())] \
     if torch.cuda.is_available() else [torch.device('cpu')]
@@ -19,6 +19,7 @@ class Server:
         self.create_clients(config['clients'])
         self.aggregator = load_aggregator(config['aggregator'])
         self.lr = config['lr']
+        self.local_epochs = config['local_epochs']
 
     def create_clients(self, num_clients):
         self.clients = [Client(i, DEVICES[i % len(DEVICES)]) for i in range(num_clients)]
@@ -43,10 +44,11 @@ class Server:
                 self.client_test_indices[client_id] += list(range(0, test_end - len(self.global_test_set)))
             else:
                 self.client_test_indices[client_id] = list(range(test_start, test_end))
+            print(f"Client {client_id} - train start: {train_start}, train end: {train_end}, test start: {test_start}, test end: {test_end}")
+        
 
 
-
-    def aggregate_gradients(self, gradients: List[Dict[str, torch.Tensor]]):
+    def aggregate(self, gradients: List[Dict[str, torch.Tensor]]) -> Dict[str, torch.Tensor]:
         return self.aggregator.aggregate(gradients)
 
     def get_client_data(self, client_id, batch_size):
@@ -58,19 +60,23 @@ class Server:
         num_clients = len(self.clients)
         num_sampled = max(1, int(self.config.get('client_sample_rate', 1) * num_clients))
         sampled_clients = random.sample(self.clients, num_sampled)
-        gradients = []  
+        updated_models = []  
         criterion = nn.CrossEntropyLoss()
         for client in sampled_clients:
             client_train_loader, _ = self.get_client_data(client.id, batch_size=32) ## TODO: change this to selected classes
-            grad = client.compute_gradients(self.global_model, client_train_loader, criterion)
-            gradients.append(grad)
-        aggregated_gradients = self.aggregate_gradients(gradients)
-        updated_state_dict = self.global_model.state_dict()
-        for name, param in self.global_model.named_parameters():
-            updated_state_dict[name] = param.data - self.lr*aggregated_gradients[name]
-        self.global_model.load_state_dict(updated_state_dict)
+            client_model = deepcopy(self.global_model)
+            optimizer = torch.optim.SGD(client_model.parameters(), lr=self.lr)
+            updated_model = client.train(client_model, client_train_loader, criterion, optimizer, self.local_epochs)
+            updated_models.append(updated_model.state_dict())
+        aggregated_models_state_dict = self.aggregate(updated_models)
+        self.global_model.load_state_dict(aggregated_models_state_dict)
+        
     def evaluate(self, batch_size: int = 32):
+        accuracies = []
+        losses = []
         for client in self.clients:
             _, test_loader = self.get_client_data(client.id, batch_size=batch_size)
             loss, acc = client.evaluate(self.global_model, test_loader, nn.CrossEntropyLoss())
-            print(f"Client {client.id} - Loss: {loss}, Accuracy: {acc}")
+            accuracies.append(acc)
+            losses.append(loss)
+        print(f"Average Accuracy: {sum(accuracies)/len(accuracies)}, Average Loss: {sum(losses)/len(losses)}")

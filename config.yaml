@@ -1,6 +1,7 @@
-clients: 1
+clients: 29
 num_clusters: 3
 num_rounds: 50 
+local_epochs: 1
 dataset: 'cifar10'
 model: 'cnn'
 aggregator: 'fedavg'
