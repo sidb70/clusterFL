@@ -1,4 +1,4 @@
-clients: 12
+clients: 1
 num_clusters: 3
 num_rounds: 50 
 dataset: 'cifar10'
