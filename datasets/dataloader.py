@@ -3,7 +3,7 @@ import numpy as np
 import torch
 from torchvision import datasets, transforms
 from torch.utils.data import Dataset
-from torch.utils.data.sampler import SubsetRandomSampler    
+from typing import Dict, Any
 
 
 def Transform(rotation: float = 0.0) -> transforms.Compose:
@@ -64,8 +64,7 @@ def load_mnist() -> Tuple[Dataset, Dataset]:
     testset = datasets.MNIST('./datasets/MNIST/', download=True, train=False, transform=transform)
     return trainset, testset
 
-def rotate_dataset(dataset: Dataset, rotation: float = 0.0) -> Dataset:
-    return RotatedDataset(dataset, rotation)
+
 
 def load_global_dataset(dataset_name: str) -> Dataset:
     if dataset_name == 'cifar10':
@@ -74,6 +73,20 @@ def load_global_dataset(dataset_name: str) -> Dataset:
         return load_cifar100()
     elif dataset_name == 'mnist':
         return load_mnist()
+def create_clustered_dataset(dataset: Dataset, num_clusters: int, cluster_args: Dict[str, Any]) -> List[Dataset]:
+    cluster_type = cluster_args['cluster_split_type']
+    if cluster_type == 'rotation':
+        datasets = []
+        for i in range(num_clusters):
+            rotation = (i/num_clusters) * 360
+            datasets.append(RotatedDataset(dataset=dataset, rotation=rotation))
+    elif cluster_type == 'selected_classes':
+        datasets = []
+        classes_per_cluster = len(dataset.classes) // num_clusters
+        for cluster_id in range(num_clusters):
+            selected_classes = dataset.classes[cluster_id * classes_per_cluster:(cluster_id + 1) * classes_per_cluster]
+            datasets.append(SelectedClassesDataset(dataset, selected_classes))
+    return datasets
 
 if __name__=='__main__':
     train_loader, val_loader, test_loader = load_cifar10(32, 0.2)
