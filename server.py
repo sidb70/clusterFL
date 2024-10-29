@@ -45,8 +45,11 @@ class Server:
             else:
                 self.client_test_indices[client_id] = list(range(test_start, test_end))
             print(f"Client {client_id} - train start: {train_start}, train end: {train_end}, test start: {test_start}, test end: {test_end}")
-        
 
+    def cluster(self, gradients: List[Dict[str, torch.Tensor]], clusters: int = 10):
+        k = clusters
+        print()
+        return 
 
     def aggregate(self, gradients: List[Dict[str, torch.Tensor]]) -> Dict[str, torch.Tensor]:
         return self.aggregator.aggregate(gradients)
@@ -68,6 +71,7 @@ class Server:
             optimizer = torch.optim.SGD(client_model.parameters(), lr=self.lr)
             updated_model = client.train(client_model, client_train_loader, criterion, optimizer, self.local_epochs)
             updated_models.append(updated_model.state_dict())
+        
         aggregated_models_state_dict = self.aggregate(updated_models)
         self.global_model.load_state_dict(aggregated_models_state_dict)
         

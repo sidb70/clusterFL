@@ -14,6 +14,7 @@ def Transform(rotation: float = 0.0) -> transforms.Compose:
         transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5)),
     ])
     return transform
+
 class RotatedDataset(Dataset):
     def __init__(self, dataset: Dataset, rotation: float = 0.0):
         self.dataset = dataset
@@ -40,7 +41,8 @@ class SelectedClassesDataset(Dataset):
     def __getitem__(self, index: int):
         return self.selected_classes_data[index]
     def __len__(self):
-        return len(self.selected_classes_data)     
+        return len(self.selected_classes_data)   
+      
 def load_cifar10() -> Tuple[Dataset, Dataset]:
     transform = Transform()
     # Download and load the training data
