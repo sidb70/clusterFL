@@ -6,6 +6,4 @@ dataset: 'cifar10'
 model: 'cnn'
 aggregator: 'fedavg'
 lr: 0.01
-dataset_split_type: 'rotation'
-cluster_args:
-    rotation: 90
+cluster_split_type: 'rotation'
