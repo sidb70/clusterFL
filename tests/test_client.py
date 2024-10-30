@@ -22,7 +22,7 @@ class TestModelTrain(unittest.TestCase):
         optimizer = optim.SGD(model.parameters(), lr=0.001)
         for i in range(5):
             model = client.train(model, train_loader, criterion, optimizer, 1)
-            print(model.state_dict())
+            # print(f"Here are the keys: {[(x,y) for x,y in model.state_dict().items()]}")
             with torch.no_grad():
                 loss, acc = client.evaluate(model, test_loader, criterion)
                 print(f'Epoch {i+1}, Loss: {loss:.4f}, Accuracy: {acc:.4f}')

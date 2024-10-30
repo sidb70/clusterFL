@@ -11,6 +11,9 @@ from copy import deepcopy
 
 DEVICES = [torch.device(f'cuda:{i}') for i in range(torch.cuda.device_count())] \
     if torch.cuda.is_available() else [torch.device('cpu')]
+
+
+
 class Server:
     def __init__(self,config):
         self.config = config
@@ -46,10 +49,72 @@ class Server:
                 self.client_test_indices[client_id] = list(range(test_start, test_end))
             print(f"Client {client_id} - train start: {train_start}, train end: {train_end}, test start: {test_start}, test end: {test_end}")
 
-    def cluster(self, gradients: List[Dict[str, torch.Tensor]], clusters: int = 10):
-        k = clusters
-        print()
-        return 
+    def cluster(self, weights: List[Dict[str, torch.Tensor]], clusters: int = 5):
+        class Node:
+            def __init__(self, tensor: torch.Tensor):
+                self.values = [tensor]
+                self.mean = None
+                self.std = None
+
+        noramlizationDict = {}
+
+        # Prepare tensors for normalization
+        for weight in weights:
+            for layer,tensor in weight.items():
+                if layer in noramlizationDict:
+                    noramlizationDict[layer].values.append(tensor)
+                else:
+                    noramlizationDict[layer] = Node(tensor)
+
+        # Calculate normalization params
+        for layer, node in noramlizationDict.items():
+            noramlizationDict[layer].mean = sum(noramlizationDict[layer].values) / len(noramlizationDict[layer].values)
+            noramlizationDict[layer].std = torch.sqrt(sum((tensor - noramlizationDict[layer].mean) ** 2 for tensor in noramlizationDict[layer].values) / len(noramlizationDict[layer].values))
+
+        # Normalize tensors based on layer values accross classes
+        normalizedWeights = []
+        for weight in weights:
+            normalWeight = {}
+            for layer,tensor in weight.items():
+                normalWeight[layer] = (tensor - noramlizationDict[layer].mean) / (normalWeight[layer].std + 1e-12)
+            normalizedWeights.append(normalWeight)
+        
+        # Calculate distances between each clients tensors
+        # similarityMatrix = []
+        # for ind,weight in enumerate(normalizedWeights):
+        #     similarityMatrix.append([])
+        #     for w2 in normalizedWeights:
+        #         diff = 0
+        #         for layer,tensor in weight.items():
+        #             diff += torch.abs(tensor - w2[layer]).sum()
+        #         similarityMatrix[ind].append(diff)
+        
+        # Assume we have a fixed number clusters
+        # numPerCluster = clusters / len(weights) -> if we want to specify how many clusters there should be
+        clusterList = [[] for i in clusters]
+        clients = [i for i in range(len(weights))]
+
+        # Assign intial centroids
+        for clus in clusterList:
+            randK = random.choice(clients)
+            clus.append(randK)
+            clients.remove(randK)
+
+        # Calculate each clients distance from teh centroid node
+        distanceMap = {}
+        for client in clients:
+            distanceMap[client] = []
+            for clus in clusterList:
+                dist = 0
+                for layer, tensor in weights[client]:
+                    dist += torch.abs(tensor - weights[clus[0]][layer]).sum()
+                distanceMap[client].append(dist)
+        
+        # Assign each cluster to the closest centroid
+        for client,distances in distanceMap.items():
+            clus[distances.index(min(distances))].append(client)
+
+        return clusterList
 
     def aggregate(self, gradients: List[Dict[str, torch.Tensor]]) -> Dict[str, torch.Tensor]:
         return self.aggregator.aggregate(gradients)
