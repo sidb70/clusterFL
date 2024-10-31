@@ -21,16 +21,18 @@ class TestAggregators(unittest.TestCase):
             self.assertEqual(param.shape, models[0].state_dict()[name].shape)
             
 
-        test_inp_1 = {'1': torch.tensor([-1,-1,-1], dtype=torch.float32), '2': torch.tensor([-1,-1,-1], dtype=torch.float32)}
-        test_inp_2 = {'1': torch.tensor([0, 0, 0], dtype=torch.float32), '2': torch.tensor([0, 0, 0], dtype=torch.float32)}
-        test_inp_3 = {'1': torch.tensor([1, 1, 1], dtype=torch.float32), '2': torch.tensor([1, 1, 1], dtype=torch.float32)}
+        test_inp_1 = {'0': torch.tensor([1, 2, 3])}
+        test_inp_2 = {'0': torch.tensor([2, 3, 4])}
+        test_inp_3 = {'0': torch.tensor([3, 4, 5])}
+        coord1_avg = (1 + 2 + 3) / 3
+        coord2_avg = (2 + 3 + 4) / 3
+        coord3_avg = (3 + 4 + 5) / 3
         aggregated = fedavg.aggregate([test_inp_1, test_inp_2, test_inp_3])
         for name, param in aggregated.items():
             self.assertEqual(param.shape, test_inp_1[name].shape)
-            for i in range(len(param)):
-                self.assertEqual(param[i].item(), 0)
-
-
+            self.assertEqual(param[0].item(), coord1_avg)
+            self.assertEqual(param[1].item(), coord2_avg)
+            self.assertEqual(param[2].item(), coord3_avg)
 
 
 if __name__ == '__main__':
