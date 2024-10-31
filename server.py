@@ -4,7 +4,7 @@ from torch.utils.data import DataLoader, Subset
 from typing import List, Dict
 from models.loader import load_model    
 from client import Client
-from datasets.dataloader import load_global_dataset, load_selected_classes
+from datasets.dataloader import load_global_dataset, create_clustered_dataset
 from aggregation.strategies import load_aggregator
 import random
 from copy import deepcopy
@@ -19,7 +19,13 @@ class Server:
         self.config = config
         self.global_model = load_model(config['model'])
         self.global_train_set, self.global_test_set = load_global_dataset(config['dataset'])
+
         self.create_clients(config['clients'])
+        self.num_clusters = config['num_clusters']
+        self.clustering = self.cluster([[] for _ in range(len(self.clients))]) # initial clustering TEMP
+        self.cluster_models = [deepcopy(self.global_model.state_dict()) for _ in range(self.num_clusters)]
+        self.clustered_train_sets = create_clustered_dataset(self.global_train_set, config['num_clusters'], config['cluster_split_type'])
+        self.clustered_test_sets = create_clustered_dataset(self.global_test_set, config['num_clusters'], config['cluster_split_type'])
         self.aggregator = load_aggregator(config['aggregator'])
         self.lr = config['lr']
         self.local_epochs = config['local_epochs']
@@ -49,7 +55,9 @@ class Server:
                 self.client_test_indices[client_id] = list(range(test_start, test_end))
             print(f"Client {client_id} - train start: {train_start}, train end: {train_end}, test start: {test_start}, test end: {test_end}")
 
-    def cluster(self, weights: List[Dict[str, torch.Tensor]], clusters: int = 5):
+    def cluster(self, weights: List[Dict[str, torch.Tensor]]):
+        clusters = self.num_clusters
+        return [i % clusters for i in range(len(weights))]
         class Node:
             def __init__(self, tensor: torch.Tensor):
                 self.values = [tensor]
@@ -100,7 +108,7 @@ class Server:
             clus.append(randK)
             clients.remove(randK)
 
-        # Calculate each clients distance from teh centroid node
+        # Calculate each clients distance from the centroid node
         distanceMap = {}
         for client in clients:
             distanceMap[client] = []
@@ -120,25 +128,33 @@ class Server:
         return self.aggregator.aggregate(gradients)
 
     def get_client_data(self, client_id, batch_size):
-        subset_train_data = Subset(self.global_train_set, self.client_train_indices[client_id])
-        subset_test_data = Subset(self.global_test_set, self.client_test_indices[client_id])
-        return DataLoader(subset_train_data, batch_size=batch_size), DataLoader(subset_test_data, batch_size=batch_size)
+        # subset_train_data = Subset(self.global_train_set, self.client_train_indices[client_id])
+        # subset_test_data = Subset(self.global_test_set, self.client_test_indices[client_id])
+        # return DataLoader(subset_train_data, batch_size=batch_size), DataLoader(subset_test_data, batch_size=batch_size)
+        assigned_cluster = self.clustering[client_id]
+        subset_train_data = Subset(self.clustered_train_sets[assigned_cluster], self.client_train_indices[client_id])
+        subset_test_data = Subset(self.clustered_test_sets[assigned_cluster], self.client_test_indices[client_id])
+        client_train_loader = DataLoader(subset_train_data, batch_size=batch_size)
+        client_test_loader = DataLoader(subset_test_data, batch_size=batch_size)
+        return client_train_loader, client_test_loader
 
     def fl_round(self):
         num_clients = len(self.clients)
         num_sampled = max(1, int(self.config.get('client_sample_rate', 1) * num_clients))
         sampled_clients = random.sample(self.clients, num_sampled)
-        updated_models = []  
+        updated_models = [[] for _ in range(self.num_clusters)]
         criterion = nn.CrossEntropyLoss()
         for client in sampled_clients:
             client_train_loader, _ = self.get_client_data(client.id, batch_size=32) ## TODO: change this to selected classes
-            client_model = deepcopy(self.global_model)
+            cluster_id = self.clustering[client.id]
+            client_state_dict= self.cluster_models[cluster_id]
+            client_model = load_model(self.config['model'])
+            client_model.load_state_dict(client_state_dict)
             optimizer = torch.optim.SGD(client_model.parameters(), lr=self.lr)
             updated_model = client.train(client_model, client_train_loader, criterion, optimizer, self.local_epochs)
-            updated_models.append(updated_model.state_dict())
-        
-        aggregated_models_state_dict = self.aggregate(updated_models)
-        self.global_model.load_state_dict(aggregated_models_state_dict)
+            updated_models[cluster_id].append(updated_model.state_dict())
+        for cluster_id in range(self.num_clusters):
+            self.cluster_models[cluster_id] = self.aggregate(updated_models[cluster_id])
         
     def evaluate(self, batch_size: int = 32):
         accuracies = []
