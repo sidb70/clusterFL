@@ -73,8 +73,7 @@ def load_global_dataset(dataset_name: str) -> Dataset:
         return load_cifar100()
     elif dataset_name == 'mnist':
         return load_mnist()
-def create_clustered_dataset(dataset: Dataset, num_clusters: int, cluster_args: Dict[str, Any]) -> List[Dataset]:
-    cluster_type = cluster_args['cluster_split_type']
+def create_clustered_dataset(dataset: Dataset, num_clusters: int, cluster_type: str) -> List[Dataset]:
     if cluster_type == 'rotation':
         datasets = []
         for i in range(num_clusters):

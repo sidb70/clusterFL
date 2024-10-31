@@ -1,4 +1,4 @@
-clients: 29
+clients: 10
 num_clusters: 3
 num_rounds: 50 
 local_epochs: 1
