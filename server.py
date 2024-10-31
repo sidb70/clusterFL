@@ -27,7 +27,12 @@ class Server:
         self.lr = config['lr']
         self.local_epochs = config['local_epochs']
         
-        self.clustering = self.cluster([[] for _ in range(self.num_clients)]) # initial clustering TEMP
+        self.clients_to_clusters = self.cluster([[] for _ in range(self.num_clients)]) # initial clustering TEMP
+        self.clusters_to_clients = {}
+        for i, cluster in enumerate(self.clients_to_clusters):
+            if cluster not in self.clusters_to_clients:
+                self.clusters_to_clients[cluster] = []
+            self.clusters_to_clients[cluster].append(i)
         self.create_clients(self.num_clients)
         initial_model = load_model(config['model'])
         self.cluster_models = [deepcopy(initial_model.state_dict()) for _ in range(self.num_clusters)]
@@ -40,17 +45,20 @@ class Server:
         self.client_test_indices = []
 
         for i in range(num_clients):
-            cluster_assignment = self.clustering[i]
+            cluster_assignment = self.clients_to_clusters[i]
             self.clients.append(Client(id=i, device=DEVICES[i % len(DEVICES)], cluster_assignment=cluster_assignment))
 
             cluster_train_data = self.clustered_train_sets[cluster_assignment]
             cluster_test_data = self.clustered_test_sets[cluster_assignment]
 
-            train_samples_per_client = len(cluster_train_data) // num_clients
-            test_samples_per_client = len(cluster_test_data) // num_clients
-            train_start = i * train_samples_per_client % len(cluster_train_data)
+            client_in_cluster_id = self.clusters_to_clients[cluster_assignment].index(i)
+
+            num_clients_in_cluster = len(self.clusters_to_clients[cluster_assignment])
+            train_samples_per_client = len(cluster_train_data) // num_clients_in_cluster
+            test_samples_per_client = len(cluster_test_data) // num_clients_in_cluster
+            train_start = client_in_cluster_id * train_samples_per_client % len(cluster_train_data)
             train_end = train_start + train_samples_per_client
-            test_start = i * test_samples_per_client % len(cluster_test_data)
+            test_start = client_in_cluster_id * test_samples_per_client % len(cluster_test_data)
             test_end = test_start + test_samples_per_client
             if train_end > len(cluster_train_data):
                 client_train_indices = list(range(train_start, len(cluster_train_data)))
@@ -64,7 +72,10 @@ class Server:
                 client_test_indices = list(range(test_start, test_end))
             self.client_train_indices.append(client_train_indices)
             self.client_test_indices.append(client_test_indices)
-            print(f"Client {i} - train start: {train_start}, train end: {train_end}, test start: {test_start}, test end: {test_end}")
+        for i, (cluster_num, clients_list) in enumerate(self.clusters_to_clients.items()):
+            print(f"Cluster {cluster_num} has {len(clients_list)} clients")
+            for client in clients_list:
+                print(f"client {client} train start {self.client_train_indices[client][0]} end {self.client_train_indices[client][-1]}")
     def cluster(self, weights: List[Dict[str, torch.Tensor]]):
         clusters = self.num_clusters
         return [i % clusters for i in range(len(weights))]
@@ -141,7 +152,7 @@ class Server:
         # subset_train_data = Subset(self.global_train_set, self.client_train_indices[client_id])
         # subset_test_data = Subset(self.global_test_set, self.client_test_indices[client_id])
         # return DataLoader(subset_train_data, batch_size=batch_size), DataLoader(subset_test_data, batch_size=batch_size)
-        assigned_cluster = self.clustering[client_id]
+        assigned_cluster = self.clients_to_clusters[client_id]
         subset_train_data = Subset(self.clustered_train_sets[assigned_cluster], self.client_train_indices[client_id])
         subset_test_data = Subset(self.clustered_test_sets[assigned_cluster], self.client_test_indices[client_id])
         client_train_loader = DataLoader(subset_train_data, batch_size=batch_size)
@@ -156,7 +167,7 @@ class Server:
         
         for client in sampled_clients:
             client_train_loader, _ = self.get_client_data(client.id, batch_size=32) ## TODO: change this to selected classes
-            cluster_id = self.clustering[client.id]
+            cluster_id = self.clients_to_clusters[client.id]
             client_state_dict= self.cluster_models[cluster_id]
             client_model = load_model(self.config['model'])
             client_model.load_state_dict(client_state_dict)
