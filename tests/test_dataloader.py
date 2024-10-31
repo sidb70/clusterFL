@@ -2,6 +2,7 @@ import unittest
 import sys
 sys.path.append('./')
 from datasets.dataloader import load_cifar10, create_clustered_dataset, SelectedClassesDataset, RotatedDataset
+
 class TestDataloader(unittest.TestCase):
     def setUp(self):
         self.trainset, self.testset = load_cifar10()
