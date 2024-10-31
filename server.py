@@ -17,44 +17,54 @@ DEVICES = [torch.device(f'cuda:{i}') for i in range(torch.cuda.device_count())] 
 class Server:
     def __init__(self,config):
         self.config = config
-        self.global_model = load_model(config['model'])
         self.global_train_set, self.global_test_set = load_global_dataset(config['dataset'])
-
-        self.create_clients(config['clients'])
-        self.num_clusters = config['num_clusters']
-        self.clustering = self.cluster([[] for _ in range(len(self.clients))]) # initial clustering TEMP
-        self.cluster_models = [deepcopy(self.global_model.state_dict()) for _ in range(self.num_clusters)]
         self.clustered_train_sets = create_clustered_dataset(self.global_train_set, config['num_clusters'], config['cluster_split_type'])
         self.clustered_test_sets = create_clustered_dataset(self.global_test_set, config['num_clusters'], config['cluster_split_type'])
-        self.aggregator = load_aggregator(config['aggregator'])
+        
+
+        self.num_clients = config['clients']
+        self.num_clusters = config['num_clusters']
         self.lr = config['lr']
         self.local_epochs = config['local_epochs']
+        
+        self.clustering = self.cluster([[] for _ in range(self.num_clients)]) # initial clustering TEMP
+        self.create_clients(self.num_clients)
+        initial_model = load_model(config['model'])
+        self.cluster_models = [deepcopy(initial_model.state_dict()) for _ in range(self.num_clusters)]
+        self.aggregator = load_aggregator(config['aggregator'])
+        
 
     def create_clients(self, num_clients):
-        self.clients = [Client(i, DEVICES[i % len(DEVICES)]) for i in range(num_clients)]
-        # assign selected indices to clients
-        num_clients = len(self.clients)
-        train_samples_per_client = len(self.global_train_set) // num_clients
-        test_samples_per_client = len(self.global_test_set) // num_clients
-        self.client_train_indices = {i: [] for i in range(num_clients)}
-        self.client_test_indices = {i: [] for i in range(num_clients)}
-        for client_id in range(num_clients):
-            train_start = client_id * train_samples_per_client % len(self.global_train_set)
-            train_end = train_start + train_samples_per_client
-            test_start = client_id * test_samples_per_client % len(self.global_test_set)
-            test_end = test_start + test_samples_per_client
-            if train_end > len(self.global_train_set):
-                self.client_train_indices[client_id] = list(range(train_start, len(self.global_train_set)))
-                self.client_train_indices[client_id] += list(range(0, train_end - len(self.global_train_set)))
-            else:
-                self.client_train_indices[client_id] = list(range(train_start, train_end))
-            if test_end > len(self.global_test_set):
-                self.client_test_indices[client_id] = list(range(test_start, len(self.global_test_set)))
-                self.client_test_indices[client_id] += list(range(0, test_end - len(self.global_test_set)))
-            else:
-                self.client_test_indices[client_id] = list(range(test_start, test_end))
-            print(f"Client {client_id} - train start: {train_start}, train end: {train_end}, test start: {test_start}, test end: {test_end}")
+        self.clients = []
+        self.client_train_indices = []  
+        self.client_test_indices = []
 
+        for i in range(num_clients):
+            cluster_assignment = self.clustering[i]
+            self.clients.append(Client(id=i, device=DEVICES[i % len(DEVICES)], cluster_assignment=cluster_assignment))
+
+            cluster_train_data = self.clustered_train_sets[cluster_assignment]
+            cluster_test_data = self.clustered_test_sets[cluster_assignment]
+
+            train_samples_per_client = len(cluster_train_data) // num_clients
+            test_samples_per_client = len(cluster_test_data) // num_clients
+            train_start = i * train_samples_per_client % len(cluster_train_data)
+            train_end = train_start + train_samples_per_client
+            test_start = i * test_samples_per_client % len(cluster_test_data)
+            test_end = test_start + test_samples_per_client
+            if train_end > len(cluster_train_data):
+                client_train_indices = list(range(train_start, len(cluster_train_data)))
+                client_train_indices += list(range(0, train_end - len(cluster_train_data)))
+            else:
+                client_train_indices = list(range(train_start, train_end))
+            if test_end > len(cluster_test_data):
+                client_test_indices = list(range(test_start, len(cluster_test_data)))
+                client_test_indices += list(range(0, test_end - len(cluster_test_data)))
+            else:
+                client_test_indices = list(range(test_start, test_end))
+            self.client_train_indices.append(client_train_indices)
+            self.client_test_indices.append(client_test_indices)
+            print(f"Client {i} - train start: {train_start}, train end: {train_end}, test start: {test_start}, test end: {test_end}")
     def cluster(self, weights: List[Dict[str, torch.Tensor]]):
         clusters = self.num_clusters
         return [i % clusters for i in range(len(weights))]
@@ -124,8 +134,8 @@ class Server:
 
         return clusterList
 
-    def aggregate(self, gradients: List[Dict[str, torch.Tensor]]) -> Dict[str, torch.Tensor]:
-        return self.aggregator.aggregate(gradients)
+    def aggregate(self, models: List[Dict[str, torch.Tensor]]) -> Dict[str, torch.Tensor]:
+        return self.aggregator.aggregate(models)
 
     def get_client_data(self, client_id, batch_size):
         # subset_train_data = Subset(self.global_train_set, self.client_train_indices[client_id])
@@ -143,13 +153,15 @@ class Server:
         num_sampled = max(1, int(self.config.get('client_sample_rate', 1) * num_clients))
         sampled_clients = random.sample(self.clients, num_sampled)
         updated_models = [[] for _ in range(self.num_clusters)]
-        criterion = nn.CrossEntropyLoss()
+        
         for client in sampled_clients:
             client_train_loader, _ = self.get_client_data(client.id, batch_size=32) ## TODO: change this to selected classes
             cluster_id = self.clustering[client.id]
             client_state_dict= self.cluster_models[cluster_id]
             client_model = load_model(self.config['model'])
             client_model.load_state_dict(client_state_dict)
+
+            criterion = nn.CrossEntropyLoss()
             optimizer = torch.optim.SGD(client_model.parameters(), lr=self.lr)
             updated_model = client.train(client_model, client_train_loader, criterion, optimizer, self.local_epochs)
             updated_models[cluster_id].append(updated_model.state_dict())
@@ -161,7 +173,9 @@ class Server:
         losses = []
         for client in self.clients:
             _, test_loader = self.get_client_data(client.id, batch_size=batch_size)
-            loss, acc = client.evaluate(self.global_model, test_loader, nn.CrossEntropyLoss())
+            cluster_model = load_model(self.config['model'])
+            cluster_model.load_state_dict(self.cluster_models[client.cluster_assignment])
+            loss, acc = client.evaluate(cluster_model, test_loader, nn.CrossEntropyLoss())
             accuracies.append(acc)
             losses.append(loss)
         print(f"Average Accuracy: {sum(accuracies)/len(accuracies)}, Average Loss: {sum(losses)/len(losses)}")
