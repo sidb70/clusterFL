@@ -1,9 +1,10 @@
 import torch
 from typing import Tuple, Dict
 class Client:
-    def __init__(self, id, device: torch.device):
+    def __init__(self, id, device: torch.device, cluster_assignment):
         self.id = id
         self.device = device
+        self.cluster_assignment = cluster_assignment
         print(f"Client {self.id} initialized on device: ", self.device)
 
     # def compute_gradients(self, model, data_loader, criterion) -> Dict[str, torch.Tensor]:
