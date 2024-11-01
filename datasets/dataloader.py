@@ -153,7 +153,7 @@ def create_clustered_dataset(
     if cluster_type == "rotation":
         datasets = []
         for i in range(num_clusters):
-            rotation = (i / num_clusters) * 360
+            rotation = (i / num_clusters+1) * 360
             datasets.append(RotatedDataset(dataset=dataset, rotation=rotation))
     elif cluster_type == "selected_classes":
         datasets = []
