@@ -4,44 +4,18 @@ from typing import Tuple, Dict
 
 class Client:
     def __init__(self, id, device: torch.device, cluster_assignment):
+        """
+        Initialize a client with the given id, device, and cluster assignment.
+
+        Args:
+            id (int): the id of the client
+            device (torch.device): the device on which to run the client
+            cluster_assignment (int): the cluster to which the client is
+        """
         self.id = id
         self.device = device
         self.cluster_assignment = cluster_assignment
         print(f"Client {self.id} initialized on device: ", self.device)
-
-    # def compute_gradients(self, model, data_loader, criterion) -> Dict[str, torch.Tensor]:
-    #     '''
-    #     Compute gradients for the model on the given data loader.
-
-    #     Returns:
-    #         Dict[str, torch.Tensor]: A dictionary of gradients for each parameter in the model.
-    #     '''
-    #     # accumulate gradients, do not update weights
-    #     model.train()
-    #     model.to(self.device)
-    #     num_batches = len(data_loader)
-
-    #     grad_state_dict = {}
-    #     for name, param in model.named_parameters():
-    #         grad_state_dict[name] = torch.zeros_like(param)
-    #     # optimizer = torch.optim.SGD(model.parameters(), lr=0.001)
-    #     for x, y in data_loader:
-    #         x, y = x.to(self.device), y.to(self.device)
-    #         output = model.forward(x)
-    #         loss = criterion(output, y)
-    #         loss.backward()
-    #         # optimizer.step()
-    #         # optimizer.zero_grad()
-    #         # Accumulate normalized gradients
-    #         for name, param in model.named_parameters():
-    #             if param.grad is not None:
-    #                 grad_state_dict[name] += param.grad.clone()
-    #                 param.grad.zero_()
-
-    #     for name, param in model.named_parameters():
-    #         grad_state_dict[name] /= num_batches
-
-    #     return grad_state_dict
 
     def train(
         self, model, data_loader, criterion, optimizer, num_epochs: int

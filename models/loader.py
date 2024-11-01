@@ -1,6 +1,6 @@
-from .cnn import CNN
+from .cnn import CifarCNN
 
 
 def load_model(model_name: str):
-    if model_name == "cnn":
-        return CNN()
+    if model_name == "cifarcnn":
+        return CifarCNN()

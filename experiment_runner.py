@@ -16,7 +16,7 @@ class FLNetwork:
         # self.clustered_data = cluster_cifar100(self.num_clusters)
 
     def run(self):
-        num_rounds = config['num_rounds']
+        num_rounds = config["num_rounds"]
         self.server.initial_cluster_rounds()
         for r in range(num_rounds):
             print("Round: ", r)

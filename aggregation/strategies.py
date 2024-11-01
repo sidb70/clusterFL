@@ -3,6 +3,10 @@ from typing import List, Dict
 
 
 class Aggregator:
+    """
+    Base class for aggregation strategies
+    """
+
     def aggregate(
         self, models: List[Dict[str, torch.Tensor]]
     ) -> Dict[str, torch.Tensor]:
@@ -10,6 +14,10 @@ class Aggregator:
 
 
 class FedAvg(Aggregator):
+    """
+    Federated model averaging aggregation strategy
+    """
+
     def aggregate(
         self, models: List[Dict[str, torch.Tensor]]
     ) -> Dict[str, torch.Tensor]:
@@ -27,6 +35,9 @@ class FedAvg(Aggregator):
 
 
 def load_aggregator(name: str) -> Aggregator:
+    """
+    Helper function to load aggregation strategy from yaml file attribute
+    """
     if name == "fedavg":
         return FedAvg()
     else:

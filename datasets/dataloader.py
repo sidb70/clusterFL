@@ -7,7 +7,12 @@ from typing import Dict, Any
 
 
 def Transform(rotation: float = 0.0) -> transforms.Compose:
-    # Define a transform to normalize the data
+    """
+    Create a transformation for datasets.
+
+    Args:
+        rotation (float): The rotation to apply to the images.
+    """
     transform = transforms.Compose(
         [
             transforms.ToTensor(),
@@ -19,7 +24,18 @@ def Transform(rotation: float = 0.0) -> transforms.Compose:
 
 
 class RotatedDataset(Dataset):
+    """
+    A dataset that rotates the images by the given rotation.
+    """
+
     def __init__(self, dataset: Dataset, rotation: float = 0.0):
+        """
+        Initialize the RotatedDataset.
+
+        Args:
+            dataset (Dataset): The dataset to rotate
+            rotation (float): The rotation to apply to the images.
+        """
         self.dataset = dataset
         self.rotation = rotation
         if hasattr(dataset, "transform"):
@@ -38,7 +54,18 @@ class RotatedDataset(Dataset):
 
 
 class SelectedClassesDataset(Dataset):
+    """
+    A dataset that only contains data from the selected classes of the full dataset.
+    """
+
     def __init__(self, dataset: Dataset, selected_classes: List[int]):
+        """
+        Initialize the SelectedClassesDataset.
+
+        Args:
+            dataset (Dataset): The dataset to select classes from
+            selected_classes (List[int]): The classes to select from the dataset.
+        """
         selected_classes_data = []
         for i in range(len(dataset)):
             if dataset[i][1] in selected_classes:
@@ -53,6 +80,9 @@ class SelectedClassesDataset(Dataset):
 
 
 def load_cifar10() -> Tuple[Dataset, Dataset]:
+    """
+    Load the CIFAR-10 dataset.
+    """
     transform = Transform()
     # Download and load the training data
     trainset = datasets.CIFAR10(
@@ -65,6 +95,9 @@ def load_cifar10() -> Tuple[Dataset, Dataset]:
 
 
 def load_cifar100() -> Tuple[Dataset, Dataset]:
+    """
+    Load the CIFAR-100 dataset.
+    """
     transform = Transform()
     # Download and load the training data
     trainset = datasets.CIFAR100(
@@ -77,6 +110,9 @@ def load_cifar100() -> Tuple[Dataset, Dataset]:
 
 
 def load_mnist() -> Tuple[Dataset, Dataset]:
+    """
+    Load the MNIST dataset.
+    """
     transform = Transform()
     # Download and load the training data
     trainset = datasets.MNIST(
@@ -89,6 +125,12 @@ def load_mnist() -> Tuple[Dataset, Dataset]:
 
 
 def load_global_dataset(dataset_name: str) -> Dataset:
+    """
+    Load the dataset specified by the dataset_name.
+
+    Args:
+        dataset_name (str): The name of the dataset to load
+    """
     if dataset_name == "cifar10":
         return load_cifar10()
     elif dataset_name == "cifar100":
@@ -100,6 +142,14 @@ def load_global_dataset(dataset_name: str) -> Dataset:
 def create_clustered_dataset(
     dataset: Dataset, num_clusters: int, cluster_type: str
 ) -> List[Dataset]:
+    """
+    Create a clustered dataset from the given dataset based on the partitioning strategy specified by cluster_type.
+
+    Args:
+        dataset (Dataset): The dataset to cluster
+        num_clusters (int): The number of clusters to create
+        cluster_type (str): The type of clustering to perform on the dataset
+    """
     if cluster_type == "rotation":
         datasets = []
         for i in range(num_clusters):

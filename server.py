@@ -18,7 +18,32 @@ DEVICES = (
 
 
 class Server:
+    """
+    Server class that manages the clients and the training process
+    Attributes:
+        config (Dict): Configuration dictionary
+        global_train_set (torch.utils.data.Dataset): Global training dataset
+        global_test_set (torch.utils.data.Dataset): Global test dataset
+        clustered_train_sets (List[torch.utils.data.Dataset]): List of training datasets for each cluster
+        clustered_test_sets (List[torch.utils.data.Dataset]): List of test datasets for each cluster
+        num_clients (int): Number of clients
+        num_clusters (int): Number of clusters
+        lr (float): Learning rate
+        local_epochs (int): Number of local epochs
+        initial_epochs (int): Number of initial epochs
+        clients_to_clusters (List[int]): List of cluster assignments for each client
+        clusters_to_clients (Dict[int, List[int]]): Dictionary of clients in each cluster
+        clients (List[Client]): List of clients
+        cluster_models (List[Dict[str, torch.Tensor]]): List of model weights for each cluster
+        aggregator (Aggregator): Aggregator object
+    """
+
     def __init__(self, config):
+        """
+        Initializes the server object
+        Args:
+            config (Dict): Configuration dictionary
+        """
         self.config = config
         self.global_train_set, self.global_test_set = load_global_dataset(
             config["dataset"]
@@ -37,7 +62,9 @@ class Server:
         self.local_epochs = config["local_epochs"]
         self.initial_epochs = config["initial_epochs"]
 
-        self.clients_to_clusters = [i%self.num_clusters for i in range(self.num_clients)]
+        self.clients_to_clusters = [
+            i % self.num_clusters for i in range(self.num_clients)
+        ]
         self.clusters_to_clients = {}
         for i, cluster in enumerate(self.clients_to_clusters):
             if cluster not in self.clusters_to_clients:
@@ -51,6 +78,11 @@ class Server:
         self.aggregator = load_aggregator(config["aggregator"])
 
     def create_clients(self, num_clients):
+        """
+        Creates the clients and their respective training and test data, in accordance with the cluster assignments
+        Args:
+            num_clients (int): Number of clients
+        """
         self.clients = []
         self.client_train_indices = []
         self.client_test_indices = []
@@ -107,14 +139,27 @@ class Server:
                 )
 
     def aggregate(
-        self, gradients: List[Dict[str, torch.Tensor]]
+        self, models: List[Dict[str, torch.Tensor]]
     ) -> Dict[str, torch.Tensor]:
-        return self.aggregator.aggregate(gradients)
+        """
+        Aggregates the models from the clients
+        Args:
+            models (List[Dict[str, torch.Tensor]]): List of gradients from the clients
+        Returns:
+            Dict[str, torch.Tensor]: Aggregated model
+        """
+        return self.aggregator.aggregate(models)
 
     def get_client_data(self, client_id, batch_size):
-        # subset_train_data = Subset(self.global_train_set, self.client_train_indices[client_id])
-        # subset_test_data = Subset(self.global_test_set, self.client_test_indices[client_id])
-        # return DataLoader(subset_train_data, batch_size=batch_size), DataLoader(subset_test_data, batch_size=batch_size)
+        """
+        Gets the training and test data for a client
+        Args:
+            client_id (int): Client ID
+            batch_size (int): Batch size
+        Returns:
+            DataLoader: Training data loader
+            DataLoader: Test data loader
+        """
         assigned_cluster = self.clients_to_clusters[client_id]
         subset_train_data = Subset(
             self.clustered_train_sets[assigned_cluster],
@@ -129,10 +174,20 @@ class Server:
         return client_train_loader, client_test_loader
 
     def cluster(self, state_dicts: List[Dict[str, torch.Tensor]]) -> List[List[int]]:
+        """
+        Clusters the clients based on the model weights
+        Args:
+            state_dicts (List[Dict[str, torch.Tensor]]): List of model weights
+        Returns:
+            List[List[int]]: List of clients in each cluster
+        """
         cluster_daddy = ClusterDaddy(state_dicts, clusters=self.num_clusters)
         return cluster_daddy.kMeans(k_iter=40)
 
-    def initial_cluster_rounds(self):
+    def initial_cluster_rounds(self) -> None:
+        """
+        Performs the initial clustering of the clients by training them for a few epochs and clustering them based on the model weights
+        """
         state_dicts = []
         for client in self.clients:
             client_train_loader, _ = self.get_client_data(client.id, batch_size=32)
@@ -146,15 +201,20 @@ class Server:
                 optimizer,
                 self.initial_epochs,
             )
-            print("adding state dict", updated_model.state_dict())
             state_dicts.append(updated_model.state_dict())
+            print("Initial training complete client", client.id)
         clusters = self.cluster(state_dicts)
+
+        print("Estimated clusters", clusters)
         for i, clients in enumerate(clusters):
             self.clusters_to_clients[i] = clients
             for client in clients:
                 self.clients_to_clusters[client] = i
 
-    def fl_round(self):
+    def fl_round(self) -> None:
+        """
+        Performs a clustered federated learning round
+        """
         num_clients = len(self.clients)
         num_sampled = max(
             1, int(self.config.get("client_sample_rate", 1) * num_clients)
@@ -163,9 +223,7 @@ class Server:
         updated_models = [[] for _ in range(self.num_clusters)]
 
         for client in sampled_clients:
-            client_train_loader, _ = self.get_client_data(
-                client.id, batch_size=32
-            )  ## TODO: change this to selected classes
+            client_train_loader, _ = self.get_client_data(client.id, batch_size=32)
             cluster_id = self.clients_to_clusters[client.id]
             client_state_dict = self.cluster_models[cluster_id]
             client_model = load_model(self.config["model"])
@@ -184,7 +242,12 @@ class Server:
         for cluster_id in range(self.num_clusters):
             self.cluster_models[cluster_id] = self.aggregate(updated_models[cluster_id])
 
-    def evaluate(self, batch_size: int = 32):
+    def evaluate(self, batch_size: int = 32) -> None:
+        """
+        Evaluates the clients
+        Args:
+            batch_size (int): Batch size
+        """
         accuracies = []
         losses = []
         for client in self.clients:

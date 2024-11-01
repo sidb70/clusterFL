@@ -19,7 +19,11 @@ def init_weights(m):
         nn.init.zeros_(m.bias)
 
 
-class CNN(nn.Module):
+class CifarCNN(nn.Module):
+    """
+    A simple CNN for classifying CIFAR-10 images.
+    """
+
     def __init__(self):
         super().__init__()
         self.nn = nn.Sequential(
