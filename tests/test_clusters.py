@@ -11,7 +11,7 @@ class TestClusterAlgos(unittest.TestCase):
     def setUp(self):
         self.weights = MockTensors().weights
         self.clusters = 3
-        self.cluster = ClusterDaddy(self.weights)
+        self.cluster = ClusterDaddy(self.weights, self.clusters)
 
     def testNormalize(self):
         # custom = self.cluster.normalize()
