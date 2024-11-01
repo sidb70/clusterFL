@@ -1,5 +1,7 @@
 import torch
 from typing import Tuple, Dict
+
+
 class Client:
     def __init__(self, id, device: torch.device, cluster_assignment):
         self.id = id
@@ -18,7 +20,7 @@ class Client:
     #     model.train()
     #     model.to(self.device)
     #     num_batches = len(data_loader)
-        
+
     #     grad_state_dict = {}
     #     for name, param in model.named_parameters():
     #         grad_state_dict[name] = torch.zeros_like(param)
@@ -26,7 +28,7 @@ class Client:
     #     for x, y in data_loader:
     #         x, y = x.to(self.device), y.to(self.device)
     #         output = model.forward(x)
-    #         loss = criterion(output, y) 
+    #         loss = criterion(output, y)
     #         loss.backward()
     #         # optimizer.step()
     #         # optimizer.zero_grad()
@@ -38,16 +40,18 @@ class Client:
 
     #     for name, param in model.named_parameters():
     #         grad_state_dict[name] /= num_batches
-            
+
     #     return grad_state_dict
-    
-    def train(self, model, data_loader, criterion, optimizer, num_epochs: int) -> torch.nn.Module:
-        '''
+
+    def train(
+        self, model, data_loader, criterion, optimizer, num_epochs: int
+    ) -> torch.nn.Module:
+        """
         Train the model on the given data loader for the given number of epochs.
 
         Returns:
             torch.nn.Module: the updated model
-        '''
+        """
         model.train()
         model.to(self.device)
         optimizer.zero_grad()
@@ -61,14 +65,13 @@ class Client:
                 optimizer.zero_grad()
         return model
 
-                
     def evaluate(self, model, data_loader, criterion) -> Tuple[float, float]:
-        '''
+        """
         Evaluate the model on the given data loader.
 
         Returns:
             Tuple[float, float]: A tuple containing the average loss and accuracy of the model.
-        '''
+        """
         model.eval()
         model.to(self.device)
         total_loss = 0
@@ -82,4 +85,4 @@ class Client:
                 total_loss += loss.item()
                 total_correct += (output.argmax(dim=1) == y).sum().item()
                 total_samples += len(y)
-        return total_loss /len(data_loader), total_correct / total_samples
+        return total_loss / len(data_loader), total_correct / total_samples

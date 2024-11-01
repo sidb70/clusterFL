@@ -5,7 +5,6 @@ import torch
 
 from aggregation.strategies import load_aggregator
 
-
 class ClusterDaddy():
   def __init__(self, weights: List[Dict[str, torch.Tensor]], clusters: int = 5):
       self.weights = weights

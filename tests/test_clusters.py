@@ -2,9 +2,10 @@ import unittest
 import torch
 import sys
 
-sys.path.append('./')
+sys.path.append("./")
 from mockWeightTensors import MockTensors
 from cluster import ClusterDaddy
+
 
 class TestClusterAlgos(unittest.TestCase):
     def setUp(self):
@@ -21,15 +22,16 @@ class TestClusterAlgos(unittest.TestCase):
         #       print(client_g[label])
         #       self.assertTrue(torch.allclose(client_c[label], client_g[label]))
         self.assertTrue(True)
-        
+
     def testKMeans(self):
         clusterList = self.cluster.kMeans()
         print(clusterList)
         return
-    
+
     def testBruteCluster(self):
         self.assertTrue(True)
-    
+
+
 # GPT normalize
 def normalize_weights(data):
     normalized_data = []
@@ -58,5 +60,6 @@ def normalize_weights(data):
 
     return normalized_data
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     unittest.main()

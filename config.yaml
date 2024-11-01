@@ -1,5 +1,5 @@
-clients: 10
-num_clusters: 3
+clients: 1
+num_clusters: 1
 num_rounds: 50 
 local_epochs: 1
 dataset: 'cifar10'
@@ -7,5 +7,4 @@ model: 'cnn'
 aggregator: 'fedavg'
 lr: 0.01
 cluster_split_type: 'rotation'
-
 initial_epochs: 1
