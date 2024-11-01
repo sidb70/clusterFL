@@ -16,7 +16,7 @@ class FLNetwork:
 
     def run(self):
         num_rounds = config['num_rounds']
-
+        self.server.initial_cluster_rounds()
         for r in range(num_rounds):
             print("Round: ", r)
             self.server.fl_round()

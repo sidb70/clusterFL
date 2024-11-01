@@ -37,9 +37,7 @@ class Server:
         self.local_epochs = config["local_epochs"]
         self.initial_epochs = config["initial_epochs"]
 
-        self.clients_to_clusters = self.cluster(
-            [[] for _ in range(self.num_clients)]
-        )  # initial clustering TEMP
+        self.clients_to_clusters = [i%self.num_clusters for i in range(self.num_clients)]
         self.clusters_to_clients = {}
         for i, cluster in enumerate(self.clients_to_clusters):
             if cluster not in self.clusters_to_clients:
@@ -148,6 +146,7 @@ class Server:
                 optimizer,
                 self.initial_epochs,
             )
+            print("adding state dict", updated_model.state_dict())
             state_dicts.append(updated_model.state_dict())
         clusters = self.cluster(state_dicts)
         for i, clients in enumerate(clusters):

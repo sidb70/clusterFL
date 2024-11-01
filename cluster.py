@@ -60,6 +60,10 @@ class ClusterDaddy():
 
       # Calculate each clients distance from the centroid node
       weights = normalize(self.weights) if normalize else self.weights
+      print(type(weights[0]))
+      print(weights[0])
+      exit(0)
+      #print(type(weights[]))
       firstPass = True
       for i in range(k_iter):
         distanceMap = {}
@@ -102,4 +106,3 @@ class ClusterDaddy():
       #         similarityMatrix[ind].append(diff)
 
       return
-  

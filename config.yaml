@@ -7,3 +7,5 @@ model: 'cnn'
 aggregator: 'fedavg'
 lr: 0.01
 cluster_split_type: 'rotation'
+
+initial_epochs: 1
