@@ -6,96 +6,111 @@ import torch
 from aggregation.strategies import load_aggregator
 
 
-class ClusterDaddy():
-  def __init__(self, weights: List[Dict[str, torch.Tensor]], clusters: int = 5):
-      self.weights = weights
-      self.cluster = clusters
-      self.aggregator = load_aggregator('fedavg')
+class ClusterDaddy:
+    def __init__(self, weights: List[Dict[str, torch.Tensor]], clusters: int = 5):
+        self.weights = weights
+        self.clusters = clusters
+        self.aggregator = load_aggregator("fedavg")
 
-  def tensorSum(tensors):
-      return torch.sum(torch.stack(tensors))
-  
-  def normalize(self):
-      class Node:
-          def __init__(self, tensor: torch.Tensor):
-              self.values = [tensor]
-              self.mean = None
-              self.std = None
+    def tensorSum(tensors):
+        return torch.sum(torch.stack(tensors))
 
-      noramlizationDict = {}
+    def normalize(self):
+        class Node:
+            def __init__(self, tensor: torch.Tensor):
+                self.values = [tensor]
+                self.mean = None
+                self.std = None
 
-      # Prepare tensors for normalization
-      for weight in self.weights:
-          for layer,tensor in weight.items():
-              if layer in noramlizationDict:
-                  noramlizationDict[layer].values.append(tensor)
-              else:
-                  noramlizationDict[layer] = Node(tensor)
+        noramlizationDict = {}
 
-      # Calculate normalization params
-      for layer, node in noramlizationDict.items():
-          noramlizationDict[layer].mean = self.tensorSum(list(noramlizationDict[layer].values)) / len(noramlizationDict[layer].values)
-          noramlizationDict[layer].std = torch.sqrt(sum((tensor - noramlizationDict[layer].mean) ** 2 for tensor in noramlizationDict[layer].values) / len(noramlizationDict[layer].values))
+        # Prepare tensors for normalization
+        for weight in self.weights:
+            for layer, tensor in weight.items():
+                if layer in noramlizationDict:
+                    noramlizationDict[layer].values.append(tensor)
+                else:
+                    noramlizationDict[layer] = Node(tensor)
 
-      # Normalize tensors based on layer values accross classes
-      normalizedWeights = []
-      for weight in self.weights:
-          normalWeight = {}
-          for layer,tensor in weight.items():
-              normalWeight[layer] = (tensor - noramlizationDict[layer].mean) / (noramlizationDict[layer].std + 1e-12)
-          normalizedWeights.append(normalWeight)
+        # Calculate normalization params
+        for layer, node in noramlizationDict.items():
+            noramlizationDict[layer].mean = self.tensorSum(
+                list(noramlizationDict[layer].values)
+            ) / len(noramlizationDict[layer].values)
+            noramlizationDict[layer].std = torch.sqrt(
+                sum(
+                    (tensor - noramlizationDict[layer].mean) ** 2
+                    for tensor in noramlizationDict[layer].values
+                )
+                / len(noramlizationDict[layer].values)
+            )
 
-      return normalizedWeights
+        # Normalize tensors based on layer values accross classes
+        normalizedWeights = []
+        for weight in self.weights:
+            normalWeight = {}
+            for layer, tensor in weight.items():
+                normalWeight[layer] = (tensor - noramlizationDict[layer].mean) / (
+                    noramlizationDict[layer].std + 1e-12
+                )
+            normalizedWeights.append(normalWeight)
 
-  def kMeans(self, k_iter: int = 10, normalize: bool = False):
-      # Assume we have a fixed number clusters
-      clusterList = [[] for i in self.clusters]
-      clients = [i for i in range(len(self.weights))]
+        return normalizedWeights
 
-      # Assign intial centroids
-      for clus in clusterList:
-          randK = random.choice(clients)
-          clus.append(randK)
-          clients.remove(randK)
-
-      # Calculate each clients distance from the centroid node
-      weights = normalize(self.weights) if normalize else self.weights
-      firstPass = True
-      for i in range(k_iter):
-        distanceMap = {}
-        for client in clients:
-            distanceMap[client] = []
-            for clus in clusterList:
-                dist = 0
-                for layer, tensor in weights[client]:
-                    dist += torch.abs(tensor - (weights[clus[0]][layer] if firstPass else clus[0])).sum()
-                distanceMap[client].append(dist)
-        
-        # Assign each cluster to the closest centroid
-        for client,distances in distanceMap.items():
-            clus[distances.index(min(distances))].append(client)
-        
-        # Reset Clients
+    def kMeans(self, k_iter: int = 10, normalize: bool = False) -> List[List[int]]:
+        # Assume we have a fixed number clusters
+        clusterList = [[] for i in self.clusters]
         clients = [i for i in range(len(self.weights))]
-        centroids = []
+
+        # Assign intial centroids
         for clus in clusterList:
-            centroids.append(self.aggregator.aggregate([self.weights[client] for client in clus]))
-        clusterList = [[centroid] for centroid in centroids]   
+            randK = random.choice(clients)
+            clus.append(randK)
+            clients.remove(randK)
 
-      return clusterList
-  
-  def bruteCluster(self, lamb: int = 1):
-      # Calculate distances between each clients tensors
-      # similarityMatrix = []
-      # for ind,weight in enumerate(normalizedWeights):
-      #     similarityMatrix.append([])
-      #     for w2 in normalizedWeights:
-      #         diff = 0
-      #         for layer,tensor in weight.items():
-      #             diff += torch.abs(tensor - w2[layer]).sum()
-      #         similarityMatrix[ind].append(diff)
+        # Calculate each clients distance from the centroid node
+        weights = normalize(self.weights) if normalize else self.weights
+        firstPass = True
+        for i in range(k_iter):
+            distanceMap = {}
+            for client in clients:
+                distanceMap[client] = []
+                for clus in clusterList:
+                    dist = 0
+                    for layer, tensor in weights[client]:
+                        dist += torch.abs(
+                            tensor - (weights[clus[0]][layer] if firstPass else clus[0])
+                        ).sum()
+                    distanceMap[client].append(dist)
 
-      return
-  
-if __name__=='__main__':
+            # Assign each cluster to the closest centroid
+            for client, distances in distanceMap.items():
+                clus[distances.index(min(distances))].append(client)
+
+            # Reset Clients
+            clients = [i for i in range(len(self.weights))]
+            centroids = []
+            for clus in clusterList:
+                centroids.append(
+                    self.aggregator.aggregate([self.weights[client] for client in clus])
+                )
+            clusterList = [[centroid] for centroid in centroids]
+
+        return clusterList
+
+    def bruteCluster(self, lamb: int = 1):
+        # Calculate distances between each clients tensors
+        # similarityMatrix = []
+        # for ind,weight in enumerate(normalizedWeights):
+        #     similarityMatrix.append([])
+        #     for w2 in normalizedWeights:
+        #         diff = 0
+        #         for layer,tensor in weight.items():
+        #             diff += torch.abs(tensor - w2[layer]).sum()
+        #         similarityMatrix[ind].append(diff)
+
+        return
+
+
+if __name__ == "__main__":
     ClusterDaddy()

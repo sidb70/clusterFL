@@ -1,9 +1,11 @@
-'''
+"""
 https://pytorch.org/tutorials/beginner/blitz/cifar10_tutorial.html
-'''
+"""
+
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
+
 
 def init_weights(m):
     if isinstance(m, nn.Linear):
@@ -15,6 +17,7 @@ def init_weights(m):
     elif isinstance(m, nn.BatchNorm2d):
         nn.init.ones_(m.weight)
         nn.init.zeros_(m.bias)
+
 
 class CNN(nn.Module):
     def __init__(self):
@@ -31,9 +34,9 @@ class CNN(nn.Module):
             nn.ReLU(),
             nn.Linear(120, 84),
             nn.ReLU(),
-            nn.Linear(84, 10)
+            nn.Linear(84, 10),
         )
         self.apply(init_weights)
+
     def forward(self, x):
         return self.nn(x)
-    
