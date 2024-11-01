@@ -9,7 +9,7 @@ from aggregation.strategies import load_aggregator
 class ClusterDaddy():
   def __init__(self, weights: List[Dict[str, torch.Tensor]], clusters: int = 5):
       self.weights = weights
-      self.cluster = clusters
+      self.clusters = clusters
       self.aggregator = load_aggregator('fedavg')
 
   def tensorSum(tensors):
@@ -49,7 +49,7 @@ class ClusterDaddy():
 
   def kMeans(self, k_iter: int = 10, normalize: bool = False):
       # Assume we have a fixed number clusters
-      clusterList = [[] for i in self.clusters]
+      clusterList = [[] for i in range(self.clusters)]
       clients = [i for i in range(len(self.weights))]
 
       # Assign intial centroids
@@ -67,21 +67,27 @@ class ClusterDaddy():
             distanceMap[client] = []
             for clus in clusterList:
                 dist = 0
-                for layer, tensor in weights[client]:
-                    dist += torch.abs(tensor - (weights[clus[0]][layer] if firstPass else clus[0])).sum()
+                for layer, tensor in weights[client].items():
+                    dist += torch.abs(tensor - (weights[clus[0]][layer] if firstPass else clus[0][layer])).sum()
                 distanceMap[client].append(dist)
         
         # Assign each cluster to the closest centroid
         for client,distances in distanceMap.items():
-            clus[distances.index(min(distances))].append(client)
+            clusterList[distances.index(min(distances))].append(client)
         
         # Reset Clients
-        clients = [i for i in range(len(self.weights))]
-        centroids = []
-        for clus in clusterList:
-            centroids.append(self.aggregator.aggregate([self.weights[client] for client in clus]))
-        clusterList = [[centroid] for centroid in centroids]   
-
+        if i + 1 == k_iter:
+            for clus in clusterList:
+                clus.pop(0)
+        else:
+            clients = [j for j in range(len(self.weights))]
+            centroids = []
+            for clus in clusterList:
+                if not firstPass:
+                    clus.pop(0)
+                centroids.append(self.aggregator.aggregate([self.weights[client] for client in clus]))
+            clusterList = [[centroid] for centroid in centroids]   
+            firstPass = False
       return clusterList
   
   def bruteCluster(self, lamb: int = 1):
@@ -97,5 +103,3 @@ class ClusterDaddy():
 
       return
   
-if __name__=='__main__':
-    ClusterDaddy()
