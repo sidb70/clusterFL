@@ -1,0 +1,7 @@
+Average Accuracy: 0.198, Average Loss: 2.2202332697808744
+Round:  1
+Average Accuracy: 0.2602, Average Loss: 2.049751166626811
+Round:  2
+Average Accuracy: 0.28745000000000004, Average Loss: 1.9386416180059314
+Round:  3
+Average Accuracy: 0.3128, Average Loss: 1.865737909451127

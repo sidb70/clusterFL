@@ -188,6 +188,9 @@ class Server:
         """
         Performs the initial clustering of the clients by training them for a few epochs and clustering them based on the model weights
         """
+        if self.initial_epochs ==0:
+            print("Initial epochs is 0, skipping initial clustering")
+            return
         state_dicts = []
         for client in self.clients:
             client_train_loader, _ = self.get_client_data(client.id, batch_size=32)
@@ -239,8 +242,14 @@ class Server:
                 self.local_epochs,
             )
             updated_models[cluster_id].append(updated_model.state_dict())
-        for cluster_id in range(self.num_clusters):
-            self.cluster_models[cluster_id] = self.aggregate(updated_models[cluster_id])
+        if not self.config.get("baseline_avg_whole_network"):
+            for cluster_id in range(self.num_clusters):
+                self.cluster_models[cluster_id] = self.aggregate(updated_models[cluster_id])
+        else:
+            whole_network_aggregated = self.aggregate([cluster_model[cluster_id] for cluster_model in updated_models])
+            for cluster_id in range(self.num_clusters):
+                self.cluster_models[cluster_id] = whole_network_aggregated
+            
 
     def evaluate(self, batch_size: int = 32) -> None:
         """
@@ -259,8 +268,11 @@ class Server:
             loss, acc = client.evaluate(
                 cluster_model, test_loader, nn.CrossEntropyLoss()
             )
-            accuracies.append(acc)
-            losses.append(loss)
+            accuracies.append((client.id, client.cluster_assignment, acc))
+            losses.append((client.id, client.cluster_assignment, loss))
+        avg_acc = sum([acc for _, _, acc in accuracies]) / len(accuracies)
+        avg_loss = sum([loss for _, _, loss in losses]) / len(losses)
         print(
-            f"Average Accuracy: {sum(accuracies)/len(accuracies)}, Average Loss: {sum(losses)/len(losses)}"
+            f"Average Accuracy: {avg_acc:.2f}%, Average Loss: {avg_loss:.4f}"
         )
+        return accuracies, losses

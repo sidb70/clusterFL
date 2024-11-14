@@ -4,7 +4,10 @@ from server import Server
 # from datasets.dataloader import cluster_cifar100
 import torch
 import torch.nn as nn
+import uuid
 
+
+experiment_id = str(uuid.uuid4())
 
 class FLNetwork:
     def __init__(self, config):
@@ -14,14 +17,17 @@ class FLNetwork:
         self.num_clusters = config["num_clusters"]
         self.server = Server(config)
         # self.clustered_data = cluster_cifar100(self.num_clusters)
-
     def run(self):
         num_rounds = config["num_rounds"]
         self.server.initial_cluster_rounds()
+        results = []
         for r in range(num_rounds):
             print("Round: ", r)
             self.server.fl_round()
-            self.server.evaluate()
+            accuracies, losses = self.server.evaluate()
+            # accuracies: [(client_id, true_cluster_id, accuracy)]
+            # losses: [(client_id, true_cluster_id, loss)]
+            results.append((accuracies, losses))
 
             # self.server.update_cluster_estimates()
             # for client in self.clients:
