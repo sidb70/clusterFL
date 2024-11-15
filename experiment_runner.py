@@ -5,7 +5,7 @@ from server import Server
 import torch
 import torch.nn as nn
 import uuid
-
+import json
 
 experiment_id = str(uuid.uuid4())
 
@@ -25,15 +25,25 @@ class FLNetwork:
             print("Round: ", r)
             self.server.fl_round()
             accuracies, losses = self.server.evaluate()
-            # accuracies: [(client_id, true_cluster_id, accuracy)]
-            # losses: [(client_id, true_cluster_id, loss)]
-            results.append((accuracies, losses))
-
-            # self.server.update_cluster_estimates()
-            # for client in self.clients:
-            #     # send cluster estimate to client
-            #     pass
-
+            round_data = {
+                "round": r,
+                "accuracies": [
+                    {"client_id": client_id, "true_cluster_id": true_cluster_id, "accuracy": accuracy}
+                    for client_id, true_cluster_id, accuracy in accuracies
+                ],
+                "losses": [
+                    {"client_id": client_id, "true_cluster_id": true_cluster_id, "loss": loss}
+                    for client_id, true_cluster_id, loss in losses
+                ]
+            }
+        
+            # Append round data to results
+            results.append(round_data)
+        
+        # Save results to json
+        json_data = {'results': results,'config': self.config}
+        with open(experiment_id+".json", 'w') as json_file:
+            json.dump(json_data, json_file, indent=4)
 
 if __name__ == "__main__":
     yaml_path = "config.yaml"
