@@ -1,6 +1,7 @@
 import torch
 from typing import Tuple, Dict
 
+torch.manual_seed(0)
 
 class Client:
     def __init__(self, id, device: torch.device, cluster_assignment):
@@ -30,13 +31,16 @@ class Client:
         model.to(self.device)
         optimizer.zero_grad()
         for e in range(num_epochs):
+            running_loss = 0
             for batch_idx, (x, y) in enumerate(data_loader):
                 x, y = x.to(self.device), y.to(self.device)
                 output = model.forward(x)
                 loss = criterion(output, y)
+                running_loss += loss.item()
                 loss.backward()
                 optimizer.step()
                 optimizer.zero_grad()
+            print(f"Client {self.id} epoch {e} loss: {running_loss / len(data_loader)}")
         return model
 
     def evaluate(self, model, data_loader, criterion) -> Tuple[float, float]:

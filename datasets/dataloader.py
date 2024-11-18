@@ -5,7 +5,8 @@ from torchvision import datasets, transforms
 from torch.utils.data import Dataset
 from typing import Dict, Any
 
-
+torch.manual_seed(0)
+np.random.seed(0)
 def Transform(rotation: float = 0.0) -> transforms.Compose:
     """
     Create a transformation for datasets.
