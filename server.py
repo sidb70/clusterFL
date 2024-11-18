@@ -234,6 +234,7 @@ class Server:
 
             criterion = nn.CrossEntropyLoss()
             optimizer = torch.optim.SGD(client_model.parameters(), lr=self.lr)
+            print("Training client", client.id, "cluster", cluster_id)
             updated_model = client.train(
                 client_model,
                 client_train_loader,
@@ -244,9 +245,13 @@ class Server:
             updated_models[cluster_id].append(updated_model.state_dict())
         if not self.config.get("baseline_avg_whole_network"):
             for cluster_id in range(self.num_clusters):
+                print("Aggregating cluster", cluster_id)
                 self.cluster_models[cluster_id] = self.aggregate(updated_models[cluster_id])
         else:
-            whole_network_aggregated = self.aggregate([cluster_model[cluster_id] for cluster_model in updated_models])
+            allmodels =[]
+            for cluster_id in range(self.num_clusters):
+                allmodels.extend(updated_models[cluster_id])
+            whole_network_aggregated = self.aggregate(allmodels)
             for cluster_id in range(self.num_clusters):
                 self.cluster_models[cluster_id] = whole_network_aggregated
             

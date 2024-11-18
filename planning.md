@@ -4,6 +4,7 @@
 	- compare simple network-wide averaging vs if we assume oracle clustering
 
 **Assumptions:** Each cluster has unique data distribution, each client shares same CNN architecture. 
+
 **Hypothesis** It is possible to accuratley cluster clients into their respective data distributions based on their model parameters without the server having knowledge of their training data and without different clients having knowledge of each others training data.
 
 **Question**: How to cluster models without knowing their data? 

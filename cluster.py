@@ -2,9 +2,10 @@ from logging import config
 import random
 from typing import Dict, List
 import torch
-
 from aggregation.strategies import load_aggregator
 
+torch.manual_seed(0)
+random.seed(0) 
 
 class ClusterDaddy:
     def __init__(self, weights: List[Dict[str, torch.Tensor]], clusters: int = 5):
@@ -56,7 +57,18 @@ class ClusterDaddy:
             normalizedWeights.append(normalWeight)
 
         return normalizedWeights
-
+    def _kmeans_dist_map(self, weights, clusterList):
+        distanceMap = {}
+        for client, weight in enumerate(weights):
+            distanceMap[client] = []
+            for clus in clusterList:
+                dist = 0
+                for layer, tensor in weight.items():
+                    dist += torch.abs(
+                        tensor - clus[0][layer]
+                    ).sum()
+                distanceMap[client].append(dist)
+        return distanceMap
     def kMeans(self, k_iter: int = 10, normalize: bool = False):
         # Assume we have a fixed number clusters
         clusterList = [[] for i in range(self.clusters)]
@@ -73,18 +85,7 @@ class ClusterDaddy:
         # print(type(weights[]))
         firstPass = True
         for i in range(k_iter):
-            distanceMap = {}
-            for client in clients:
-                distanceMap[client] = []
-                for clus in clusterList:
-                    dist = 0
-                    for layer, tensor in weights[client].items():
-                        dist += torch.abs(
-                            tensor
-                            - (weights[clus[0]][layer] if firstPass else clus[0][layer])
-                        ).sum()
-                    distanceMap[client].append(dist)
-
+            distanceMap = self._kmeans_dist_map(weights, clusterList)
             # Assign each cluster to the closest centroid
             for client, distances in distanceMap.items():
                 clusterList[distances.index(min(distances))].append(client)
