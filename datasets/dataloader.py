@@ -43,7 +43,6 @@ class RotatedDataset(Dataset):
             self.original_transform = dataset.transform
             dataset.transform = None
         self.transform = Transform(rotation)
-
     def __getitem__(self, index: int):
         data, label = self.dataset[index]
         if isinstance(data, torch.Tensor):
@@ -150,6 +149,9 @@ def create_clustered_dataset(
         dataset (Dataset): The dataset to cluster
         num_clusters (int): The number of clusters to create
         cluster_type (str): The type of clustering to perform on the dataset
+
+    Returns:
+        List[Dataset]: A list of datasets, each representing a cluster
     """
     if cluster_type == "rotation":
         datasets = []
