@@ -20,7 +20,7 @@ class TestModelTrain(unittest.TestCase):
         test_loader = DataLoader(testset, batch_size=32, shuffle=True)
         device = "cuda" if torch.cuda.is_available() else "cpu"
         client = Client(id=0, device=torch.device(device), cluster_assignment=0)
-        model = load_model("cnn")
+        model = load_model("cifarcnn")
         criterion = nn.CrossEntropyLoss()
         optimizer = optim.SGD(model.parameters(), lr=0.001)
         for i in range(5):
