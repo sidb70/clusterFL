@@ -8,5 +8,5 @@ model: 'cifarcnn'
 aggregator: 'fedavg'
 lr: 0.01
 cluster_split_type: 'rotation'
-initial_epochs: 0
-baseline_avg_whole_network: True
+initial_epochs: 1
+baseline_avg_whole_network: False

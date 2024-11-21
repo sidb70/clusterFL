@@ -182,7 +182,7 @@ class Server:
             List[List[int]]: List of clients in each cluster
         """
         cluster_daddy = ClusterDaddy(state_dicts, clusters=self.num_clusters)
-        return cluster_daddy.kMeans(k_iter=40)
+        return cluster_daddy.kMeans(k_iter=40, mode="minMax")
 
     def initial_cluster_rounds(self) -> None:
         """

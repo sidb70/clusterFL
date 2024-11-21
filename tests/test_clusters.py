@@ -24,7 +24,7 @@ class TestClusterAlgos(unittest.TestCase):
         self.assertTrue(True)
 
     def testKMeans(self):
-        clusterList = self.cluster.kMeans()
+        clusterList = self.cluster.kMeans(mode="minMax")
         print(clusterList)
         return
 
