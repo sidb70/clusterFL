@@ -220,7 +220,7 @@ class Server:
         """
         num_clients = len(self.clients)
         num_sampled = max(
-            1, int(self.config.get("client_sample_rate", 1) * num_clients)
+            1, int(self.config.get("train_sample_rate", 1) * num_clients)
         )
         sampled_clients = random.sample(self.clients, num_sampled)
         updated_models = [[] for _ in range(self.num_clusters)]

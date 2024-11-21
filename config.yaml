@@ -3,10 +3,14 @@ clients: 20
 num_clusters: 2
 num_rounds: 50
 local_epochs: 1
+train_sample_rate: 1.0
 dataset: 'cifar10'
 model: 'cifarcnn'
 aggregator: 'fedavg'
 lr: 0.01
 cluster_split_type: 'rotation'
-initial_epochs: 0
-baseline_avg_whole_network: True
+initial_epochs: 1
+baseline_avg_whole_network: False
+cluster_algo: 'kmeans'
+# cluster options: 'kmeans', 'validation_loss', 'max_matching_distance', 'min_matching_distance', 'mean_matching_distance'
+evaluation_sampling_rate : 1.0
