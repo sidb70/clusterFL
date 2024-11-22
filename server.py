@@ -1,14 +1,15 @@
 import torch
 import torch.nn as nn
 from torch.utils.data import DataLoader, Subset
-from typing import List, Dict
+from typing import List, Dict, Tuple
 from models.loader import load_model
 from client import Client
-from cluster import ClusterDaddy
+from cluster import load_cluster_algorithm
 from datasets.dataloader import load_global_dataset, create_clustered_dataset
 from aggregation.strategies import load_aggregator
 import random
 from copy import deepcopy
+from concurrent.futures import ProcessPoolExecutor, ThreadPoolExecutor
 
 DEVICES = (
     [torch.device(f"cuda:{i}") for i in range(torch.cuda.device_count())]
@@ -61,7 +62,6 @@ class Server:
         self.lr = config["lr"]
         self.local_epochs = config["local_epochs"]
         self.initial_epochs = config["initial_epochs"]
-
         self.clients_to_clusters = [
             i % self.num_clusters for i in range(self.num_clients)
         ]
@@ -76,6 +76,10 @@ class Server:
             deepcopy(initial_model.state_dict()) for _ in range(self.num_clusters)
         ]
         self.aggregator = load_aggregator(config["aggregator"])
+        self.cluster_params = config.get("cluster_params", {})
+        self.cluster_algorithm = load_cluster_algorithm(
+            config["cluster"], clusters=self.num_clusters, **self.cluster_params
+        )
 
     def create_clients(self, num_clients):
         """
@@ -135,7 +139,8 @@ class Server:
             print(f"Cluster {cluster_num} has {len(clients_list)} clients")
             for client in clients_list:
                 print(
-                    f"client {client} train start {self.client_train_indices[client][0]} end {self.client_train_indices[client][-1]} device {self.clients[client].device}"
+                    f"client {client} train start {self.client_train_indices[client][0]} end {self.client_train_indices[client][-1]}\
+                         on dataset {cluster_num}. Device {self.clients[client].device}"
                 )
 
     def aggregate(
@@ -160,7 +165,7 @@ class Server:
             DataLoader: Training data loader
             DataLoader: Test data loader
         """
-        assigned_cluster = self.clients_to_clusters[client_id]
+        assigned_cluster = self.clients[client_id].cluster_assignment
         subset_train_data = Subset(
             self.clustered_train_sets[assigned_cluster],
             self.client_train_indices[client_id],
@@ -181,37 +186,61 @@ class Server:
         Returns:
             List[List[int]]: List of clients in each cluster
         """
-        cluster_daddy = ClusterDaddy(state_dicts, clusters=self.num_clusters)
-        return cluster_daddy.kMeans(k_iter=40)
+        return self.cluster_algorithm.cluster(state_dicts, **self.cluster_params)
+
+    def run_local_update_worker(
+        self, client_id: int
+    ) -> Tuple[int, int, Dict[str, torch.Tensor]]:
+        """
+        Run a local update on a single client
+        Args:
+            client_id: ID of the client
+        Returns:
+            int: ID of the client
+            Dict[str, torch.Tensor]: Updated model weights
+        """
+        client_train_loader, _ = self.get_client_data(client_id, batch_size=32)
+        cluster_id = self.clients_to_clusters[client_id]
+        client_state_dict = self.cluster_models[cluster_id]
+        client_model = load_model(self.config["model"])
+        client_model.load_state_dict(client_state_dict)
+
+        criterion = nn.CrossEntropyLoss()
+        optimizer = torch.optim.SGD(client_model.parameters(), lr=self.lr)
+        print("Training client", client_id, "cluster", cluster_id)
+        updated_model = self.clients[client_id].train(
+            client_model,
+            client_train_loader,
+            criterion,
+            optimizer,
+            self.local_epochs,
+        )
+        return client_id, cluster_id, updated_model
 
     def initial_cluster_rounds(self) -> None:
         """
         Performs the initial clustering of the clients by training them for a few epochs and clustering them based on the model weights
         """
-        if self.initial_epochs ==0:
+        if self.initial_epochs == 0:
             print("Initial epochs is 0, skipping initial clustering")
             return
-        state_dicts = []
-        for client in self.clients:
-            client_train_loader, _ = self.get_client_data(client.id, batch_size=32)
-            client_model = load_model(self.config["model"])
-            criterion = nn.CrossEntropyLoss()
-            optimizer = torch.optim.SGD(client_model.parameters(), lr=self.lr)
-            updated_model = client.train(
-                client_model,
-                client_train_loader,
-                criterion,
-                optimizer,
-                self.initial_epochs,
-            )
-            state_dicts.append(updated_model.state_dict())
-            print("Initial training complete client", client.id)
-        clusters = self.cluster(state_dicts)
+        clients_models = []
+        with ThreadPoolExecutor(max_workers=len(DEVICES)) as executor:
+            futures = []
+            for client in self.clients:
+                futures.append(executor.submit(self.run_local_update_worker, client.id))
+            for future in futures:
+                client_id, _, updated_model = future.result()
+                clients_models.append((client_id, updated_model.state_dict()))
+                print("Client", client_id, "finished training")
+        random.shuffle(clients_models)
+        assert len(clients_models) == len(self.clients)
+        clusters = self.cluster([model for _, model in clients_models])
 
-        print("Estimated clusters", clusters)
-        for i, clients in enumerate(clusters):
-            self.clusters_to_clients[i] = clients
-            for client in clients:
+        for i, assignments in enumerate(clusters):
+            cluster_clients = [clients_models[j][0] for j in assignments]
+            print(f"Cluster {i} estimated assignments: {cluster_clients}")
+            for client in cluster_clients:
                 self.clients_to_clusters[client] = i
 
     def fl_round(self) -> None:
@@ -219,48 +248,43 @@ class Server:
         Performs a clustered federated learning round
         """
         num_clients = len(self.clients)
-        num_sampled = max(
-            1, int(self.config.get("train_sample_rate", 1) * num_clients)
-        )
+        num_sampled = max(1, int(self.config.get("train_sample_rate", 1) * num_clients))
         sampled_clients = random.sample(self.clients, num_sampled)
         updated_models = [[] for _ in range(self.num_clusters)]
 
-        for client in sampled_clients:
-            client_train_loader, _ = self.get_client_data(client.id, batch_size=32)
-            cluster_id = self.clients_to_clusters[client.id]
-            client_state_dict = self.cluster_models[cluster_id]
-            client_model = load_model(self.config["model"])
-            client_model.load_state_dict(client_state_dict)
-
-            criterion = nn.CrossEntropyLoss()
-            optimizer = torch.optim.SGD(client_model.parameters(), lr=self.lr)
-            print("Training client", client.id, "cluster", cluster_id)
-            updated_model = client.train(
-                client_model,
-                client_train_loader,
-                criterion,
-                optimizer,
-                self.local_epochs,
-            )
-            updated_models[cluster_id].append(updated_model.state_dict())
+        with ThreadPoolExecutor(max_workers=len(DEVICES)) as executor:
+            futures = []
+            for client in sampled_clients:
+                futures.append(executor.submit(self.run_local_update_worker, client.id))
+            for future in futures:
+                client_id, cluster_id, updated_model = future.result()
+                updated_models[cluster_id].append(updated_model.state_dict())
+                print("Client", client_id, "finished training")
         if not self.config.get("baseline_avg_whole_network"):
             for cluster_id in range(self.num_clusters):
                 print("Aggregating cluster", cluster_id)
-                self.cluster_models[cluster_id] = self.aggregate(updated_models[cluster_id])
+                self.cluster_models[cluster_id] = self.aggregate(
+                    updated_models[cluster_id]
+                )
         else:
-            allmodels =[]
+            allmodels = []
             for cluster_id in range(self.num_clusters):
                 allmodels.extend(updated_models[cluster_id])
             whole_network_aggregated = self.aggregate(allmodels)
             for cluster_id in range(self.num_clusters):
                 self.cluster_models[cluster_id] = whole_network_aggregated
-            
 
-    def evaluate(self, batch_size: int = 32) -> None:
+    def evaluate(
+        self, batch_size: int = 32
+    ) -> Tuple[List[Tuple[int, int, float]], List[Tuple[int, int, float]], List[int]]:
         """
         Evaluates the clients
         Args:
             batch_size (int): Batch size
+        Returns:
+            List[Tuple[int, int, float]]: List of accuracies for each client
+            List[Tuple[int, int, float]]: List of losses for each client
+            List[int]: List of current cluster predictions for each client
         """
         accuracies = []
         losses = []
@@ -273,11 +297,23 @@ class Server:
             loss, acc = client.evaluate(
                 cluster_model, test_loader, nn.CrossEntropyLoss()
             )
-            accuracies.append((client.id, client.cluster_assignment, acc))
-            losses.append((client.id, client.cluster_assignment, loss))
-        avg_acc = sum([acc for _, _, acc in accuracies]) / len(accuracies)
-        avg_loss = sum([loss for _, _, loss in losses]) / len(losses)
-        print(
-            f"Average Accuracy: {avg_acc:.2f}%, Average Loss: {avg_loss:.4f}"
-        )
-        return accuracies, losses
+            accuracies.append((client.id, acc))
+            losses.append((client.id, loss))
+        avg_acc = sum([acc for _, acc in accuracies]) / len(accuracies)
+        avg_loss = sum([loss for _, loss in losses]) / len(losses)
+        print(f"Average Accuracy: {avg_acc:.2f}%, Average Loss: {avg_loss:.4f}")
+        true_cluster_assignments = [
+            client.cluster_assignment for client in self.clients
+        ]
+        current_cluster_predictions = [
+            self.clients_to_clusters[client] for client in range(self.num_clients)
+        ]
+        cluster_results = [
+            (
+                client,
+                true_cluster_assignments[client],
+                current_cluster_predictions[client],
+            )
+            for client in range(self.num_clients)
+        ]
+        return accuracies, losses, cluster_results
