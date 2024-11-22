@@ -2,6 +2,7 @@ import unittest
 import torch
 import sys
 import yaml
+
 sys.path.append("./")
 from mockWeightTensors import MockTensors
 from cluster import load_cluster_algorithm, PointWiseKMeans, FilterMatching
@@ -16,19 +17,24 @@ class TestClusterAlgos(unittest.TestCase):
     def test_loader(self):
         cluster = load_cluster_algorithm("kmeans", self.clusters)
         self.assertIsInstance(cluster, PointWiseKMeans)
-        cluster = load_cluster_algorithm("filter", self.clusters, filter_distance='max')
+        cluster = load_cluster_algorithm("filter", self.clusters, filter_distance="max")
         self.assertIsInstance(cluster, FilterMatching)
+
     def test_kmeans(self):
         cluster = PointWiseKMeans(self.clusters)
         clusterList = cluster.cluster(self.weights)
         self.assertEqual(len(clusterList), self.clusters)
-        self.assertEqual(sum([len(cluster) for cluster in clusterList]), len(self.weights))
+        self.assertEqual(
+            sum([len(cluster) for cluster in clusterList]), len(self.weights)
+        )
 
     def test_filter(self):
-        cluster = FilterMatching(self.clusters, filter_distance='max')
+        cluster = FilterMatching(self.clusters, filter_distance="max")
         clusterList = cluster.cluster(self.weights)
         self.assertEqual(len(clusterList), self.clusters)
-        self.assertEqual(sum([len(cluster) for cluster in clusterList]), len(self.weights))
+        self.assertEqual(
+            sum([len(cluster) for cluster in clusterList]), len(self.weights)
+        )
 
     # def testNormalize(self):
     #     # custom = self.cluster.normalize()

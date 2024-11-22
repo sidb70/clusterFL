@@ -10,8 +10,6 @@ import torch.nn as nn
 import torch.optim as optim
 from torch.utils.data import DataLoader
 
-torch.manual_seed(0)
-
 
 class TestModelTrain(unittest.TestCase):
     def test_train(self):

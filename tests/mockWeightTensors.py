@@ -9,8 +9,9 @@ class MockTensors:
                     [
                         [[[1, 2, 3], [4, 5, 6], [7, 8, 9]]],
                         [[[10, 11, 12], [13, 14, 15], [16, 17, 18]]],
-                    ]
-                ,dtype=torch.float32),
+                    ],
+                    dtype=torch.float32,
+                ),
                 "conv2.weight": torch.tensor(
                     [
                         [
@@ -21,8 +22,9 @@ class MockTensors:
                             [[19, 20, 21], [22, 23, 24], [25, 26, 27]],
                             [[28, 29, 30], [31, 32, 33], [34, 35, 36]],
                         ],
-                    ]
-                ,dtype=torch.float32),
+                    ],
+                    dtype=torch.float32,
+                ),
                 "fc1.weight": torch.tensor(
                     [
                         [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16],
@@ -44,16 +46,18 @@ class MockTensors:
                             31,
                             32,
                         ],
-                    ]
-                ,dtype=torch.float32),
+                    ],
+                    dtype=torch.float32,
+                ),
             },
             {
                 "conv1.weight": torch.tensor(
                     [
                         [[[9, 8, 7], [6, 5, 4], [3, 2, 1]]],
                         [[[18, 17, 16], [15, 14, 13], [12, 11, 10]]],
-                    ]
-                ,dtype=torch.float32),
+                    ],
+                    dtype=torch.float32,
+                ),
                 "conv2.weight": torch.tensor(
                     [
                         [
@@ -64,8 +68,9 @@ class MockTensors:
                             [[18, 17, 16], [15, 14, 13], [12, 11, 10]],
                             [[9, 8, 7], [6, 5, 4], [3, 2, 1]],
                         ],
-                    ]
-                ,dtype=torch.float32),
+                    ],
+                    dtype=torch.float32,
+                ),
                 "fc1.weight": torch.tensor(
                     [
                         [
@@ -87,16 +92,18 @@ class MockTensors:
                             17,
                         ],
                         [16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1],
-                    ]
-                ,dtype=torch.float32),
+                    ],
+                    dtype=torch.float32,
+                ),
             },
             {
                 "conv1.weight": torch.tensor(
                     [
                         [[[0, 1, 2], [3, 4, 5], [6, 7, 8]]],
                         [[[9, 10, 11], [12, 13, 14], [15, 16, 17]]],
-                    ]
-                ,dtype=torch.float32),
+                    ],
+                    dtype=torch.float32,
+                ),
                 "conv2.weight": torch.tensor(
                     [
                         [
@@ -107,8 +114,9 @@ class MockTensors:
                             [[36, 37, 38], [39, 40, 41], [42, 43, 44]],
                             [[45, 46, 47], [48, 49, 50], [51, 52, 53]],
                         ],
-                    ]
-                ,dtype=torch.float32),
+                    ],
+                    dtype=torch.float32,
+                ),
                 "fc1.weight": torch.tensor(
                     [
                         [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16],
@@ -130,16 +138,18 @@ class MockTensors:
                             31,
                             32,
                         ],
-                    ]
-                ,dtype=torch.float32),
+                    ],
+                    dtype=torch.float32,
+                ),
             },
             {
                 "conv1.weight": torch.tensor(
                     [
                         [[[2, 4, 6], [8, 10, 12], [14, 16, 18]]],
                         [[[20, 22, 24], [26, 28, 30], [32, 34, 36]]],
-                    ]
-                ,dtype=torch.float32),
+                    ],
+                    dtype=torch.float32,
+                ),
                 "conv2.weight": torch.tensor(
                     [
                         [
@@ -150,8 +160,9 @@ class MockTensors:
                             [[57, 60, 63], [66, 69, 72], [75, 78, 81]],
                             [[84, 87, 90], [93, 96, 99], [102, 105, 108]],
                         ],
-                    ]
-                ,dtype=torch.float32),
+                    ],
+                    dtype=torch.float32,
+                ),
                 "fc1.weight": torch.tensor(
                     [
                         [
@@ -190,16 +201,18 @@ class MockTensors:
                             310,
                             320,
                         ],
-                    ]
-                ,dtype=torch.float32),
+                    ],
+                    dtype=torch.float32,
+                ),
             },
             {
                 "conv1.weight": torch.tensor(
                     [
                         [[[1, 0, -1], [0, -1, -2], [-1, -2, -3]]],
                         [[[-4, -5, -6], [-7, -8, -9], [-10, -11, -12]]],
-                    ]
-                ,dtype=torch.float32),
+                    ],
+                    dtype=torch.float32,
+                ),
                 "conv2.weight": torch.tensor(
                     [
                         [
@@ -210,8 +223,9 @@ class MockTensors:
                             [[-19, -20, -21], [-22, -23, -24], [-25, -26, -27]],
                             [[-28, -29, -30], [-31, -32, -33], [-34, -35, -36]],
                         ],
-                    ]
-                ,dtype=torch.float32),
+                    ],
+                    dtype=torch.float32,
+                ),
                 "fc1.weight": torch.tensor(
                     [
                         [
@@ -250,16 +264,18 @@ class MockTensors:
                             -31,
                             -32,
                         ],
-                    ]
-                ,dtype=torch.float32),
+                    ],
+                    dtype=torch.float32,
+                ),
             },
             {
                 "conv1.weight": torch.tensor(
                     [
                         [[[5, 4, 3], [2, 1, 0], [-1, -2, -3]]],
                         [[[-4, -5, -6], [-7, -8, -9], [-10, -11, -12]]],
-                    ]
-                ,dtype=torch.float32),
+                    ],
+                    dtype=torch.float32,
+                ),
                 "conv2.weight": torch.tensor(
                     [
                         [
@@ -270,8 +286,9 @@ class MockTensors:
                             [[-8, -9, -10], [-11, -12, -13], [-14, -15, -16]],
                             [[-17, -18, -19], [-20, -21, -22], [-23, -24, -25]],
                         ],
-                    ]
-                ,dtype=torch.float32),
+                    ],
+                    dtype=torch.float32,
+                ),
                 "fc1.weight": torch.tensor(
                     [
                         [15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0],
@@ -293,16 +310,18 @@ class MockTensors:
                             -15,
                             -16,
                         ],
-                    ]
-                ,dtype=torch.float32),
+                    ],
+                    dtype=torch.float32,
+                ),
             },
             {
                 "conv1.weight": torch.tensor(
                     [
                         [[[1, 3, 5], [7, 9, 11], [13, 15, 17]]],
                         [[[19, 21, 23], [25, 27, 29], [31, 33, 35]]],
-                    ]
-                ,dtype=torch.float32),
+                    ],
+                    dtype=torch.float32,
+                ),
                 "conv2.weight": torch.tensor(
                     [
                         [
@@ -313,8 +332,9 @@ class MockTensors:
                             [[38, 40, 42], [44, 46, 48], [50, 52, 54]],
                             [[56, 58, 60], [62, 64, 66], [68, 70, 72]],
                         ],
-                    ]
-                ,dtype=torch.float32),
+                    ],
+                    dtype=torch.float32,
+                ),
                 "fc1.weight": torch.tensor(
                     [
                         [3, 6, 9, 12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48],
@@ -336,16 +356,18 @@ class MockTensors:
                             93,
                             96,
                         ],
-                    ]
-                ,dtype=torch.float32),
+                    ],
+                    dtype=torch.float32,
+                ),
             },
             {
                 "conv1.weight": torch.tensor(
                     [
                         [[[2, 1, 0], [-1, -2, -3], [-4, -5, -6]]],
                         [[[-7, -8, -9], [-10, -11, -12], [-13, -14, -15]]],
-                    ]
-                ,dtype=torch.float32),
+                    ],
+                    dtype=torch.float32,
+                ),
                 "conv2.weight": torch.tensor(
                     [
                         [
@@ -356,8 +378,9 @@ class MockTensors:
                             [[-37, -39, -41], [-43, -45, -47], [-49, -51, -53]],
                             [[-55, -57, -59], [-61, -63, -65], [-67, -69, -71]],
                         ],
-                    ]
-                ,dtype=torch.float32),
+                    ],
+                    dtype=torch.float32,
+                ),
                 "fc1.weight": torch.tensor(
                     [
                         [
@@ -396,16 +419,18 @@ class MockTensors:
                             -155,
                             -160,
                         ],
-                    ]
-                ,dtype=torch.float32),
+                    ],
+                    dtype=torch.float32,
+                ),
             },
             {
                 "conv1.weight": torch.tensor(
                     [
                         [[[6, 5, 4], [3, 2, 1], [0, -1, -2]]],
                         [[[-3, -4, -5], [-6, -7, -8], [-9, -10, -11]]],
-                    ]
-                ,dtype=torch.float32),
+                    ],
+                    dtype=torch.float32,
+                ),
                 "conv2.weight": torch.tensor(
                     [
                         [
@@ -416,8 +441,9 @@ class MockTensors:
                             [[-6, -7, -8], [-9, -10, -11], [-12, -13, -14]],
                             [[-15, -16, -17], [-18, -19, -20], [-21, -22, -23]],
                         ],
-                    ]
-                ,dtype=torch.float32),
+                    ],
+                    dtype=torch.float32,
+                ),
                 "fc1.weight": torch.tensor(
                     [
                         [10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0, -1, -2, -3, -4, -5],
@@ -439,7 +465,8 @@ class MockTensors:
                             -20,
                             -21,
                         ],
-                    ]
-                ,dtype=torch.float32),
+                    ],
+                    dtype=torch.float32,
+                ),
             },
         ]
