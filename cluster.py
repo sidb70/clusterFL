@@ -8,17 +8,26 @@ from sklearn.cluster import KMeans
 
 
 torch.manual_seed(0)
-random.seed(0) 
+random.seed(0)
+
 
 def tensorSum(tensors):
-        return torch.sum(torch.stack(tensors))
+    return torch.sum(torch.stack(tensors))
+
+
 class ClusterAlgorithm:
     def __init__(self, clusters: int = 5):
         self.clusters = clusters
         self.aggregator = load_aggregator("fedavg")
+
     def cluster(self, state_dicts: List[Dict[str, torch.Tensor]], *args, **kwargs):
         raise NotImplementedError
+
+
 class PointWiseKMeans(ClusterAlgorithm):
+    def __init__(self, clusters: int = 5, *args, **kwargs):
+        super().__init__(clusters)
+
     def normalize(self, state_dicts: List[Dict[str, torch.Tensor]]):
         class Node:
             def __init__(self, tensor: torch.Tensor):
@@ -60,10 +69,9 @@ class PointWiseKMeans(ClusterAlgorithm):
             normalizedWeights.append(normalWeight)
 
         return normalizedWeights
- 
-   
+
     def cluster(self, state_dicts: List[Dict[str, torch.Tensor]], *args, **kwargs):
-        k_iter =kwargs.get("k_iter", 10)
+        k_iter = kwargs.get("k_iter", 10)
         normalize = kwargs.get("normalize", False)
         # Assume we have a fixed number clusters
         clusterList = [[] for i in range(self.clusters)]
@@ -114,9 +122,11 @@ class PointWiseKMeans(ClusterAlgorithm):
                 clusterList = [[centroid] for centroid in centroids]
                 firstPass = False
         return clusterList
+
+
 class FilterMatching(ClusterAlgorithm):
-    def __init__(self,  clusters: int = 5, **kwargs):
-        super().__init__( clusters)
+    def __init__(self, clusters: int = 5, **kwargs):
+        super().__init__(clusters)
         distance_selection = kwargs.get("filter_distance", "max")
         if distance_selection == "max":
             self.distance_selection = max
@@ -124,15 +134,18 @@ class FilterMatching(ClusterAlgorithm):
             self.distance_selection = np.mean
         elif distance_selection == "min":
             self.distance_selection = min
+
     def filter_dist(self, filter1, filter2):
-        return torch.dist( filter1, filter2,p=1)
+        return torch.dist(filter1, filter2, p=1)
+
     def compute_filter_dist(self, client1_filters, client2_filters):
         dist_mat = np.zeros((len(client1_filters), len(client2_filters)))
         for i, filter1 in enumerate(client1_filters):
             for j, filter2 in enumerate(client2_filters):
                 dist_mat[i, j] = self.filter_dist(filter1, filter2)
         return dist_mat
-    def match_filters(self,dist_mat):
+
+    def match_filters(self, dist_mat):
         # match filters. once two filters are matched, remove them from the list
         matches = []
         for _ in range(dist_mat.shape[0]):
@@ -142,22 +155,26 @@ class FilterMatching(ClusterAlgorithm):
             dist_mat[i, :] = np.inf
             dist_mat[:, j] = np.inf
         return matches
+
     def max_matching_dist(self, layer_weights):
-        '''
+        """
         Compute the maximum matching distance between all the clients for one layer
         Args:
             layer_weights: list of weights for one layer for all the clients
         Returns:
             dist_mat: matrix of distances between all the clients
-        '''
+        """
         dist_mat = np.zeros((len(layer_weights), len(layer_weights)))
         for i, client1_weights in enumerate(layer_weights):
             for j, client2_weights in enumerate(layer_weights):
-                filter_dists = self.compute_filter_dist(client1_weights, client2_weights)
+                filter_dists = self.compute_filter_dist(
+                    client1_weights, client2_weights
+                )
                 matches = self.match_filters(filter_dists)
                 dist = self.distance_selection([match[2] for match in matches])
                 dist_mat[i, j] = dist
         return dist_mat
+
     def cluster(self, state_dicts: List[Dict[str, torch.Tensor]], *args, **kwargs):
         km = KMeans(n_clusters=self.clusters)
         # take only first layer

@@ -1,7 +1,6 @@
 import torch
 from typing import Tuple, Dict
 
-torch.manual_seed(0)
 
 class Client:
     def __init__(self, id, device: torch.device, cluster_assignment):
