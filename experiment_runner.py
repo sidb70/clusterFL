@@ -24,7 +24,7 @@ class FLNetwork:
         for r in range(num_rounds):
             print("Round: ", r)
             self.server.fl_round()
-            accuracies, losses = self.server.evaluate()
+            accuracies, losses, cluster_results = self.server.evaluate()
             round_data = {
                 "round": r,
                 "accuracies": [
@@ -34,7 +34,8 @@ class FLNetwork:
                 "losses": [
                     {"client_id": client_id, "true_cluster_id": true_cluster_id, "loss": loss}
                     for client_id, true_cluster_id, loss in losses
-                ]
+                ],
+                "cluster_results": cluster_results
             }
         
             # Append round data to results

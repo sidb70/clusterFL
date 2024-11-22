@@ -1,35 +1,44 @@
 import unittest
 import torch
 import sys
-
+import yaml
 sys.path.append("./")
 from mockWeightTensors import MockTensors
-from cluster import ClusterDaddy
+from cluster import load_cluster_algorithm, PointWiseKMeans, FilterMatching
 
 
 class TestClusterAlgos(unittest.TestCase):
     def setUp(self):
         self.weights = MockTensors().weights
         self.clusters = 3
-        self.cluster = ClusterDaddy(self.weights, self.clusters)
+        self.config = yaml.safe_load("config.yaml")
 
-    def testNormalize(self):
-        # custom = self.cluster.normalize()
-        # gpt = normalize_weights(self.weights)
-        # for client_c,client_g in zip(custom,gpt):
-        #     for label in client_c:
-        #       print(client_c[label])
-        #       print(client_g[label])
-        #       self.assertTrue(torch.allclose(client_c[label], client_g[label]))
-        self.assertTrue(True)
+    def test_loader(self):
+        cluster = load_cluster_algorithm("kmeans", self.clusters)
+        self.assertIsInstance(cluster, PointWiseKMeans)
+        cluster = load_cluster_algorithm("filter", self.clusters, filter_distance='max')
+        self.assertIsInstance(cluster, FilterMatching)
+    def test_kmeans(self):
+        cluster = PointWiseKMeans(self.clusters)
+        clusterList = cluster.cluster(self.weights)
+        self.assertEqual(len(clusterList), self.clusters)
+        self.assertEqual(sum([len(cluster) for cluster in clusterList]), len(self.weights))
 
-    def testKMeans(self):
-        clusterList = self.cluster.kMeans()
-        print(clusterList)
-        return
+    def test_filter(self):
+        cluster = FilterMatching(self.clusters, filter_distance='max')
+        clusterList = cluster.cluster(self.weights)
+        self.assertEqual(len(clusterList), self.clusters)
+        self.assertEqual(sum([len(cluster) for cluster in clusterList]), len(self.weights))
 
-    def testBruteCluster(self):
-        self.assertTrue(True)
+    # def testNormalize(self):
+    #     # custom = self.cluster.normalize()
+    #     # gpt = normalize_weights(self.weights)
+    #     # for client_c,client_g in zip(custom,gpt):
+    #     #     for label in client_c:
+    #     #       print(client_c[label])
+    #     #       print(client_g[label])
+    #     #       self.assertTrue(torch.allclose(client_c[label], client_g[label]))
+    #     self.assertTrue(True)
 
 
 # GPT normalize

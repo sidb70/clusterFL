@@ -10,16 +10,16 @@ from sklearn.cluster import KMeans
 torch.manual_seed(0)
 random.seed(0) 
 
-class ClusterDaddy:
-    def __init__(self, weights: List[Dict[str, torch.Tensor]], clusters: int = 5):
-        self.weights = weights
+def tensorSum(tensors):
+        return torch.sum(torch.stack(tensors))
+class ClusterAlgorithm:
+    def __init__(self, clusters: int = 5):
         self.clusters = clusters
         self.aggregator = load_aggregator("fedavg")
-
-    def tensorSum(tensors):
-        return torch.sum(torch.stack(tensors))
-
-    def normalize(self):
+    def cluster(self, state_dicts: List[Dict[str, torch.Tensor]], *args, **kwargs):
+        raise NotImplementedError
+class PointWiseKMeans(ClusterAlgorithm):
+    def normalize(self, state_dicts: List[Dict[str, torch.Tensor]]):
         class Node:
             def __init__(self, tensor: torch.Tensor):
                 self.values = [tensor]
@@ -29,7 +29,7 @@ class ClusterDaddy:
         noramlizationDict = {}
 
         # Prepare tensors for normalization
-        for weight in self.weights:
+        for weight in state_dicts:
             for layer, tensor in weight.items():
                 if layer in noramlizationDict:
                     noramlizationDict[layer].values.append(tensor)
@@ -51,7 +51,7 @@ class ClusterDaddy:
 
         # Normalize tensors based on layer values accross classes
         normalizedWeights = []
-        for weight in self.weights:
+        for weight in state_dicts:
             normalWeight = {}
             for layer, tensor in weight.items():
                 normalWeight[layer] = (tensor - noramlizationDict[layer].mean) / (
@@ -60,7 +60,70 @@ class ClusterDaddy:
             normalizedWeights.append(normalWeight)
 
         return normalizedWeights
-    
+ 
+   
+    def cluster(self, state_dicts: List[Dict[str, torch.Tensor]], *args, **kwargs):
+        k_iter =kwargs.get("k_iter", 10)
+        normalize = kwargs.get("normalize", False)
+        # Assume we have a fixed number clusters
+        clusterList = [[] for i in range(self.clusters)]
+        clients = [i for i in range(len(state_dicts))]
+
+        # Assign intial centroids
+        for clus in clusterList:
+            randK = random.choice(clients)
+            clus.append(randK)
+            clients.remove(randK)
+
+        # Calculate each clients distance from the centroid node
+        weights = normalize(state_dicts) if normalize else state_dicts
+        # print(type(weights[]))
+        firstPass = True
+        for i in range(k_iter):
+            distanceMap = {}
+            for client in clients:
+                distanceMap[client] = []
+                for clus in clusterList:
+                    dist = 0
+                    for layer, tensor in weights[client].items():
+                        dist += torch.abs(
+                            tensor
+                            - (weights[clus[0]][layer] if firstPass else clus[0][layer])
+                        ).sum()
+                    distanceMap[client].append(dist)
+
+            # Assign each cluster to the closest centroid
+            for client, distances in distanceMap.items():
+                clusterList[distances.index(min(distances))].append(client)
+
+            # Reset Clients
+            if i + 1 == k_iter:
+                for clus in clusterList:
+                    clus.pop(0)
+            else:
+                clients = [j for j in range(len(state_dicts))]
+                centroids = []
+                for clus in clusterList:
+                    if not firstPass:
+                        clus.pop(0)
+                    centroids.append(
+                        self.aggregator.aggregate(
+                            [state_dicts[client] for client in clus]
+                        )
+                    )
+                clusterList = [[centroid] for centroid in centroids]
+                firstPass = False
+        return clusterList
+class FilterMatching(ClusterAlgorithm):
+    def __init__(self,  clusters: int = 5, **kwargs):
+        super().__init__( clusters)
+        distance_selection = kwargs.get("filter_distance", "max")
+        if distance_selection == "max":
+            self.distance_selection = max
+        elif distance_selection == "mean":
+            self.distance_selection = np.mean
+        elif distance_selection == "min":
+            self.distance_selection = min
     def filter_dist(self, filter1, filter2):
         return torch.dist( filter1, filter2,p=1)
     def compute_filter_dist(self, client1_filters, client2_filters):
@@ -92,25 +155,13 @@ class ClusterDaddy:
             for j, client2_weights in enumerate(layer_weights):
                 filter_dists = self.compute_filter_dist(client1_weights, client2_weights)
                 matches = self.match_filters(filter_dists)
-                max_dist = max([match[2] for match in matches])
-                dist_mat[i, j] = max_dist
+                dist = self.distance_selection([match[2] for match in matches])
+                dist_mat[i, j] = dist
         return dist_mat
-    def _kmeans_dist_map(self, weights, clusterList):
-        distanceMap = {}
-        for client, weight in enumerate(weights):
-            distanceMap[client] = []
-            for clus in clusterList:
-                dist = 0
-                for layer, tensor in weight.items():
-                    dist += torch.abs(
-                        tensor - clus[0][layer]
-                    ).sum()
-                distanceMap[client].append(dist)
-        return distanceMap
-    def kMeans(self, k_iter: int = 10, normalize: bool = False):
+    def cluster(self, state_dicts: List[Dict[str, torch.Tensor]], *args, **kwargs):
         km = KMeans(n_clusters=self.clusters)
         # take only first layer
-        weights = [list(weight.values())[0] for weight in self.weights]
+        weights = [list(weight.values())[0] for weight in state_dicts]
         dist_mat = self.max_matching_dist(weights)
         km.fit(dist_mat)
         clusterList = [[] for i in range(self.clusters)]
@@ -118,54 +169,11 @@ class ClusterDaddy:
             clusterList[label].append(i)
         return clusterList
 
-        # Assume we have a fixed number clusters
-        clusterList = [[] for i in range(self.clusters)]
-        clients = [i for i in range(len(self.weights))]
 
-        # Assign intial centroids
-        for clus in clusterList:
-            randK = random.choice(clients)
-            clus.append(randK)
-            clients.remove(randK)
-
-        # Calculate each clients distance from the centroid node
-        weights = normalize(self.weights) if normalize else self.weights
-        # print(type(weights[]))
-        firstPass = True
-        for i in range(k_iter):
-            distanceMap = self._kmeans_dist_map(weights, clusterList)
-            # Assign each cluster to the closest centroid
-            for client, distances in distanceMap.items():
-                clusterList[distances.index(min(distances))].append(client)
-
-            # Reset Clients
-            if i + 1 == k_iter:
-                for clus in clusterList:
-                    clus.pop(0)
-            else:
-                clients = [j for j in range(len(self.weights))]
-                centroids = []
-                for clus in clusterList:
-                    if not firstPass:
-                        clus.pop(0)
-                    centroids.append(
-                        self.aggregator.aggregate(
-                            [self.weights[client] for client in clus]
-                        )
-                    )
-                clusterList = [[centroid] for centroid in centroids]
-                firstPass = False
-        return clusterList
-
-    def bruteCluster(self, lamb: int = 1):
-        # Calculate distances between each clients tensors
-        # similarityMatrix = []
-        # for ind,weight in enumerate(normalizedWeights):
-        #     similarityMatrix.append([])
-        #     for w2 in normalizedWeights:
-        #         diff = 0
-        #         for layer,tensor in weight.items():
-        #             diff += torch.abs(tensor - w2[layer]).sum()
-        #         similarityMatrix[ind].append(diff)
-
-        return
+def load_cluster_algorithm(name: str, *args, **kwargs):
+    if name == "kmeans":
+        return PointWiseKMeans(*args, **kwargs)
+    elif name == "filter":
+        return FilterMatching(*args, **kwargs)
+    else:
+        raise NotImplementedError
