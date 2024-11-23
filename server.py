@@ -291,8 +291,9 @@ class Server:
         for client in self.clients:
             _, test_loader = self.get_client_data(client.id, batch_size=batch_size)
             cluster_model = load_model(self.config["model"])
+            current_cluster_id = self.clients_to_clusters[client.id]
             cluster_model.load_state_dict(
-                self.cluster_models[client.cluster_assignment]
+                self.cluster_models[current_cluster_id]
             )
             loss, acc = client.evaluate(
                 cluster_model, test_loader, nn.CrossEntropyLoss()
