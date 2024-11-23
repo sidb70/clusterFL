@@ -1,6 +1,7 @@
 import torch
 import torch.nn as nn
 from torch.utils.data import DataLoader, Subset
+import numpy as np
 from typing import List, Dict, Tuple
 from models.loader import load_model
 from client import Client
@@ -199,9 +200,18 @@ class Server:
             int: ID of the client
             Dict[str, torch.Tensor]: Updated model weights
         """
+        process_seed = client_id
+        random.seed(process_seed)
+        np.random.seed(process_seed)
+        torch.manual_seed(process_seed)
+        torch.cuda.manual_seed(process_seed)
+        torch.cuda.manual_seed_all(process_seed)
+        torch.backends.cudnn.deterministic = True
+        torch.backends.cudnn.benchmark = False
+
         client_train_loader, _ = self.get_client_data(client_id, batch_size=32)
         cluster_id = self.clients_to_clusters[client_id]
-        client_state_dict = self.cluster_models[cluster_id]
+        client_state_dict =deepcopy(self.cluster_models[cluster_id])
         client_model = load_model(self.config["model"])
         client_model.load_state_dict(client_state_dict)
 
@@ -239,7 +249,7 @@ class Server:
 
         for i, assignments in enumerate(clusters):
             cluster_clients = [clients_models[j][0] for j in assignments]
-            print(f"Cluster {i} estimated assignments: {cluster_clients}")
+            print(f"Cluster {i} estimated assignments: {sorted(cluster_clients)}")
             for client in cluster_clients:
                 self.clients_to_clusters[client] = i
 
