@@ -11,7 +11,7 @@ from aggregation.strategies import load_aggregator
 import random
 from copy import deepcopy
 from concurrent.futures import ProcessPoolExecutor, ThreadPoolExecutor
-from utils import save_model, load_state_dict
+from utils import load_state_dict
 import os
 DEVICES = (
     [torch.device(f"cuda:{i}") for i in range(torch.cuda.device_count())]
@@ -98,7 +98,7 @@ class Server:
         for i in range(num_clients):
 
             client_model = deepcopy(initial_model)
-            save_model(client_model, os.path.join(self.model_save_dir, f"client_{i}.pt"))
+            torch.save(client_model.state_dict(), os.path.join(self.model_save_dir, f"client_{i}.pt"))
 
             cluster_assignment = self.clients_to_clusters[i]
             self.clients.append(
@@ -207,14 +207,6 @@ class Server:
             int: ID of the client
             Dict[str, torch.Tensor]: Updated model weights
         """
-        process_seed = client_id
-        random.seed(process_seed)
-        np.random.seed(process_seed)
-        torch.manual_seed(process_seed)
-        torch.cuda.manual_seed(process_seed)
-        torch.cuda.manual_seed_all(process_seed)
-        torch.backends.cudnn.deterministic = True
-        torch.backends.cudnn.benchmark = False
 
         client_train_loader, _ = self.get_client_data(client_id, batch_size=32)
         cluster_id = self.clients_to_clusters[client_id]
@@ -282,14 +274,14 @@ class Server:
                     updated_models[cluster_id]
                 )
                 for client in self.clusters_to_clients[cluster_id]:
-                    save_model(cluster_model, os.path.join(self.model_save_dir, f"client_{client}.pt"))
+                    torch.save(cluster_model, os.path.join(self.model_save_dir, f"client_{client}.pt"))
         else:
             allmodels = []
             for cluster_id in range(self.num_clusters):
                 allmodels.extend(updated_models[cluster_id])
             whole_network_aggregated = self.aggregate(allmodels)
             for client in range(num_clients):
-                save_model(whole_network_aggregated, os.path.join(self.model_save_dir, f"client_{client}.pt"))
+                torch.save(whole_network_aggregated, os.path.join(self.model_save_dir, f"client_{client}.pt"))
 
     def evaluate(
         self, batch_size: int = 32
