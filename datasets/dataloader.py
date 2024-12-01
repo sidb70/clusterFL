@@ -5,6 +5,8 @@ from torchvision import datasets, transforms
 from torch.utils.data import Dataset
 from typing import Dict, Any
 from PIL import Image
+
+
 def Transform(rotation: float = 0.0, num_dims: int = 3) -> transforms.Compose:
     """
     Create a transformation for datasets.
@@ -23,7 +25,9 @@ def Transform(rotation: float = 0.0, num_dims: int = 3) -> transforms.Compose:
         transform = transforms.Compose(
             [
                 transforms.ToTensor(),  # Then convert to tensor
-                transforms.RandomRotation(degrees=(rotation, rotation)),  # Apply rotation first
+                transforms.RandomRotation(
+                    degrees=(rotation, rotation)
+                ),  # Apply rotation first
                 transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5)),
             ]
         )
@@ -35,7 +39,9 @@ class ClusterDataset(Dataset):
     A dataset that selects only the specified classes.
     """
 
-    def __init__(self, dataset: List[Tuple[Any, int]], transform: transforms.Compose = None):
+    def __init__(
+        self, dataset: List[Tuple[Any, int]], transform: transforms.Compose = None
+    ):
         """
         Initialize the ClusterDataset.
 
@@ -51,15 +57,16 @@ class ClusterDataset(Dataset):
         data, label = self.dataset[index]
         # Apply the transformation if it's defined
         if self.transform:
-            #cvt to pil if not already
+            # cvt to pil if not already
             if not isinstance(data, Image.Image):
                 data = transforms.ToPILImage()(data)
             data = self.transform(data)
-        
+
         return data, label
 
     def __len__(self):
         return len(self.dataset)
+
 
 def load_cifar10() -> Tuple[Dataset, Dataset]:
     """
@@ -75,6 +82,7 @@ def load_cifar10() -> Tuple[Dataset, Dataset]:
     )
     return trainset, testset
 
+
 def load_cifar100() -> Tuple[Dataset, Dataset]:
     """
     Load the CIFAR-100 dataset.
@@ -88,6 +96,7 @@ def load_cifar100() -> Tuple[Dataset, Dataset]:
         "./datasets/cifar-100/", download=True, train=False, transform=transform
     )
     return trainset, testset
+
 
 def load_mnist() -> Tuple[Dataset, Dataset]:
     """
@@ -108,6 +117,7 @@ def load_mnist() -> Tuple[Dataset, Dataset]:
     )
     return trainset, testset
 
+
 def load_global_dataset(task: str) -> Dataset:
     """
     Load the dataset specified by the dataset_name.
@@ -122,7 +132,10 @@ def load_global_dataset(task: str) -> Dataset:
     elif task == "mnist":
         return load_mnist()
     else:
-        raise ValueError(f"Task {task} not supported. Must be one of ['cifar10', 'cifar100', 'mnist']")
+        raise ValueError(
+            f"Task {task} not supported. Must be one of ['cifar10', 'cifar100', 'mnist']"
+        )
+
 
 def create_clustered_dataset(
     dataset: Dataset, num_clusters: int, cluster_type: str
@@ -142,11 +155,16 @@ def create_clustered_dataset(
         datasets = []
         for i in range(num_clusters):
             rotation = (i / num_clusters + 1) * 360
-            transform = Transform(rotation, num_dims = dataset[0][0].shape[0])
+            transform = Transform(rotation, num_dims=dataset[0][0].shape[0])
             datasets.append(ClusterDataset(dataset=dataset, transform=transform))
     elif cluster_type == "selected_classes":
         datasets = []
-        cluster_classes = [classes.tolist() for classes in np.array_split(list(range(len(dataset.classes))), num_clusters)]
+        cluster_classes = [
+            classes.tolist()
+            for classes in np.array_split(
+                list(range(len(dataset.classes))), num_clusters
+            )
+        ]
         print(cluster_classes)
         datasets = {i: [] for i in range(num_clusters)}
         for i in range(len(dataset)):
@@ -158,6 +176,7 @@ def create_clustered_dataset(
     else:
         raise ValueError(f"Cluster type {cluster_type} not supported")
     return datasets
+
 
 if __name__ == "__main__":
     train_loader, val_loader, test_loader = load_cifar10(32, 0.2)

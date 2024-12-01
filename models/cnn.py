@@ -63,4 +63,3 @@ class MnistCNN(nn.Module):
 
     def forward(self, x):
         return self.nn(x)
-    

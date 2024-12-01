@@ -13,6 +13,7 @@ from copy import deepcopy
 from concurrent.futures import ProcessPoolExecutor, ThreadPoolExecutor
 from utils import load_state_dict
 import os
+
 DEVICES = (
     [torch.device(f"cuda:{i}") for i in range(torch.cuda.device_count())]
     if torch.cuda.is_available()
@@ -75,16 +76,14 @@ class Server:
                 self.clusters_to_clients[cluster] = []
             self.clusters_to_clients[cluster].append(i)
 
-        self.model_save_dir = os.path.join("data", "models",experiment_id)
+        self.model_save_dir = os.path.join("data", "models", experiment_id)
         os.makedirs(self.model_save_dir, exist_ok=True)
 
         self.create_clients(self.num_clients)
         self.aggregator = load_aggregator(config["aggregator"])
         self.cluster_params = config.get("cluster_params", {})
         self.cluster_algorithm = load_cluster_algorithm(
-            config["cluster"], 
-            clusters=self.num_clusters, 
-            **self.cluster_params
+            config["cluster"], clusters=self.num_clusters, **self.cluster_params
         )
 
     def create_clients(self, num_clients):
@@ -100,7 +99,10 @@ class Server:
         for i in range(num_clients):
 
             client_model = deepcopy(initial_model)
-            torch.save(client_model.state_dict(), os.path.join(self.model_save_dir, f"client_{i}.pt"))
+            torch.save(
+                client_model.state_dict(),
+                os.path.join(self.model_save_dir, f"client_{i}.pt"),
+            )
 
             cluster_assignment = self.clients_to_clusters[i]
             self.clients.append(
@@ -212,7 +214,10 @@ class Server:
 
         client_train_loader, _ = self.get_client_data(client_id, batch_size=32)
         cluster_id = self.clients_to_clusters[client_id]
-        client_model = load_state_dict(load_model(self.config["task"]), os.path.join(self.model_save_dir, f"client_{client_id}.pt"))
+        client_model = load_state_dict(
+            load_model(self.config["task"]),
+            os.path.join(self.model_save_dir, f"client_{client_id}.pt"),
+        )
 
         criterion = nn.CrossEntropyLoss()
         optimizer = torch.optim.SGD(client_model.parameters(), lr=self.lr)
@@ -273,12 +278,23 @@ class Server:
                 print("Client", client_id, "finished training")
         if not self.config.get("baseline_avg_whole_network"):
             for cluster_id in range(self.num_clusters):
-                print("Aggregating cluster", cluster_id, ": ", str([self.clients[i].id for i in self.clusters_to_clients[cluster_id]]))
-                cluster_model = self.aggregate(
-                    updated_models[cluster_id]
+                print(
+                    "Aggregating cluster",
+                    cluster_id,
+                    ": ",
+                    str(
+                        [
+                            self.clients[i].id
+                            for i in self.clusters_to_clients[cluster_id]
+                        ]
+                    ),
                 )
+                cluster_model = self.aggregate(updated_models[cluster_id])
                 for client in self.clusters_to_clients[cluster_id]:
-                    torch.save(cluster_model, os.path.join(self.model_save_dir, f"client_{client}.pt"))
+                    torch.save(
+                        cluster_model,
+                        os.path.join(self.model_save_dir, f"client_{client}.pt"),
+                    )
         else:
             allmodels = []
             print("Aggregating whole network")
@@ -286,7 +302,10 @@ class Server:
                 allmodels.extend(updated_models[cluster_id])
             whole_network_aggregated = self.aggregate(allmodels)
             for client in range(num_clients):
-                torch.save(whole_network_aggregated, os.path.join(self.model_save_dir, f"client_{client}.pt"))
+                torch.save(
+                    whole_network_aggregated,
+                    os.path.join(self.model_save_dir, f"client_{client}.pt"),
+                )
 
     def evaluate(
         self, batch_size: int = 32
@@ -305,7 +324,10 @@ class Server:
         for client in self.clients:
             _, test_loader = self.get_client_data(client.id, batch_size=batch_size)
             current_cluster_id = self.clients_to_clusters[client.id]
-            client_model = load_state_dict(load_model(self.config["task"]), os.path.join(self.model_save_dir, f"client_{client.id}.pt"))
+            client_model = load_state_dict(
+                load_model(self.config["task"]),
+                os.path.join(self.model_save_dir, f"client_{client.id}.pt"),
+            )
             loss, acc = client.evaluate(
                 client_model, test_loader, nn.CrossEntropyLoss()
             )

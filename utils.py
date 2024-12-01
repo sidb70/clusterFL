@@ -1,7 +1,8 @@
 import torch
 from typing import Tuple
 
-def load_state_dict( model, path: str) -> torch.nn.Module:
+
+def load_state_dict(model, path: str) -> torch.nn.Module:
     """
     Load the model from the given path.
     """

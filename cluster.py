@@ -7,8 +7,6 @@ import numpy as np
 from sklearn.cluster import KMeans
 
 
-
-
 def tensorSum(tensors):
     return torch.sum(torch.stack(tensors))
 
