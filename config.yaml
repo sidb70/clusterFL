@@ -1,4 +1,4 @@
-description: "pointwise kmeans clustering, CIFAR 10, 2 clusters rotated"
+description: "pointwise kmeans clustering, MNIST, 2 clusters rotated"
 
 clients: 20
 num_clusters: 2
@@ -8,8 +8,7 @@ train_sample_rate: 1.0
 initial_epochs: 1
 evaluation_sampling_rate: 1.0
 
-dataset: 'cifar10'
-model: 'cifarcnn'
+task: 'cifar10'
 aggregator: 'fedavg'
 lr: 0.01
 

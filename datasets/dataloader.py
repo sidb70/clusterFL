@@ -5,20 +5,28 @@ from torchvision import datasets, transforms
 from torch.utils.data import Dataset
 from typing import Dict, Any
 from PIL import Image
-def Transform(rotation: float = 0.0) -> transforms.Compose:
+def Transform(rotation: float = 0.0, num_dims: int = 3) -> transforms.Compose:
     """
     Create a transformation for datasets.
 
     Args:
         rotation (float): The rotation to apply to the images.
     """
-    transform = transforms.Compose(
-        [
-            transforms.ToTensor(),  # Then convert to tensor
-            transforms.RandomRotation(degrees=(rotation, rotation)),  # Apply rotation first
-            transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5)),
-        ]
-    )
+    if num_dims == 1:
+        transform = transforms.Compose(
+            [
+                transforms.ToTensor(),  # Then convert to tensor
+                transforms.Normalize((0.5,), (0.5,)),
+            ]
+        )
+    else:
+        transform = transforms.Compose(
+            [
+                transforms.ToTensor(),  # Then convert to tensor
+                transforms.RandomRotation(degrees=(rotation, rotation)),  # Apply rotation first
+                transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5)),
+            ]
+        )
     return transform
 
 
@@ -85,7 +93,12 @@ def load_mnist() -> Tuple[Dataset, Dataset]:
     """
     Load the MNIST dataset.
     """
-    transform = Transform()
+    transform = transforms.Compose(
+        [
+            transforms.ToTensor(),  # Then convert to tensor
+            transforms.Normalize((0.5,), (0.5,)),
+        ]
+    )
     # Download and load the training data
     trainset = datasets.MNIST(
         "./datasets/MNIST/", download=True, train=True, transform=transform
@@ -95,19 +108,21 @@ def load_mnist() -> Tuple[Dataset, Dataset]:
     )
     return trainset, testset
 
-def load_global_dataset(dataset_name: str) -> Dataset:
+def load_global_dataset(task: str) -> Dataset:
     """
     Load the dataset specified by the dataset_name.
 
     Args:
-        dataset_name (str): The name of the dataset to load
+        task (str): The name of the dataset to load
     """
-    if dataset_name == "cifar10":
+    if task == "cifar10":
         return load_cifar10()
-    elif dataset_name == "cifar100":
+    elif task == "cifar100":
         return load_cifar100()
-    elif dataset_name == "mnist":
+    elif task == "mnist":
         return load_mnist()
+    else:
+        raise ValueError(f"Task {task} not supported. Must be one of ['cifar10', 'cifar100', 'mnist']")
 
 def create_clustered_dataset(
     dataset: Dataset, num_clusters: int, cluster_type: str
@@ -127,7 +142,7 @@ def create_clustered_dataset(
         datasets = []
         for i in range(num_clusters):
             rotation = (i / num_clusters + 1) * 360
-            transform = Transform(rotation)
+            transform = Transform(rotation, num_dims = dataset[0][0].shape[0])
             datasets.append(ClusterDataset(dataset=dataset, transform=transform))
     elif cluster_type == "selected_classes":
         datasets = []

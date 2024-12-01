@@ -25,22 +25,42 @@ class CifarCNN(nn.Module):
     """
 
     def __init__(self):
-        super().__init__()
+        super(CifarCNN, self).__init__()
         self.nn = nn.Sequential(
-            nn.Conv2d(3, 16, 5),
-            nn.ReLU(),
-            nn.MaxPool2d(2, 2),
-            nn.Conv2d(16, 32, 5),
-            nn.ReLU(),
-            nn.MaxPool2d(2, 2),
             nn.Flatten(),
-            nn.Linear(32 * 5 * 5, 120),
+            nn.Linear(28 * 28, 1024),
             nn.ReLU(),
-            nn.Linear(120, 84),
+            nn.Dropout(p=0.25),
+            nn.Linear(512, 128),
             nn.ReLU(),
-            nn.Linear(84, 10),
+            nn.Dropout(p=0.5),
+            nn.Linear(128, 10),
         )
         self.apply(init_weights)
 
     def forward(self, x):
         return self.nn(x)
+
+
+class MnistCNN(nn.Module):
+    """
+    A simple CNN for classifying MNIST images.
+    """
+
+    def __init__(self):
+        super(MnistCNN, self).__init__()
+        self.nn = nn.Sequential(
+            nn.Flatten(),
+            nn.Linear(28 * 28, 512),
+            nn.ReLU(),
+            nn.Dropout(p=0.45),
+            nn.Linear(512, 128),
+            nn.ReLU(),
+            nn.Dropout(p=0.25),
+            nn.Linear(128, 10),
+        )
+        self.apply(init_weights)
+
+    def forward(self, x):
+        return self.nn(x)
+    
