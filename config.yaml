@@ -1,6 +1,6 @@
-description: "pointwise kmeans clustering, MNIST, 2 clusters rotated"
+description: "pointwise k means. cifar10, 2 clusters rotated"
 
-clients: 20
+clients: 10
 num_clusters: 2
 num_rounds: 50
 local_epochs: 1
@@ -22,3 +22,5 @@ cluster: 'kmeans'
 cluster_params:
   k_iter: 10
   filter_distance: 'max'
+
+random_seed: 322
