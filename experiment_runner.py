@@ -29,8 +29,9 @@ class FLNetwork:
         self.num_rounds = config["num_rounds"]
         self.num_clients = config["clients"]
         self.num_clusters = config["num_clusters"]
-        self.server = Server(config, experiment_id)
-        set_global_seed(0)
+        random_seed = config["random_seed"]
+        set_global_seed(random_seed)
+        self.server = Server(config, experiment_id, random_seed)
 
     def run(self):
         num_rounds = config["num_rounds"]

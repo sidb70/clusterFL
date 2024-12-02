@@ -27,14 +27,18 @@ class CifarCNN(nn.Module):
     def __init__(self):
         super(CifarCNN, self).__init__()
         self.nn = nn.Sequential(
+            nn.Conv2d(3, 16, 5),
+            nn.ReLU(),
+            nn.MaxPool2d(2, 2),
+            nn.Conv2d(16, 32, 5),
+            nn.ReLU(),
+            nn.MaxPool2d(2, 2),
             nn.Flatten(),
-            nn.Linear(28 * 28, 1024),
+            nn.Linear(32 * 5 * 5, 120),
             nn.ReLU(),
-            nn.Dropout(p=0.25),
-            nn.Linear(512, 128),
+            nn.Linear(120, 84),
             nn.ReLU(),
-            nn.Dropout(p=0.5),
-            nn.Linear(128, 10),
+            nn.Linear(84, 10),
         )
         self.apply(init_weights)
 
@@ -63,3 +67,4 @@ class MnistCNN(nn.Module):
 
     def forward(self, x):
         return self.nn(x)
+    

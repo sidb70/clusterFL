@@ -42,12 +42,13 @@ class Server:
         aggregator (Aggregator): Aggregator object
     """
 
-    def __init__(self, config, experiment_id):
+    def __init__(self, config: Dict, experiment_id: str, random_seed: int):
         """
         Initializes the server object
         Args:
             config (Dict): Configuration dictionary
             experiment_id (str): Experiment ID
+            random_seed (int): Random seed
         """
         self.config = config
         self.experiment_id = experiment_id
@@ -60,7 +61,7 @@ class Server:
         self.clustered_test_sets = create_clustered_dataset(
             self.global_test_set, config["num_clusters"], config["cluster_split_type"]
         )
-
+        self.random_seed = random_seed
         self.num_clients = config["clients"]
         self.num_clusters = config["num_clusters"]
         assert self.num_clusters <= self.num_clients
@@ -211,7 +212,8 @@ class Server:
             int: ID of the client
             Dict[str, torch.Tensor]: Updated model weights
         """
-
+        from experiment_runner import set_global_seed
+        set_global_seed(self.random_seed)
         client_train_loader, _ = self.get_client_data(client_id, batch_size=32)
         cluster_id = self.clients_to_clusters[client_id]
         client_model = load_state_dict(
@@ -235,19 +237,19 @@ class Server:
         """
         Performs the initial clustering of the clients by training them for a few epochs and clustering them based on the model weights
         """
-        if self.initial_epochs == 0:
+        if self.initial_epochs <1:
             print("Initial epochs is 0, skipping initial clustering")
             return
-        clients_models = []
+        clients_models = [None] * len(self.clients)
         with ThreadPoolExecutor(max_workers=len(DEVICES)) as executor:
             futures = []
             for client in self.clients:
                 futures.append(executor.submit(self.run_local_update_worker, client.id))
             for future in futures:
                 client_id, _, updated_model = future.result()
-                clients_models.append((client_id, updated_model.state_dict()))
+                # clients_models.append((client_id, updated_model.state_dict()))
+                clients_models[client_id] = (client_id, updated_model.state_dict())
                 print("Client", client_id, "finished training")
-        random.shuffle(clients_models)
         assert len(clients_models) == len(self.clients)
         clusters = self.cluster([model for _, model in clients_models])
 
@@ -255,7 +257,7 @@ class Server:
         for i, assignments in enumerate(clusters):
             self.clusters_to_clients[i] = assignments
             cluster_clients = [clients_models[j][0] for j in assignments]
-            print(f"Cluster {i} estimated assignments: {sorted(cluster_clients)}")
+            print(f"Cluster {i} estimated assignments: {sorted(assignments)}")
             for client in cluster_clients:
                 self.clients_to_clusters[client] = i
 
