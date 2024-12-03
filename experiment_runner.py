@@ -34,7 +34,7 @@ class FLNetwork:
         self.server = Server(config, experiment_id, random_seed)
 
     def run(self):
-        num_rounds = config["num_rounds"]
+        num_rounds = self.config["num_rounds"]
         self.server.initial_cluster_rounds()
         results = []
         for r in range(num_rounds):

@@ -54,14 +54,17 @@ class MnistCNN(nn.Module):
     def __init__(self):
         super(MnistCNN, self).__init__()
         self.nn = nn.Sequential(
+            nn.Conv2d(1,8, 3),
+            nn.ReLU(),
+            nn.MaxPool2d(2,2),
+            nn.Conv2d(8,16, 3),
+            nn.ReLU(),
+            nn.MaxPool2d(2,2),
             nn.Flatten(),
-            nn.Linear(28 * 28, 512),
+            nn.Linear(16*5*5, 64),
             nn.ReLU(),
-            nn.Dropout(p=0.45),
-            nn.Linear(512, 128),
-            nn.ReLU(),
-            nn.Dropout(p=0.25),
-            nn.Linear(128, 10),
+            nn.Linear(64, 10),
+
         )
         self.apply(init_weights)
 

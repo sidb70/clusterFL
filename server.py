@@ -233,7 +233,7 @@ class Server:
         )
         return client_id, cluster_id, updated_model
 
-    def initial_cluster_rounds(self) -> None:
+    def initial_cluster_rounds(self, return_models: bool=False) -> None:
         """
         Performs the initial clustering of the clients by training them for a few epochs and clustering them based on the model weights
         """
@@ -260,6 +260,8 @@ class Server:
             print(f"Cluster {i} estimated assignments: {sorted(assignments)}")
             for client in cluster_clients:
                 self.clients_to_clusters[client] = i
+        if return_models:
+            return clients_models
 
     def fl_round(self) -> None:
         """
