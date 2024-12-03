@@ -24,7 +24,6 @@
     
     
 
-**Exploration**
-- ~~look at the eigenvalues and eigenvectors of the weight matrices of the models.~~
-- ~~have a fixed vector or tensor applied to the weights of each layer of the model.~~
-- sample a subset of clients for validation
+**Experiment**: Try to break the k-means clustering
+- try on cifar 100, where each distribution has many types of data
+- clustering performance and model performance of evenly split clusters (10 client, 5 client, 5 clients) vs even split (5 clients in each cluster).
