@@ -155,11 +155,19 @@ def create_clustered_dataset(
         List[Dataset]: A list of datasets, each representing a cluster
     """
     if cluster_type == "rotation":
-        datasets = []
-        for i in range(num_clusters):
-            rotation = (i / num_clusters + 1) * 360
-            transform = Transform(rotation, num_dims=dataset[0][0].shape[0])
-            datasets.append(ClusterDataset(dataset=dataset, transform=transform))
+        datasets = [[] for _ in range(num_clusters)]
+        for data, label in dataset:
+                # rotate the image
+            for i in range(num_clusters):
+                rotation = (i / num_clusters + 1) * 360
+                transform = transforms.Compose(
+                    [transforms.RandomRotation(degrees=(rotation, rotation))
+                    ]
+                )
+                datasets[i].append((transform(data), label))
+
+        datasets = [ClusterDataset(data) for data in datasets]
+            
     elif cluster_type == "selected_classes":
         datasets = []
         cluster_classes = [
