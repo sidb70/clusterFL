@@ -1,7 +1,7 @@
 description: "kmeans. cifar10, 5 clusters rotation"
 clients: 15
 num_clusters: 5
-num_rounds: 50
+num_rounds: 30
 local_epochs: 1
 train_sample_rate: 1.0
 initial_epochs: 1
