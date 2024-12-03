@@ -6952,7 +6952,7 @@
         }
     ],
     "config": {
-        "description": "pointwise k means. cifar100, 2 clusters with different classes",
+        "description": "pointwise k means. cifar10, 2 clusters with different classes",
         "clients": 10,
         "num_clusters": 2,
         "num_rounds": 50,
