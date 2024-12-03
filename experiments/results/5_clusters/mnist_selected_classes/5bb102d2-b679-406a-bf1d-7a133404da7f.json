@@ -10202,7 +10202,7 @@
         }
     ],
     "config": {
-        "description": "baseline. mnist, 5 clusters selected_classes",
+        "description": "Selected classes MNIST, no clustering",
         "clients": 15,
         "num_clusters": 5,
         "num_rounds": 50,

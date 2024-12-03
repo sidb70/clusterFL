@@ -10202,7 +10202,7 @@
         }
     ],
     "config": {
-        "description": "kmeans. cifar10, 5 clusters selected_classes",
+        "description": "Selected classes CIFAR-10, K-means",
         "clients": 15,
         "num_clusters": 5,
         "num_rounds": 50,
