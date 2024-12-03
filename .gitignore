@@ -166,3 +166,4 @@ cython_debug/
 datasets/cifar-10*
 data/
 datasets/MNIST/
+*.DS_Store
