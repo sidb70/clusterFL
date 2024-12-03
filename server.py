@@ -52,15 +52,11 @@ class Server:
         """
         self.config = config
         self.experiment_id = experiment_id
+        self.task = config["task"]
         self.global_train_set, self.global_test_set = load_global_dataset(
-            config["task"]
+            self.task
         )
-        self.clustered_train_sets = create_clustered_dataset(
-            self.global_train_set, config["num_clusters"], config["cluster_split_type"]
-        )
-        self.clustered_test_sets = create_clustered_dataset(
-            self.global_test_set, config["num_clusters"], config["cluster_split_type"]
-        )
+        self.load_data(config['num_clusters'], config['cluster_split_type'])
         self.random_seed = random_seed
         self.num_clients = config["clients"]
         self.num_clusters = config["num_clusters"]
@@ -68,14 +64,7 @@ class Server:
         self.lr = config["lr"]
         self.local_epochs = config["local_epochs"]
         self.initial_epochs = config["initial_epochs"]
-        self.clients_to_clusters = [
-            i % self.num_clusters for i in range(self.num_clients)
-        ]
-        self.clusters_to_clients = {}
-        for i, cluster in enumerate(self.clients_to_clusters):
-            if cluster not in self.clusters_to_clients:
-                self.clusters_to_clients[cluster] = []
-            self.clusters_to_clients[cluster].append(i)
+        self.create_clusters(config['uneven_clusters'])
 
         self.model_save_dir = os.path.join("data", "models", experiment_id)
         os.makedirs(self.model_save_dir, exist_ok=True)
@@ -86,7 +75,42 @@ class Server:
         self.cluster_algorithm = load_cluster_algorithm(
             config["cluster"], clusters=self.num_clusters, **self.cluster_params
         )
+    def load_data(self,  num_clusters, cluster_split_type):
+        if not os.path.exists(f'./datasets/clustered_datasets/{self.task}_{num_clusters}_{cluster_split_type}_train.pt'):
+            print("Creating clustered datasets")
+            self.clustered_train_sets = create_clustered_dataset(
+            self.global_train_set, num_clusters, cluster_split_type
+            )
+            self.clustered_test_sets = create_clustered_dataset(
+                self.global_test_set, num_clusters, cluster_split_type
+            )
 
+            # save
+            os.makedirs('./datasets/clustered_datasets', exist_ok=True)
+            torch.save(self.clustered_train_sets, f'./datasets/clustered_datasets/{self.task}_{num_clusters}_{cluster_split_type}_train.pt')
+            torch.save(self.clustered_test_sets, f'./datasets/clustered_datasets/{self.task}_{num_clusters}_{cluster_split_type}_test.pt')
+        else:
+            print("Loading clustered datasets")
+            self.clustered_train_sets = torch.load(f'./datasets/clustered_datasets/{self.task}_{num_clusters}_{cluster_split_type}_train.pt')
+            self.clustered_test_sets = torch.load(f'./datasets/clustered_datasets/{self.task}_{num_clusters}_{cluster_split_type}_test.pt')
+    def create_clusters(self, uneven_clusters: bool=False):
+        if not uneven_clusters:
+            self.clients_to_clusters = [
+            i % self.num_clusters for i in range(self.num_clients)
+            ]
+        else:
+            self.clients_to_clusters = []
+            for i in range(self.num_clients):
+                # first half of clients are in cluster 0, rest are evenly distributed among the remaining clusters
+                if i < self.num_clients // 2:
+                    self.clients_to_clusters.append(0)
+                else:
+                    self.clients_to_clusters.append(i % (self.num_clusters - 1) + 1)
+        self.clusters_to_clients = {}
+        for i, cluster in enumerate(self.clients_to_clusters):
+            if cluster not in self.clusters_to_clients:
+                self.clusters_to_clients[cluster] = []
+            self.clusters_to_clients[cluster].append(i)
     def create_clients(self, num_clients):
         """
         Creates the clients and their respective training and test data, in accordance with the cluster assignments
