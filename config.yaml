@@ -11,8 +11,8 @@ task: 'mnist'
 aggregator: 'fedavg'
 lr: 0.01
 
-cluster_split_type: 'rotation'
-baseline_avg_whole_network: False
+cluster_split_type: 'selected_classes'
+baseline_avg_whole_network: false
 
 cluster: 'kmeans'
   #'validation_loss'
