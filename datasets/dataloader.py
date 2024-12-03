@@ -17,17 +17,20 @@ def Transform(rotation: float = 0.0, num_dims: int = 3) -> transforms.Compose:
     if num_dims == 1:
         transform = transforms.Compose(
             [
-                transforms.ToTensor(),  # Then convert to tensor
+                transforms.ToTensor(), 
+                transforms.RandomRotation(
+                    degrees=(rotation, rotation)
+                ),  
                 transforms.Normalize((0.5,), (0.5,)),
             ]
         )
     else:
         transform = transforms.Compose(
             [
-                transforms.ToTensor(),  # Then convert to tensor
+                transforms.ToTensor(),  
                 transforms.RandomRotation(
                     degrees=(rotation, rotation)
-                ),  # Apply rotation first
+                ),  
                 transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5)),
             ]
         )
