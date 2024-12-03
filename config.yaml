@@ -1,4 +1,4 @@
-description: "pointwise k means. cifar10, 2 clusters rotated"
+description: "pointwise kmeans. mnist, 2 clusters rotated"
 clients: 10
 num_clusters: 2
 num_rounds: 50
@@ -7,7 +7,7 @@ train_sample_rate: 1.0
 initial_epochs: 1
 evaluation_sampling_rate: 1.0
 
-task: 'cifar10'
+task: 'mnist'
 aggregator: 'fedavg'
 lr: 0.01
 
