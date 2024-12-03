@@ -1,18 +1,18 @@
-description: "pointwise kmeans. mnist, 2 clusters rotated"
-clients: 10
-num_clusters: 2
+description: "baseline. cifar10, 5 clusters selected_classes"
+clients: 15
+num_clusters: 5
 num_rounds: 50
 local_epochs: 1
 train_sample_rate: 1.0
 initial_epochs: 1
 evaluation_sampling_rate: 1.0
 
-task: 'mnist'
+task: 'cifar10'
 aggregator: 'fedavg'
 lr: 0.01
 
 cluster_split_type: 'selected_classes'
-baseline_avg_whole_network: false
+baseline_avg_whole_network: true
 
 cluster: 'kmeans'
   #'validation_loss'
