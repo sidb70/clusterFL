@@ -19,13 +19,13 @@ def init_weights(m):
         nn.init.zeros_(m.bias)
 
 
-class CifarCNN(nn.Module):
+class Cifar10CNN(nn.Module):
     """
     A simple CNN for classifying CIFAR-10 images.
     """
 
     def __init__(self):
-        super(CifarCNN, self).__init__()
+        super(Cifar10CNN, self).__init__()
         self.nn = nn.Sequential(
             nn.Conv2d(3, 16, 5),
             nn.ReLU(),
@@ -44,7 +44,31 @@ class CifarCNN(nn.Module):
 
     def forward(self, x):
         return self.nn(x)
+class Cifar100CNN(nn.Module):
+    """
+    A simple CNN for classifying CIFAR-100 images.
+    """
 
+    def __init__(self, out_dim=10):
+        super(Cifar100CNN, self).__init__()
+        self.nn = nn.Sequential(
+            nn.Conv2d(3, 16, 5),
+            nn.ReLU(),
+            nn.MaxPool2d(2, 2),
+            nn.Conv2d(16, 32, 5),
+            nn.ReLU(),
+            nn.MaxPool2d(2, 2),
+            nn.Flatten(),
+            nn.Linear(32 * 5 * 5, 256),
+            nn.ReLU(),
+            nn.Linear(256, 128),
+            nn.ReLU(),
+            nn.Linear(128, 100),
+        )
+        self.apply(init_weights)
+
+    def forward(self, x):
+        return self.nn(x)
 
 class MnistCNN(nn.Module):
     """
