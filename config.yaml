@@ -1,7 +1,7 @@
-description: "kmeans. mnist, 5 clusters selected_classes"
+description: "MNIST rotated. 5 clusters. K means"
 clients: 15
 num_clusters: 5
-num_rounds: 50
+num_rounds: 30
 local_epochs: 1
 train_sample_rate: 1.0
 initial_epochs: 1
@@ -11,7 +11,7 @@ task: 'mnist'
 aggregator: 'fedavg'
 lr: 0.01
 
-cluster_split_type: 'selected_classes'
+cluster_split_type: 'rotation'
 baseline_avg_whole_network: false
 
 cluster: 'kmeans'
