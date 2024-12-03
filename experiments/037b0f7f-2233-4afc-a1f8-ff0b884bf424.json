@@ -1,0 +1,6974 @@
+{
+    "results": [
+        {
+            "round": 0,
+            "accuracies": [
+                {
+                    "client_id": 0,
+                    "accuracy": 0.137
+                },
+                {
+                    "client_id": 1,
+                    "accuracy": 0.159
+                },
+                {
+                    "client_id": 2,
+                    "accuracy": 0.145
+                },
+                {
+                    "client_id": 3,
+                    "accuracy": 0.154
+                },
+                {
+                    "client_id": 4,
+                    "accuracy": 0.1535
+                },
+                {
+                    "client_id": 5,
+                    "accuracy": 0.1575
+                },
+                {
+                    "client_id": 6,
+                    "accuracy": 0.144
+                },
+                {
+                    "client_id": 7,
+                    "accuracy": 0.18
+                },
+                {
+                    "client_id": 8,
+                    "accuracy": 0.157
+                },
+                {
+                    "client_id": 9,
+                    "accuracy": 0.164
+                }
+            ],
+            "losses": [
+                {
+                    "client_id": 0,
+                    "loss": 2.2732926928807817
+                },
+                {
+                    "client_id": 1,
+                    "loss": 2.265481998050024
+                },
+                {
+                    "client_id": 2,
+                    "loss": 2.2734502043042863
+                },
+                {
+                    "client_id": 3,
+                    "loss": 2.265486766421606
+                },
+                {
+                    "client_id": 4,
+                    "loss": 2.2702340587737067
+                },
+                {
+                    "client_id": 5,
+                    "loss": 2.2662216368175687
+                },
+                {
+                    "client_id": 6,
+                    "loss": 2.2741916823008705
+                },
+                {
+                    "client_id": 7,
+                    "loss": 2.2632491437215654
+                },
+                {
+                    "client_id": 8,
+                    "loss": 2.2707668561784047
+                },
+                {
+                    "client_id": 9,
+                    "loss": 2.2629981797838967
+                }
+            ],
+            "cluster_results": [
+                [
+                    0,
+                    0,
+                    0
+                ],
+                [
+                    1,
+                    1,
+                    1
+                ],
+                [
+                    2,
+                    0,
+                    0
+                ],
+                [
+                    3,
+                    1,
+                    1
+                ],
+                [
+                    4,
+                    0,
+                    0
+                ],
+                [
+                    5,
+                    1,
+                    1
+                ],
+                [
+                    6,
+                    0,
+                    0
+                ],
+                [
+                    7,
+                    1,
+                    1
+                ],
+                [
+                    8,
+                    0,
+                    0
+                ],
+                [
+                    9,
+                    1,
+                    1
+                ]
+            ]
+        },
+        {
+            "round": 1,
+            "accuracies": [
+                {
+                    "client_id": 0,
+                    "accuracy": 0.206
+                },
+                {
+                    "client_id": 1,
+                    "accuracy": 0.2135
+                },
+                {
+                    "client_id": 2,
+                    "accuracy": 0.1925
+                },
+                {
+                    "client_id": 3,
+                    "accuracy": 0.216
+                },
+                {
+                    "client_id": 4,
+                    "accuracy": 0.213
+                },
+                {
+                    "client_id": 5,
+                    "accuracy": 0.2165
+                },
+                {
+                    "client_id": 6,
+                    "accuracy": 0.205
+                },
+                {
+                    "client_id": 7,
+                    "accuracy": 0.224
+                },
+                {
+                    "client_id": 8,
+                    "accuracy": 0.213
+                },
+                {
+                    "client_id": 9,
+                    "accuracy": 0.217
+                }
+            ],
+            "losses": [
+                {
+                    "client_id": 0,
+                    "loss": 2.1718307468626232
+                },
+                {
+                    "client_id": 1,
+                    "loss": 2.1598726832677446
+                },
+                {
+                    "client_id": 2,
+                    "loss": 2.1825320455763073
+                },
+                {
+                    "client_id": 3,
+                    "loss": 2.1647686712325567
+                },
+                {
+                    "client_id": 4,
+                    "loss": 2.174747319448562
+                },
+                {
+                    "client_id": 5,
+                    "loss": 2.1659011008247497
+                },
+                {
+                    "client_id": 6,
+                    "loss": 2.1807628813244047
+                },
+                {
+                    "client_id": 7,
+                    "loss": 2.1610327410319496
+                },
+                {
+                    "client_id": 8,
+                    "loss": 2.169323561683534
+                },
+                {
+                    "client_id": 9,
+                    "loss": 2.1574951845502097
+                }
+            ],
+            "cluster_results": [
+                [
+                    0,
+                    0,
+                    0
+                ],
+                [
+                    1,
+                    1,
+                    1
+                ],
+                [
+                    2,
+                    0,
+                    0
+                ],
+                [
+                    3,
+                    1,
+                    1
+                ],
+                [
+                    4,
+                    0,
+                    0
+                ],
+                [
+                    5,
+                    1,
+                    1
+                ],
+                [
+                    6,
+                    0,
+                    0
+                ],
+                [
+                    7,
+                    1,
+                    1
+                ],
+                [
+                    8,
+                    0,
+                    0
+                ],
+                [
+                    9,
+                    1,
+                    1
+                ]
+            ]
+        },
+        {
+            "round": 2,
+            "accuracies": [
+                {
+                    "client_id": 0,
+                    "accuracy": 0.25
+                },
+                {
+                    "client_id": 1,
+                    "accuracy": 0.249
+                },
+                {
+                    "client_id": 2,
+                    "accuracy": 0.235
+                },
+                {
+                    "client_id": 3,
+                    "accuracy": 0.2495
+                },
+                {
+                    "client_id": 4,
+                    "accuracy": 0.2495
+                },
+                {
+                    "client_id": 5,
+                    "accuracy": 0.2495
+                },
+                {
+                    "client_id": 6,
+                    "accuracy": 0.236
+                },
+                {
+                    "client_id": 7,
+                    "accuracy": 0.2395
+                },
+                {
+                    "client_id": 8,
+                    "accuracy": 0.2515
+                },
+                {
+                    "client_id": 9,
+                    "accuracy": 0.2295
+                }
+            ],
+            "losses": [
+                {
+                    "client_id": 0,
+                    "loss": 2.0386482988085066
+                },
+                {
+                    "client_id": 1,
+                    "loss": 2.0309851150664073
+                },
+                {
+                    "client_id": 2,
+                    "loss": 2.0531302217453247
+                },
+                {
+                    "client_id": 3,
+                    "loss": 2.038649468194871
+                },
+                {
+                    "client_id": 4,
+                    "loss": 2.0389305693762645
+                },
+                {
+                    "client_id": 5,
+                    "loss": 2.0362627619788762
+                },
+                {
+                    "client_id": 6,
+                    "loss": 2.044032543424576
+                },
+                {
+                    "client_id": 7,
+                    "loss": 2.037292296924288
+                },
+                {
+                    "client_id": 8,
+                    "loss": 2.0322741005155773
+                },
+                {
+                    "client_id": 9,
+                    "loss": 2.030086664926438
+                }
+            ],
+            "cluster_results": [
+                [
+                    0,
+                    0,
+                    0
+                ],
+                [
+                    1,
+                    1,
+                    1
+                ],
+                [
+                    2,
+                    0,
+                    0
+                ],
+                [
+                    3,
+                    1,
+                    1
+                ],
+                [
+                    4,
+                    0,
+                    0
+                ],
+                [
+                    5,
+                    1,
+                    1
+                ],
+                [
+                    6,
+                    0,
+                    0
+                ],
+                [
+                    7,
+                    1,
+                    1
+                ],
+                [
+                    8,
+                    0,
+                    0
+                ],
+                [
+                    9,
+                    1,
+                    1
+                ]
+            ]
+        },
+        {
+            "round": 3,
+            "accuracies": [
+                {
+                    "client_id": 0,
+                    "accuracy": 0.28
+                },
+                {
+                    "client_id": 1,
+                    "accuracy": 0.2785
+                },
+                {
+                    "client_id": 2,
+                    "accuracy": 0.264
+                },
+                {
+                    "client_id": 3,
+                    "accuracy": 0.283
+                },
+                {
+                    "client_id": 4,
+                    "accuracy": 0.2815
+                },
+                {
+                    "client_id": 5,
+                    "accuracy": 0.287
+                },
+                {
+                    "client_id": 6,
+                    "accuracy": 0.264
+                },
+                {
+                    "client_id": 7,
+                    "accuracy": 0.257
+                },
+                {
+                    "client_id": 8,
+                    "accuracy": 0.2675
+                },
+                {
+                    "client_id": 9,
+                    "accuracy": 0.26
+                }
+            ],
+            "losses": [
+                {
+                    "client_id": 0,
+                    "loss": 1.9462886064771623
+                },
+                {
+                    "client_id": 1,
+                    "loss": 1.9395775019176422
+                },
+                {
+                    "client_id": 2,
+                    "loss": 1.9593078749520438
+                },
+                {
+                    "client_id": 3,
+                    "loss": 1.9482891313613406
+                },
+                {
+                    "client_id": 4,
+                    "loss": 1.9441204089967032
+                },
+                {
+                    "client_id": 5,
+                    "loss": 1.9442626843376765
+                },
+                {
+                    "client_id": 6,
+                    "loss": 1.9466674498149328
+                },
+                {
+                    "client_id": 7,
+                    "loss": 1.9472635019393194
+                },
+                {
+                    "client_id": 8,
+                    "loss": 1.9301174614164565
+                },
+                {
+                    "client_id": 9,
+                    "loss": 1.9285736443504455
+                }
+            ],
+            "cluster_results": [
+                [
+                    0,
+                    0,
+                    0
+                ],
+                [
+                    1,
+                    1,
+                    1
+                ],
+                [
+                    2,
+                    0,
+                    0
+                ],
+                [
+                    3,
+                    1,
+                    1
+                ],
+                [
+                    4,
+                    0,
+                    0
+                ],
+                [
+                    5,
+                    1,
+                    1
+                ],
+                [
+                    6,
+                    0,
+                    0
+                ],
+                [
+                    7,
+                    1,
+                    1
+                ],
+                [
+                    8,
+                    0,
+                    0
+                ],
+                [
+                    9,
+                    1,
+                    1
+                ]
+            ]
+        },
+        {
+            "round": 4,
+            "accuracies": [
+                {
+                    "client_id": 0,
+                    "accuracy": 0.292
+                },
+                {
+                    "client_id": 1,
+                    "accuracy": 0.295
+                },
+                {
+                    "client_id": 2,
+                    "accuracy": 0.2955
+                },
+                {
+                    "client_id": 3,
+                    "accuracy": 0.308
+                },
+                {
+                    "client_id": 4,
+                    "accuracy": 0.3035
+                },
+                {
+                    "client_id": 5,
+                    "accuracy": 0.303
+                },
+                {
+                    "client_id": 6,
+                    "accuracy": 0.2795
+                },
+                {
+                    "client_id": 7,
+                    "accuracy": 0.276
+                },
+                {
+                    "client_id": 8,
+                    "accuracy": 0.2925
+                },
+                {
+                    "client_id": 9,
+                    "accuracy": 0.2895
+                }
+            ],
+            "losses": [
+                {
+                    "client_id": 0,
+                    "loss": 1.894227249281747
+                },
+                {
+                    "client_id": 1,
+                    "loss": 1.8852191652570451
+                },
+                {
+                    "client_id": 2,
+                    "loss": 1.9047616266068959
+                },
+                {
+                    "client_id": 3,
+                    "loss": 1.8990464286198692
+                },
+                {
+                    "client_id": 4,
+                    "loss": 1.8943646067664737
+                },
+                {
+                    "client_id": 5,
+                    "loss": 1.8934538080578758
+                },
+                {
+                    "client_id": 6,
+                    "loss": 1.8942957984076605
+                },
+                {
+                    "client_id": 7,
+                    "loss": 1.896856393132891
+                },
+                {
+                    "client_id": 8,
+                    "loss": 1.8733538143218509
+                },
+                {
+                    "client_id": 9,
+                    "loss": 1.871286049721733
+                }
+            ],
+            "cluster_results": [
+                [
+                    0,
+                    0,
+                    0
+                ],
+                [
+                    1,
+                    1,
+                    1
+                ],
+                [
+                    2,
+                    0,
+                    0
+                ],
+                [
+                    3,
+                    1,
+                    1
+                ],
+                [
+                    4,
+                    0,
+                    0
+                ],
+                [
+                    5,
+                    1,
+                    1
+                ],
+                [
+                    6,
+                    0,
+                    0
+                ],
+                [
+                    7,
+                    1,
+                    1
+                ],
+                [
+                    8,
+                    0,
+                    0
+                ],
+                [
+                    9,
+                    1,
+                    1
+                ]
+            ]
+        },
+        {
+            "round": 5,
+            "accuracies": [
+                {
+                    "client_id": 0,
+                    "accuracy": 0.308
+                },
+                {
+                    "client_id": 1,
+                    "accuracy": 0.319
+                },
+                {
+                    "client_id": 2,
+                    "accuracy": 0.3095
+                },
+                {
+                    "client_id": 3,
+                    "accuracy": 0.3205
+                },
+                {
+                    "client_id": 4,
+                    "accuracy": 0.3175
+                },
+                {
+                    "client_id": 5,
+                    "accuracy": 0.3175
+                },
+                {
+                    "client_id": 6,
+                    "accuracy": 0.3025
+                },
+                {
+                    "client_id": 7,
+                    "accuracy": 0.2945
+                },
+                {
+                    "client_id": 8,
+                    "accuracy": 0.314
+                },
+                {
+                    "client_id": 9,
+                    "accuracy": 0.305
+                }
+            ],
+            "losses": [
+                {
+                    "client_id": 0,
+                    "loss": 1.8515860126132058
+                },
+                {
+                    "client_id": 1,
+                    "loss": 1.839747468630473
+                },
+                {
+                    "client_id": 2,
+                    "loss": 1.8613778731179615
+                },
+                {
+                    "client_id": 3,
+                    "loss": 1.85858772860633
+                },
+                {
+                    "client_id": 4,
+                    "loss": 1.8536270289194017
+                },
+                {
+                    "client_id": 5,
+                    "loss": 1.8521637821954393
+                },
+                {
+                    "client_id": 6,
+                    "loss": 1.8523238367504544
+                },
+                {
+                    "client_id": 7,
+                    "loss": 1.8542098942257108
+                },
+                {
+                    "client_id": 8,
+                    "loss": 1.8313682760511125
+                },
+                {
+                    "client_id": 9,
+                    "loss": 1.8278035398513552
+                }
+            ],
+            "cluster_results": [
+                [
+                    0,
+                    0,
+                    0
+                ],
+                [
+                    1,
+                    1,
+                    1
+                ],
+                [
+                    2,
+                    0,
+                    0
+                ],
+                [
+                    3,
+                    1,
+                    1
+                ],
+                [
+                    4,
+                    0,
+                    0
+                ],
+                [
+                    5,
+                    1,
+                    1
+                ],
+                [
+                    6,
+                    0,
+                    0
+                ],
+                [
+                    7,
+                    1,
+                    1
+                ],
+                [
+                    8,
+                    0,
+                    0
+                ],
+                [
+                    9,
+                    1,
+                    1
+                ]
+            ]
+        },
+        {
+            "round": 6,
+            "accuracies": [
+                {
+                    "client_id": 0,
+                    "accuracy": 0.3295
+                },
+                {
+                    "client_id": 1,
+                    "accuracy": 0.335
+                },
+                {
+                    "client_id": 2,
+                    "accuracy": 0.322
+                },
+                {
+                    "client_id": 3,
+                    "accuracy": 0.339
+                },
+                {
+                    "client_id": 4,
+                    "accuracy": 0.331
+                },
+                {
+                    "client_id": 5,
+                    "accuracy": 0.339
+                },
+                {
+                    "client_id": 6,
+                    "accuracy": 0.316
+                },
+                {
+                    "client_id": 7,
+                    "accuracy": 0.31
+                },
+                {
+                    "client_id": 8,
+                    "accuracy": 0.3265
+                },
+                {
+                    "client_id": 9,
+                    "accuracy": 0.316
+                }
+            ],
+            "losses": [
+                {
+                    "client_id": 0,
+                    "loss": 1.8144934631529308
+                },
+                {
+                    "client_id": 1,
+                    "loss": 1.7988976069859095
+                },
+                {
+                    "client_id": 2,
+                    "loss": 1.8259980546103582
+                },
+                {
+                    "client_id": 3,
+                    "loss": 1.8244675378950814
+                },
+                {
+                    "client_id": 4,
+                    "loss": 1.8172204835074288
+                },
+                {
+                    "client_id": 5,
+                    "loss": 1.8150133045892867
+                },
+                {
+                    "client_id": 6,
+                    "loss": 1.8165237638685439
+                },
+                {
+                    "client_id": 7,
+                    "loss": 1.8184338259318518
+                },
+                {
+                    "client_id": 8,
+                    "loss": 1.7965407522897872
+                },
+                {
+                    "client_id": 9,
+                    "loss": 1.791433298398578
+                }
+            ],
+            "cluster_results": [
+                [
+                    0,
+                    0,
+                    0
+                ],
+                [
+                    1,
+                    1,
+                    1
+                ],
+                [
+                    2,
+                    0,
+                    0
+                ],
+                [
+                    3,
+                    1,
+                    1
+                ],
+                [
+                    4,
+                    0,
+                    0
+                ],
+                [
+                    5,
+                    1,
+                    1
+                ],
+                [
+                    6,
+                    0,
+                    0
+                ],
+                [
+                    7,
+                    1,
+                    1
+                ],
+                [
+                    8,
+                    0,
+                    0
+                ],
+                [
+                    9,
+                    1,
+                    1
+                ]
+            ]
+        },
+        {
+            "round": 7,
+            "accuracies": [
+                {
+                    "client_id": 0,
+                    "accuracy": 0.3405
+                },
+                {
+                    "client_id": 1,
+                    "accuracy": 0.348
+                },
+                {
+                    "client_id": 2,
+                    "accuracy": 0.333
+                },
+                {
+                    "client_id": 3,
+                    "accuracy": 0.3465
+                },
+                {
+                    "client_id": 4,
+                    "accuracy": 0.352
+                },
+                {
+                    "client_id": 5,
+                    "accuracy": 0.3515
+                },
+                {
+                    "client_id": 6,
+                    "accuracy": 0.334
+                },
+                {
+                    "client_id": 7,
+                    "accuracy": 0.3235
+                },
+                {
+                    "client_id": 8,
+                    "accuracy": 0.3455
+                },
+                {
+                    "client_id": 9,
+                    "accuracy": 0.331
+                }
+            ],
+            "losses": [
+                {
+                    "client_id": 0,
+                    "loss": 1.7821422171971155
+                },
+                {
+                    "client_id": 1,
+                    "loss": 1.7620658988044375
+                },
+                {
+                    "client_id": 2,
+                    "loss": 1.7948147493695457
+                },
+                {
+                    "client_id": 3,
+                    "loss": 1.7935638844020783
+                },
+                {
+                    "client_id": 4,
+                    "loss": 1.7852084050102839
+                },
+                {
+                    "client_id": 5,
+                    "loss": 1.7797502449580602
+                },
+                {
+                    "client_id": 6,
+                    "loss": 1.7852220289290897
+                },
+                {
+                    "client_id": 7,
+                    "loss": 1.786915487713284
+                },
+                {
+                    "client_id": 8,
+                    "loss": 1.7651588235582625
+                },
+                {
+                    "client_id": 9,
+                    "loss": 1.7595342492300368
+                }
+            ],
+            "cluster_results": [
+                [
+                    0,
+                    0,
+                    0
+                ],
+                [
+                    1,
+                    1,
+                    1
+                ],
+                [
+                    2,
+                    0,
+                    0
+                ],
+                [
+                    3,
+                    1,
+                    1
+                ],
+                [
+                    4,
+                    0,
+                    0
+                ],
+                [
+                    5,
+                    1,
+                    1
+                ],
+                [
+                    6,
+                    0,
+                    0
+                ],
+                [
+                    7,
+                    1,
+                    1
+                ],
+                [
+                    8,
+                    0,
+                    0
+                ],
+                [
+                    9,
+                    1,
+                    1
+                ]
+            ]
+        },
+        {
+            "round": 8,
+            "accuracies": [
+                {
+                    "client_id": 0,
+                    "accuracy": 0.3585
+                },
+                {
+                    "client_id": 1,
+                    "accuracy": 0.353
+                },
+                {
+                    "client_id": 2,
+                    "accuracy": 0.3505
+                },
+                {
+                    "client_id": 3,
+                    "accuracy": 0.3535
+                },
+                {
+                    "client_id": 4,
+                    "accuracy": 0.3715
+                },
+                {
+                    "client_id": 5,
+                    "accuracy": 0.3645
+                },
+                {
+                    "client_id": 6,
+                    "accuracy": 0.342
+                },
+                {
+                    "client_id": 7,
+                    "accuracy": 0.3365
+                },
+                {
+                    "client_id": 8,
+                    "accuracy": 0.3555
+                },
+                {
+                    "client_id": 9,
+                    "accuracy": 0.3505
+                }
+            ],
+            "losses": [
+                {
+                    "client_id": 0,
+                    "loss": 1.7530891081643483
+                },
+                {
+                    "client_id": 1,
+                    "loss": 1.7305394543541803
+                },
+                {
+                    "client_id": 2,
+                    "loss": 1.7671845602610754
+                },
+                {
+                    "client_id": 3,
+                    "loss": 1.7648455245154244
+                },
+                {
+                    "client_id": 4,
+                    "loss": 1.7551022881553286
+                },
+                {
+                    "client_id": 5,
+                    "loss": 1.7471166754525804
+                },
+                {
+                    "client_id": 6,
+                    "loss": 1.7578053039217751
+                },
+                {
+                    "client_id": 7,
+                    "loss": 1.7588164938820734
+                },
+                {
+                    "client_id": 8,
+                    "loss": 1.7379764488765173
+                },
+                {
+                    "client_id": 9,
+                    "loss": 1.7303176531715998
+                }
+            ],
+            "cluster_results": [
+                [
+                    0,
+                    0,
+                    0
+                ],
+                [
+                    1,
+                    1,
+                    1
+                ],
+                [
+                    2,
+                    0,
+                    0
+                ],
+                [
+                    3,
+                    1,
+                    1
+                ],
+                [
+                    4,
+                    0,
+                    0
+                ],
+                [
+                    5,
+                    1,
+                    1
+                ],
+                [
+                    6,
+                    0,
+                    0
+                ],
+                [
+                    7,
+                    1,
+                    1
+                ],
+                [
+                    8,
+                    0,
+                    0
+                ],
+                [
+                    9,
+                    1,
+                    1
+                ]
+            ]
+        },
+        {
+            "round": 9,
+            "accuracies": [
+                {
+                    "client_id": 0,
+                    "accuracy": 0.3675
+                },
+                {
+                    "client_id": 1,
+                    "accuracy": 0.367
+                },
+                {
+                    "client_id": 2,
+                    "accuracy": 0.367
+                },
+                {
+                    "client_id": 3,
+                    "accuracy": 0.364
+                },
+                {
+                    "client_id": 4,
+                    "accuracy": 0.3835
+                },
+                {
+                    "client_id": 5,
+                    "accuracy": 0.3815
+                },
+                {
+                    "client_id": 6,
+                    "accuracy": 0.347
+                },
+                {
+                    "client_id": 7,
+                    "accuracy": 0.3465
+                },
+                {
+                    "client_id": 8,
+                    "accuracy": 0.366
+                },
+                {
+                    "client_id": 9,
+                    "accuracy": 0.3595
+                }
+            ],
+            "losses": [
+                {
+                    "client_id": 0,
+                    "loss": 1.7283499430096338
+                },
+                {
+                    "client_id": 1,
+                    "loss": 1.7058968789993771
+                },
+                {
+                    "client_id": 2,
+                    "loss": 1.74392330835736
+                },
+                {
+                    "client_id": 3,
+                    "loss": 1.7408157246453422
+                },
+                {
+                    "client_id": 4,
+                    "loss": 1.727415887136308
+                },
+                {
+                    "client_id": 5,
+                    "loss": 1.719132423400879
+                },
+                {
+                    "client_id": 6,
+                    "loss": 1.7330669486333454
+                },
+                {
+                    "client_id": 7,
+                    "loss": 1.7361610352046906
+                },
+                {
+                    "client_id": 8,
+                    "loss": 1.7137054545538766
+                },
+                {
+                    "client_id": 9,
+                    "loss": 1.705269980052161
+                }
+            ],
+            "cluster_results": [
+                [
+                    0,
+                    0,
+                    0
+                ],
+                [
+                    1,
+                    1,
+                    1
+                ],
+                [
+                    2,
+                    0,
+                    0
+                ],
+                [
+                    3,
+                    1,
+                    1
+                ],
+                [
+                    4,
+                    0,
+                    0
+                ],
+                [
+                    5,
+                    1,
+                    1
+                ],
+                [
+                    6,
+                    0,
+                    0
+                ],
+                [
+                    7,
+                    1,
+                    1
+                ],
+                [
+                    8,
+                    0,
+                    0
+                ],
+                [
+                    9,
+                    1,
+                    1
+                ]
+            ]
+        },
+        {
+            "round": 10,
+            "accuracies": [
+                {
+                    "client_id": 0,
+                    "accuracy": 0.374
+                },
+                {
+                    "client_id": 1,
+                    "accuracy": 0.378
+                },
+                {
+                    "client_id": 2,
+                    "accuracy": 0.372
+                },
+                {
+                    "client_id": 3,
+                    "accuracy": 0.372
+                },
+                {
+                    "client_id": 4,
+                    "accuracy": 0.393
+                },
+                {
+                    "client_id": 5,
+                    "accuracy": 0.394
+                },
+                {
+                    "client_id": 6,
+                    "accuracy": 0.3595
+                },
+                {
+                    "client_id": 7,
+                    "accuracy": 0.3525
+                },
+                {
+                    "client_id": 8,
+                    "accuracy": 0.375
+                },
+                {
+                    "client_id": 9,
+                    "accuracy": 0.3735
+                }
+            ],
+            "losses": [
+                {
+                    "client_id": 0,
+                    "loss": 1.7064530868378898
+                },
+                {
+                    "client_id": 1,
+                    "loss": 1.6840731757027763
+                },
+                {
+                    "client_id": 2,
+                    "loss": 1.7213873295556932
+                },
+                {
+                    "client_id": 3,
+                    "loss": 1.7179854540597825
+                },
+                {
+                    "client_id": 4,
+                    "loss": 1.701116094513545
+                },
+                {
+                    "client_id": 5,
+                    "loss": 1.6926933564837017
+                },
+                {
+                    "client_id": 6,
+                    "loss": 1.7101972140963115
+                },
+                {
+                    "client_id": 7,
+                    "loss": 1.7153661515977647
+                },
+                {
+                    "client_id": 8,
+                    "loss": 1.6910567113331385
+                },
+                {
+                    "client_id": 9,
+                    "loss": 1.6825303255565582
+                }
+            ],
+            "cluster_results": [
+                [
+                    0,
+                    0,
+                    0
+                ],
+                [
+                    1,
+                    1,
+                    1
+                ],
+                [
+                    2,
+                    0,
+                    0
+                ],
+                [
+                    3,
+                    1,
+                    1
+                ],
+                [
+                    4,
+                    0,
+                    0
+                ],
+                [
+                    5,
+                    1,
+                    1
+                ],
+                [
+                    6,
+                    0,
+                    0
+                ],
+                [
+                    7,
+                    1,
+                    1
+                ],
+                [
+                    8,
+                    0,
+                    0
+                ],
+                [
+                    9,
+                    1,
+                    1
+                ]
+            ]
+        },
+        {
+            "round": 11,
+            "accuracies": [
+                {
+                    "client_id": 0,
+                    "accuracy": 0.3875
+                },
+                {
+                    "client_id": 1,
+                    "accuracy": 0.393
+                },
+                {
+                    "client_id": 2,
+                    "accuracy": 0.379
+                },
+                {
+                    "client_id": 3,
+                    "accuracy": 0.386
+                },
+                {
+                    "client_id": 4,
+                    "accuracy": 0.395
+                },
+                {
+                    "client_id": 5,
+                    "accuracy": 0.4105
+                },
+                {
+                    "client_id": 6,
+                    "accuracy": 0.3715
+                },
+                {
+                    "client_id": 7,
+                    "accuracy": 0.3595
+                },
+                {
+                    "client_id": 8,
+                    "accuracy": 0.3785
+                },
+                {
+                    "client_id": 9,
+                    "accuracy": 0.3885
+                }
+            ],
+            "losses": [
+                {
+                    "client_id": 0,
+                    "loss": 1.6826421211636255
+                },
+                {
+                    "client_id": 1,
+                    "loss": 1.6612912567835005
+                },
+                {
+                    "client_id": 2,
+                    "loss": 1.6954736520373632
+                },
+                {
+                    "client_id": 3,
+                    "loss": 1.6929049454038105
+                },
+                {
+                    "client_id": 4,
+                    "loss": 1.6736086758356246
+                },
+                {
+                    "client_id": 5,
+                    "loss": 1.665500837659079
+                },
+                {
+                    "client_id": 6,
+                    "loss": 1.6858024937765939
+                },
+                {
+                    "client_id": 7,
+                    "loss": 1.693740761469281
+                },
+                {
+                    "client_id": 8,
+                    "loss": 1.6674993965360854
+                },
+                {
+                    "client_id": 9,
+                    "loss": 1.6590631613655695
+                }
+            ],
+            "cluster_results": [
+                [
+                    0,
+                    0,
+                    0
+                ],
+                [
+                    1,
+                    1,
+                    1
+                ],
+                [
+                    2,
+                    0,
+                    0
+                ],
+                [
+                    3,
+                    1,
+                    1
+                ],
+                [
+                    4,
+                    0,
+                    0
+                ],
+                [
+                    5,
+                    1,
+                    1
+                ],
+                [
+                    6,
+                    0,
+                    0
+                ],
+                [
+                    7,
+                    1,
+                    1
+                ],
+                [
+                    8,
+                    0,
+                    0
+                ],
+                [
+                    9,
+                    1,
+                    1
+                ]
+            ]
+        },
+        {
+            "round": 12,
+            "accuracies": [
+                {
+                    "client_id": 0,
+                    "accuracy": 0.3955
+                },
+                {
+                    "client_id": 1,
+                    "accuracy": 0.404
+                },
+                {
+                    "client_id": 2,
+                    "accuracy": 0.392
+                },
+                {
+                    "client_id": 3,
+                    "accuracy": 0.392
+                },
+                {
+                    "client_id": 4,
+                    "accuracy": 0.4025
+                },
+                {
+                    "client_id": 5,
+                    "accuracy": 0.42
+                },
+                {
+                    "client_id": 6,
+                    "accuracy": 0.381
+                },
+                {
+                    "client_id": 7,
+                    "accuracy": 0.3665
+                },
+                {
+                    "client_id": 8,
+                    "accuracy": 0.3835
+                },
+                {
+                    "client_id": 9,
+                    "accuracy": 0.3975
+                }
+            ],
+            "losses": [
+                {
+                    "client_id": 0,
+                    "loss": 1.6621861098304627
+                },
+                {
+                    "client_id": 1,
+                    "loss": 1.6433814423424857
+                },
+                {
+                    "client_id": 2,
+                    "loss": 1.674888911701384
+                },
+                {
+                    "client_id": 3,
+                    "loss": 1.6735200427827381
+                },
+                {
+                    "client_id": 4,
+                    "loss": 1.6507716027517167
+                },
+                {
+                    "client_id": 5,
+                    "loss": 1.643804667487977
+                },
+                {
+                    "client_id": 6,
+                    "loss": 1.6654554075664945
+                },
+                {
+                    "client_id": 7,
+                    "loss": 1.6765352544330416
+                },
+                {
+                    "client_id": 8,
+                    "loss": 1.648269114040193
+                },
+                {
+                    "client_id": 9,
+                    "loss": 1.6402414015361242
+                }
+            ],
+            "cluster_results": [
+                [
+                    0,
+                    0,
+                    0
+                ],
+                [
+                    1,
+                    1,
+                    1
+                ],
+                [
+                    2,
+                    0,
+                    0
+                ],
+                [
+                    3,
+                    1,
+                    1
+                ],
+                [
+                    4,
+                    0,
+                    0
+                ],
+                [
+                    5,
+                    1,
+                    1
+                ],
+                [
+                    6,
+                    0,
+                    0
+                ],
+                [
+                    7,
+                    1,
+                    1
+                ],
+                [
+                    8,
+                    0,
+                    0
+                ],
+                [
+                    9,
+                    1,
+                    1
+                ]
+            ]
+        },
+        {
+            "round": 13,
+            "accuracies": [
+                {
+                    "client_id": 0,
+                    "accuracy": 0.4025
+                },
+                {
+                    "client_id": 1,
+                    "accuracy": 0.4125
+                },
+                {
+                    "client_id": 2,
+                    "accuracy": 0.402
+                },
+                {
+                    "client_id": 3,
+                    "accuracy": 0.3975
+                },
+                {
+                    "client_id": 4,
+                    "accuracy": 0.413
+                },
+                {
+                    "client_id": 5,
+                    "accuracy": 0.4285
+                },
+                {
+                    "client_id": 6,
+                    "accuracy": 0.3905
+                },
+                {
+                    "client_id": 7,
+                    "accuracy": 0.379
+                },
+                {
+                    "client_id": 8,
+                    "accuracy": 0.3905
+                },
+                {
+                    "client_id": 9,
+                    "accuracy": 0.401
+                }
+            ],
+            "losses": [
+                {
+                    "client_id": 0,
+                    "loss": 1.6419563217768594
+                },
+                {
+                    "client_id": 1,
+                    "loss": 1.6244212899889265
+                },
+                {
+                    "client_id": 2,
+                    "loss": 1.6530977998461043
+                },
+                {
+                    "client_id": 3,
+                    "loss": 1.6529376601415968
+                },
+                {
+                    "client_id": 4,
+                    "loss": 1.6280425938348921
+                },
+                {
+                    "client_id": 5,
+                    "loss": 1.6215826575718228
+                },
+                {
+                    "client_id": 6,
+                    "loss": 1.6457730891212585
+                },
+                {
+                    "client_id": 7,
+                    "loss": 1.6583570090551225
+                },
+                {
+                    "client_id": 8,
+                    "loss": 1.6278767945274475
+                },
+                {
+                    "client_id": 9,
+                    "loss": 1.6195696611253043
+                }
+            ],
+            "cluster_results": [
+                [
+                    0,
+                    0,
+                    0
+                ],
+                [
+                    1,
+                    1,
+                    1
+                ],
+                [
+                    2,
+                    0,
+                    0
+                ],
+                [
+                    3,
+                    1,
+                    1
+                ],
+                [
+                    4,
+                    0,
+                    0
+                ],
+                [
+                    5,
+                    1,
+                    1
+                ],
+                [
+                    6,
+                    0,
+                    0
+                ],
+                [
+                    7,
+                    1,
+                    1
+                ],
+                [
+                    8,
+                    0,
+                    0
+                ],
+                [
+                    9,
+                    1,
+                    1
+                ]
+            ]
+        },
+        {
+            "round": 14,
+            "accuracies": [
+                {
+                    "client_id": 0,
+                    "accuracy": 0.408
+                },
+                {
+                    "client_id": 1,
+                    "accuracy": 0.42
+                },
+                {
+                    "client_id": 2,
+                    "accuracy": 0.408
+                },
+                {
+                    "client_id": 3,
+                    "accuracy": 0.408
+                },
+                {
+                    "client_id": 4,
+                    "accuracy": 0.4225
+                },
+                {
+                    "client_id": 5,
+                    "accuracy": 0.4345
+                },
+                {
+                    "client_id": 6,
+                    "accuracy": 0.397
+                },
+                {
+                    "client_id": 7,
+                    "accuracy": 0.3815
+                },
+                {
+                    "client_id": 8,
+                    "accuracy": 0.3965
+                },
+                {
+                    "client_id": 9,
+                    "accuracy": 0.4095
+                }
+            ],
+            "losses": [
+                {
+                    "client_id": 0,
+                    "loss": 1.6248545798044356
+                },
+                {
+                    "client_id": 1,
+                    "loss": 1.6088876402567303
+                },
+                {
+                    "client_id": 2,
+                    "loss": 1.635374527128916
+                },
+                {
+                    "client_id": 3,
+                    "loss": 1.636015258138142
+                },
+                {
+                    "client_id": 4,
+                    "loss": 1.6082239472676838
+                },
+                {
+                    "client_id": 5,
+                    "loss": 1.602628613275195
+                },
+                {
+                    "client_id": 6,
+                    "loss": 1.6286739811064705
+                },
+                {
+                    "client_id": 7,
+                    "loss": 1.6426983693289379
+                },
+                {
+                    "client_id": 8,
+                    "loss": 1.6108042493699088
+                },
+                {
+                    "client_id": 9,
+                    "loss": 1.602987429452321
+                }
+            ],
+            "cluster_results": [
+                [
+                    0,
+                    0,
+                    0
+                ],
+                [
+                    1,
+                    1,
+                    1
+                ],
+                [
+                    2,
+                    0,
+                    0
+                ],
+                [
+                    3,
+                    1,
+                    1
+                ],
+                [
+                    4,
+                    0,
+                    0
+                ],
+                [
+                    5,
+                    1,
+                    1
+                ],
+                [
+                    6,
+                    0,
+                    0
+                ],
+                [
+                    7,
+                    1,
+                    1
+                ],
+                [
+                    8,
+                    0,
+                    0
+                ],
+                [
+                    9,
+                    1,
+                    1
+                ]
+            ]
+        },
+        {
+            "round": 15,
+            "accuracies": [
+                {
+                    "client_id": 0,
+                    "accuracy": 0.4145
+                },
+                {
+                    "client_id": 1,
+                    "accuracy": 0.4255
+                },
+                {
+                    "client_id": 2,
+                    "accuracy": 0.4165
+                },
+                {
+                    "client_id": 3,
+                    "accuracy": 0.406
+                },
+                {
+                    "client_id": 4,
+                    "accuracy": 0.4225
+                },
+                {
+                    "client_id": 5,
+                    "accuracy": 0.432
+                },
+                {
+                    "client_id": 6,
+                    "accuracy": 0.403
+                },
+                {
+                    "client_id": 7,
+                    "accuracy": 0.387
+                },
+                {
+                    "client_id": 8,
+                    "accuracy": 0.402
+                },
+                {
+                    "client_id": 9,
+                    "accuracy": 0.415
+                }
+            ],
+            "losses": [
+                {
+                    "client_id": 0,
+                    "loss": 1.609127960507832
+                },
+                {
+                    "client_id": 1,
+                    "loss": 1.5957274399106465
+                },
+                {
+                    "client_id": 2,
+                    "loss": 1.6202091640896268
+                },
+                {
+                    "client_id": 3,
+                    "loss": 1.6220560319839963
+                },
+                {
+                    "client_id": 4,
+                    "loss": 1.5905731613673861
+                },
+                {
+                    "client_id": 5,
+                    "loss": 1.5856504989048792
+                },
+                {
+                    "client_id": 6,
+                    "loss": 1.613281874429612
+                },
+                {
+                    "client_id": 7,
+                    "loss": 1.6293953713916598
+                },
+                {
+                    "client_id": 8,
+                    "loss": 1.5958780636863104
+                },
+                {
+                    "client_id": 9,
+                    "loss": 1.5891368237752763
+                }
+            ],
+            "cluster_results": [
+                [
+                    0,
+                    0,
+                    0
+                ],
+                [
+                    1,
+                    1,
+                    1
+                ],
+                [
+                    2,
+                    0,
+                    0
+                ],
+                [
+                    3,
+                    1,
+                    1
+                ],
+                [
+                    4,
+                    0,
+                    0
+                ],
+                [
+                    5,
+                    1,
+                    1
+                ],
+                [
+                    6,
+                    0,
+                    0
+                ],
+                [
+                    7,
+                    1,
+                    1
+                ],
+                [
+                    8,
+                    0,
+                    0
+                ],
+                [
+                    9,
+                    1,
+                    1
+                ]
+            ]
+        },
+        {
+            "round": 16,
+            "accuracies": [
+                {
+                    "client_id": 0,
+                    "accuracy": 0.4185
+                },
+                {
+                    "client_id": 1,
+                    "accuracy": 0.4245
+                },
+                {
+                    "client_id": 2,
+                    "accuracy": 0.418
+                },
+                {
+                    "client_id": 3,
+                    "accuracy": 0.414
+                },
+                {
+                    "client_id": 4,
+                    "accuracy": 0.4295
+                },
+                {
+                    "client_id": 5,
+                    "accuracy": 0.4365
+                },
+                {
+                    "client_id": 6,
+                    "accuracy": 0.408
+                },
+                {
+                    "client_id": 7,
+                    "accuracy": 0.3905
+                },
+                {
+                    "client_id": 8,
+                    "accuracy": 0.4
+                },
+                {
+                    "client_id": 9,
+                    "accuracy": 0.4195
+                }
+            ],
+            "losses": [
+                {
+                    "client_id": 0,
+                    "loss": 1.5981051335259089
+                },
+                {
+                    "client_id": 1,
+                    "loss": 1.5847338892164684
+                },
+                {
+                    "client_id": 2,
+                    "loss": 1.6096237538352844
+                },
+                {
+                    "client_id": 3,
+                    "loss": 1.6097425014253646
+                },
+                {
+                    "client_id": 4,
+                    "loss": 1.5784294359267703
+                },
+                {
+                    "client_id": 5,
+                    "loss": 1.5718985606753637
+                },
+                {
+                    "client_id": 6,
+                    "loss": 1.6022638309569586
+                },
+                {
+                    "client_id": 7,
+                    "loss": 1.6178464019109333
+                },
+                {
+                    "client_id": 8,
+                    "loss": 1.585842212041219
+                },
+                {
+                    "client_id": 9,
+                    "loss": 1.577671351886931
+                }
+            ],
+            "cluster_results": [
+                [
+                    0,
+                    0,
+                    0
+                ],
+                [
+                    1,
+                    1,
+                    1
+                ],
+                [
+                    2,
+                    0,
+                    0
+                ],
+                [
+                    3,
+                    1,
+                    1
+                ],
+                [
+                    4,
+                    0,
+                    0
+                ],
+                [
+                    5,
+                    1,
+                    1
+                ],
+                [
+                    6,
+                    0,
+                    0
+                ],
+                [
+                    7,
+                    1,
+                    1
+                ],
+                [
+                    8,
+                    0,
+                    0
+                ],
+                [
+                    9,
+                    1,
+                    1
+                ]
+            ]
+        },
+        {
+            "round": 17,
+            "accuracies": [
+                {
+                    "client_id": 0,
+                    "accuracy": 0.426
+                },
+                {
+                    "client_id": 1,
+                    "accuracy": 0.424
+                },
+                {
+                    "client_id": 2,
+                    "accuracy": 0.4175
+                },
+                {
+                    "client_id": 3,
+                    "accuracy": 0.414
+                },
+                {
+                    "client_id": 4,
+                    "accuracy": 0.43
+                },
+                {
+                    "client_id": 5,
+                    "accuracy": 0.44
+                },
+                {
+                    "client_id": 6,
+                    "accuracy": 0.413
+                },
+                {
+                    "client_id": 7,
+                    "accuracy": 0.397
+                },
+                {
+                    "client_id": 8,
+                    "accuracy": 0.41
+                },
+                {
+                    "client_id": 9,
+                    "accuracy": 0.425
+                }
+            ],
+            "losses": [
+                {
+                    "client_id": 0,
+                    "loss": 1.587544180098034
+                },
+                {
+                    "client_id": 1,
+                    "loss": 1.5757453838984172
+                },
+                {
+                    "client_id": 2,
+                    "loss": 1.5997841774471222
+                },
+                {
+                    "client_id": 3,
+                    "loss": 1.6006250930210901
+                },
+                {
+                    "client_id": 4,
+                    "loss": 1.5670560484840756
+                },
+                {
+                    "client_id": 5,
+                    "loss": 1.5601116645903814
+                },
+                {
+                    "client_id": 6,
+                    "loss": 1.5916869432207137
+                },
+                {
+                    "client_id": 7,
+                    "loss": 1.608064369549827
+                },
+                {
+                    "client_id": 8,
+                    "loss": 1.5761284752497597
+                },
+                {
+                    "client_id": 9,
+                    "loss": 1.5681155484820168
+                }
+            ],
+            "cluster_results": [
+                [
+                    0,
+                    0,
+                    0
+                ],
+                [
+                    1,
+                    1,
+                    1
+                ],
+                [
+                    2,
+                    0,
+                    0
+                ],
+                [
+                    3,
+                    1,
+                    1
+                ],
+                [
+                    4,
+                    0,
+                    0
+                ],
+                [
+                    5,
+                    1,
+                    1
+                ],
+                [
+                    6,
+                    0,
+                    0
+                ],
+                [
+                    7,
+                    1,
+                    1
+                ],
+                [
+                    8,
+                    0,
+                    0
+                ],
+                [
+                    9,
+                    1,
+                    1
+                ]
+            ]
+        },
+        {
+            "round": 18,
+            "accuracies": [
+                {
+                    "client_id": 0,
+                    "accuracy": 0.4285
+                },
+                {
+                    "client_id": 1,
+                    "accuracy": 0.429
+                },
+                {
+                    "client_id": 2,
+                    "accuracy": 0.4185
+                },
+                {
+                    "client_id": 3,
+                    "accuracy": 0.4155
+                },
+                {
+                    "client_id": 4,
+                    "accuracy": 0.4355
+                },
+                {
+                    "client_id": 5,
+                    "accuracy": 0.4435
+                },
+                {
+                    "client_id": 6,
+                    "accuracy": 0.416
+                },
+                {
+                    "client_id": 7,
+                    "accuracy": 0.406
+                },
+                {
+                    "client_id": 8,
+                    "accuracy": 0.411
+                },
+                {
+                    "client_id": 9,
+                    "accuracy": 0.429
+                }
+            ],
+            "losses": [
+                {
+                    "client_id": 0,
+                    "loss": 1.579508242152986
+                },
+                {
+                    "client_id": 1,
+                    "loss": 1.5686218776400127
+                },
+                {
+                    "client_id": 2,
+                    "loss": 1.5910275625804113
+                },
+                {
+                    "client_id": 3,
+                    "loss": 1.5924758930054923
+                },
+                {
+                    "client_id": 4,
+                    "loss": 1.5586453714067974
+                },
+                {
+                    "client_id": 5,
+                    "loss": 1.550306450752985
+                },
+                {
+                    "client_id": 6,
+                    "loss": 1.582284306722974
+                },
+                {
+                    "client_id": 7,
+                    "loss": 1.599197268486023
+                },
+                {
+                    "client_id": 8,
+                    "loss": 1.568865002147735
+                },
+                {
+                    "client_id": 9,
+                    "loss": 1.5604211621814303
+                }
+            ],
+            "cluster_results": [
+                [
+                    0,
+                    0,
+                    0
+                ],
+                [
+                    1,
+                    1,
+                    1
+                ],
+                [
+                    2,
+                    0,
+                    0
+                ],
+                [
+                    3,
+                    1,
+                    1
+                ],
+                [
+                    4,
+                    0,
+                    0
+                ],
+                [
+                    5,
+                    1,
+                    1
+                ],
+                [
+                    6,
+                    0,
+                    0
+                ],
+                [
+                    7,
+                    1,
+                    1
+                ],
+                [
+                    8,
+                    0,
+                    0
+                ],
+                [
+                    9,
+                    1,
+                    1
+                ]
+            ]
+        },
+        {
+            "round": 19,
+            "accuracies": [
+                {
+                    "client_id": 0,
+                    "accuracy": 0.4315
+                },
+                {
+                    "client_id": 1,
+                    "accuracy": 0.436
+                },
+                {
+                    "client_id": 2,
+                    "accuracy": 0.425
+                },
+                {
+                    "client_id": 3,
+                    "accuracy": 0.4215
+                },
+                {
+                    "client_id": 4,
+                    "accuracy": 0.442
+                },
+                {
+                    "client_id": 5,
+                    "accuracy": 0.443
+                },
+                {
+                    "client_id": 6,
+                    "accuracy": 0.42
+                },
+                {
+                    "client_id": 7,
+                    "accuracy": 0.4045
+                },
+                {
+                    "client_id": 8,
+                    "accuracy": 0.419
+                },
+                {
+                    "client_id": 9,
+                    "accuracy": 0.43
+                }
+            ],
+            "losses": [
+                {
+                    "client_id": 0,
+                    "loss": 1.56841104181986
+                },
+                {
+                    "client_id": 1,
+                    "loss": 1.5597983693319655
+                },
+                {
+                    "client_id": 2,
+                    "loss": 1.5793518963314237
+                },
+                {
+                    "client_id": 3,
+                    "loss": 1.5822563511984689
+                },
+                {
+                    "client_id": 4,
+                    "loss": 1.5464094782632494
+                },
+                {
+                    "client_id": 5,
+                    "loss": 1.5375678368977137
+                },
+                {
+                    "client_id": 6,
+                    "loss": 1.5707475684937977
+                },
+                {
+                    "client_id": 7,
+                    "loss": 1.587850606630719
+                },
+                {
+                    "client_id": 8,
+                    "loss": 1.5594389287252275
+                },
+                {
+                    "client_id": 9,
+                    "loss": 1.5509746131442843
+                }
+            ],
+            "cluster_results": [
+                [
+                    0,
+                    0,
+                    0
+                ],
+                [
+                    1,
+                    1,
+                    1
+                ],
+                [
+                    2,
+                    0,
+                    0
+                ],
+                [
+                    3,
+                    1,
+                    1
+                ],
+                [
+                    4,
+                    0,
+                    0
+                ],
+                [
+                    5,
+                    1,
+                    1
+                ],
+                [
+                    6,
+                    0,
+                    0
+                ],
+                [
+                    7,
+                    1,
+                    1
+                ],
+                [
+                    8,
+                    0,
+                    0
+                ],
+                [
+                    9,
+                    1,
+                    1
+                ]
+            ]
+        },
+        {
+            "round": 20,
+            "accuracies": [
+                {
+                    "client_id": 0,
+                    "accuracy": 0.437
+                },
+                {
+                    "client_id": 1,
+                    "accuracy": 0.439
+                },
+                {
+                    "client_id": 2,
+                    "accuracy": 0.431
+                },
+                {
+                    "client_id": 3,
+                    "accuracy": 0.4285
+                },
+                {
+                    "client_id": 4,
+                    "accuracy": 0.45
+                },
+                {
+                    "client_id": 5,
+                    "accuracy": 0.448
+                },
+                {
+                    "client_id": 6,
+                    "accuracy": 0.423
+                },
+                {
+                    "client_id": 7,
+                    "accuracy": 0.409
+                },
+                {
+                    "client_id": 8,
+                    "accuracy": 0.4235
+                },
+                {
+                    "client_id": 9,
+                    "accuracy": 0.4325
+                }
+            ],
+            "losses": [
+                {
+                    "client_id": 0,
+                    "loss": 1.5598702146893455
+                },
+                {
+                    "client_id": 1,
+                    "loss": 1.5530337927833435
+                },
+                {
+                    "client_id": 2,
+                    "loss": 1.5705159732273646
+                },
+                {
+                    "client_id": 3,
+                    "loss": 1.5747320443864852
+                },
+                {
+                    "client_id": 4,
+                    "loss": 1.5377755865218148
+                },
+                {
+                    "client_id": 5,
+                    "loss": 1.527966921291654
+                },
+                {
+                    "client_id": 6,
+                    "loss": 1.56167267239283
+                },
+                {
+                    "client_id": 7,
+                    "loss": 1.5788900189929538
+                },
+                {
+                    "client_id": 8,
+                    "loss": 1.5524508858483934
+                },
+                {
+                    "client_id": 9,
+                    "loss": 1.5436501540834942
+                }
+            ],
+            "cluster_results": [
+                [
+                    0,
+                    0,
+                    0
+                ],
+                [
+                    1,
+                    1,
+                    1
+                ],
+                [
+                    2,
+                    0,
+                    0
+                ],
+                [
+                    3,
+                    1,
+                    1
+                ],
+                [
+                    4,
+                    0,
+                    0
+                ],
+                [
+                    5,
+                    1,
+                    1
+                ],
+                [
+                    6,
+                    0,
+                    0
+                ],
+                [
+                    7,
+                    1,
+                    1
+                ],
+                [
+                    8,
+                    0,
+                    0
+                ],
+                [
+                    9,
+                    1,
+                    1
+                ]
+            ]
+        },
+        {
+            "round": 21,
+            "accuracies": [
+                {
+                    "client_id": 0,
+                    "accuracy": 0.4395
+                },
+                {
+                    "client_id": 1,
+                    "accuracy": 0.442
+                },
+                {
+                    "client_id": 2,
+                    "accuracy": 0.4405
+                },
+                {
+                    "client_id": 3,
+                    "accuracy": 0.4325
+                },
+                {
+                    "client_id": 4,
+                    "accuracy": 0.4575
+                },
+                {
+                    "client_id": 5,
+                    "accuracy": 0.4525
+                },
+                {
+                    "client_id": 6,
+                    "accuracy": 0.425
+                },
+                {
+                    "client_id": 7,
+                    "accuracy": 0.413
+                },
+                {
+                    "client_id": 8,
+                    "accuracy": 0.43
+                },
+                {
+                    "client_id": 9,
+                    "accuracy": 0.4285
+                }
+            ],
+            "losses": [
+                {
+                    "client_id": 0,
+                    "loss": 1.550577093684484
+                },
+                {
+                    "client_id": 1,
+                    "loss": 1.5451091565783062
+                },
+                {
+                    "client_id": 2,
+                    "loss": 1.5612360768847995
+                },
+                {
+                    "client_id": 3,
+                    "loss": 1.5659019095557076
+                },
+                {
+                    "client_id": 4,
+                    "loss": 1.5285433625418043
+                },
+                {
+                    "client_id": 5,
+                    "loss": 1.5162518497497317
+                },
+                {
+                    "client_id": 6,
+                    "loss": 1.5533506207995944
+                },
+                {
+                    "client_id": 7,
+                    "loss": 1.5688379359623743
+                },
+                {
+                    "client_id": 8,
+                    "loss": 1.544921740653023
+                },
+                {
+                    "client_id": 9,
+                    "loss": 1.5352675271412684
+                }
+            ],
+            "cluster_results": [
+                [
+                    0,
+                    0,
+                    0
+                ],
+                [
+                    1,
+                    1,
+                    1
+                ],
+                [
+                    2,
+                    0,
+                    0
+                ],
+                [
+                    3,
+                    1,
+                    1
+                ],
+                [
+                    4,
+                    0,
+                    0
+                ],
+                [
+                    5,
+                    1,
+                    1
+                ],
+                [
+                    6,
+                    0,
+                    0
+                ],
+                [
+                    7,
+                    1,
+                    1
+                ],
+                [
+                    8,
+                    0,
+                    0
+                ],
+                [
+                    9,
+                    1,
+                    1
+                ]
+            ]
+        },
+        {
+            "round": 22,
+            "accuracies": [
+                {
+                    "client_id": 0,
+                    "accuracy": 0.4435
+                },
+                {
+                    "client_id": 1,
+                    "accuracy": 0.4485
+                },
+                {
+                    "client_id": 2,
+                    "accuracy": 0.4435
+                },
+                {
+                    "client_id": 3,
+                    "accuracy": 0.439
+                },
+                {
+                    "client_id": 4,
+                    "accuracy": 0.462
+                },
+                {
+                    "client_id": 5,
+                    "accuracy": 0.459
+                },
+                {
+                    "client_id": 6,
+                    "accuracy": 0.4255
+                },
+                {
+                    "client_id": 7,
+                    "accuracy": 0.415
+                },
+                {
+                    "client_id": 8,
+                    "accuracy": 0.4295
+                },
+                {
+                    "client_id": 9,
+                    "accuracy": 0.4295
+                }
+            ],
+            "losses": [
+                {
+                    "client_id": 0,
+                    "loss": 1.544171547132825
+                },
+                {
+                    "client_id": 1,
+                    "loss": 1.538831182888576
+                },
+                {
+                    "client_id": 2,
+                    "loss": 1.5538801314338806
+                },
+                {
+                    "client_id": 3,
+                    "loss": 1.5589416954252455
+                },
+                {
+                    "client_id": 4,
+                    "loss": 1.52207180621132
+                },
+                {
+                    "client_id": 5,
+                    "loss": 1.5070794461265442
+                },
+                {
+                    "client_id": 6,
+                    "loss": 1.5460458861456976
+                },
+                {
+                    "client_id": 7,
+                    "loss": 1.5593875854734391
+                },
+                {
+                    "client_id": 8,
+                    "loss": 1.539658200173151
+                },
+                {
+                    "client_id": 9,
+                    "loss": 1.5283375108052815
+                }
+            ],
+            "cluster_results": [
+                [
+                    0,
+                    0,
+                    0
+                ],
+                [
+                    1,
+                    1,
+                    1
+                ],
+                [
+                    2,
+                    0,
+                    0
+                ],
+                [
+                    3,
+                    1,
+                    1
+                ],
+                [
+                    4,
+                    0,
+                    0
+                ],
+                [
+                    5,
+                    1,
+                    1
+                ],
+                [
+                    6,
+                    0,
+                    0
+                ],
+                [
+                    7,
+                    1,
+                    1
+                ],
+                [
+                    8,
+                    0,
+                    0
+                ],
+                [
+                    9,
+                    1,
+                    1
+                ]
+            ]
+        },
+        {
+            "round": 23,
+            "accuracies": [
+                {
+                    "client_id": 0,
+                    "accuracy": 0.445
+                },
+                {
+                    "client_id": 1,
+                    "accuracy": 0.449
+                },
+                {
+                    "client_id": 2,
+                    "accuracy": 0.45
+                },
+                {
+                    "client_id": 3,
+                    "accuracy": 0.445
+                },
+                {
+                    "client_id": 4,
+                    "accuracy": 0.462
+                },
+                {
+                    "client_id": 5,
+                    "accuracy": 0.4625
+                },
+                {
+                    "client_id": 6,
+                    "accuracy": 0.4275
+                },
+                {
+                    "client_id": 7,
+                    "accuracy": 0.4175
+                },
+                {
+                    "client_id": 8,
+                    "accuracy": 0.4315
+                },
+                {
+                    "client_id": 9,
+                    "accuracy": 0.436
+                }
+            ],
+            "losses": [
+                {
+                    "client_id": 0,
+                    "loss": 1.5353960953061543
+                },
+                {
+                    "client_id": 1,
+                    "loss": 1.531564918775407
+                },
+                {
+                    "client_id": 2,
+                    "loss": 1.5445864087059384
+                },
+                {
+                    "client_id": 3,
+                    "loss": 1.5504994487005568
+                },
+                {
+                    "client_id": 4,
+                    "loss": 1.5136563267026628
+                },
+                {
+                    "client_id": 5,
+                    "loss": 1.4967538875246804
+                },
+                {
+                    "client_id": 6,
+                    "loss": 1.5367583168877497
+                },
+                {
+                    "client_id": 7,
+                    "loss": 1.5496994332661704
+                },
+                {
+                    "client_id": 8,
+                    "loss": 1.532628019650777
+                },
+                {
+                    "client_id": 9,
+                    "loss": 1.52114070407928
+                }
+            ],
+            "cluster_results": [
+                [
+                    0,
+                    0,
+                    0
+                ],
+                [
+                    1,
+                    1,
+                    1
+                ],
+                [
+                    2,
+                    0,
+                    0
+                ],
+                [
+                    3,
+                    1,
+                    1
+                ],
+                [
+                    4,
+                    0,
+                    0
+                ],
+                [
+                    5,
+                    1,
+                    1
+                ],
+                [
+                    6,
+                    0,
+                    0
+                ],
+                [
+                    7,
+                    1,
+                    1
+                ],
+                [
+                    8,
+                    0,
+                    0
+                ],
+                [
+                    9,
+                    1,
+                    1
+                ]
+            ]
+        },
+        {
+            "round": 24,
+            "accuracies": [
+                {
+                    "client_id": 0,
+                    "accuracy": 0.445
+                },
+                {
+                    "client_id": 1,
+                    "accuracy": 0.4475
+                },
+                {
+                    "client_id": 2,
+                    "accuracy": 0.4525
+                },
+                {
+                    "client_id": 3,
+                    "accuracy": 0.446
+                },
+                {
+                    "client_id": 4,
+                    "accuracy": 0.464
+                },
+                {
+                    "client_id": 5,
+                    "accuracy": 0.47
+                },
+                {
+                    "client_id": 6,
+                    "accuracy": 0.429
+                },
+                {
+                    "client_id": 7,
+                    "accuracy": 0.4235
+                },
+                {
+                    "client_id": 8,
+                    "accuracy": 0.4305
+                },
+                {
+                    "client_id": 9,
+                    "accuracy": 0.4385
+                }
+            ],
+            "losses": [
+                {
+                    "client_id": 0,
+                    "loss": 1.5298825237486098
+                },
+                {
+                    "client_id": 1,
+                    "loss": 1.5267077627636136
+                },
+                {
+                    "client_id": 2,
+                    "loss": 1.5387621815242465
+                },
+                {
+                    "client_id": 3,
+                    "loss": 1.5448195177411277
+                },
+                {
+                    "client_id": 4,
+                    "loss": 1.5088300629267617
+                },
+                {
+                    "client_id": 5,
+                    "loss": 1.4898336614881242
+                },
+                {
+                    "client_id": 6,
+                    "loss": 1.529662843734499
+                },
+                {
+                    "client_id": 7,
+                    "loss": 1.5407269511904036
+                },
+                {
+                    "client_id": 8,
+                    "loss": 1.5284531135407706
+                },
+                {
+                    "client_id": 9,
+                    "loss": 1.515042579363263
+                }
+            ],
+            "cluster_results": [
+                [
+                    0,
+                    0,
+                    0
+                ],
+                [
+                    1,
+                    1,
+                    1
+                ],
+                [
+                    2,
+                    0,
+                    0
+                ],
+                [
+                    3,
+                    1,
+                    1
+                ],
+                [
+                    4,
+                    0,
+                    0
+                ],
+                [
+                    5,
+                    1,
+                    1
+                ],
+                [
+                    6,
+                    0,
+                    0
+                ],
+                [
+                    7,
+                    1,
+                    1
+                ],
+                [
+                    8,
+                    0,
+                    0
+                ],
+                [
+                    9,
+                    1,
+                    1
+                ]
+            ]
+        },
+        {
+            "round": 25,
+            "accuracies": [
+                {
+                    "client_id": 0,
+                    "accuracy": 0.447
+                },
+                {
+                    "client_id": 1,
+                    "accuracy": 0.4475
+                },
+                {
+                    "client_id": 2,
+                    "accuracy": 0.453
+                },
+                {
+                    "client_id": 3,
+                    "accuracy": 0.448
+                },
+                {
+                    "client_id": 4,
+                    "accuracy": 0.4655
+                },
+                {
+                    "client_id": 5,
+                    "accuracy": 0.47
+                },
+                {
+                    "client_id": 6,
+                    "accuracy": 0.4295
+                },
+                {
+                    "client_id": 7,
+                    "accuracy": 0.4255
+                },
+                {
+                    "client_id": 8,
+                    "accuracy": 0.4335
+                },
+                {
+                    "client_id": 9,
+                    "accuracy": 0.44
+                }
+            ],
+            "losses": [
+                {
+                    "client_id": 0,
+                    "loss": 1.5225986582892281
+                },
+                {
+                    "client_id": 1,
+                    "loss": 1.522801300835988
+                },
+                {
+                    "client_id": 2,
+                    "loss": 1.531055794821845
+                },
+                {
+                    "client_id": 3,
+                    "loss": 1.540014003950452
+                },
+                {
+                    "client_id": 4,
+                    "loss": 1.5015599159967332
+                },
+                {
+                    "client_id": 5,
+                    "loss": 1.4831361997695196
+                },
+                {
+                    "client_id": 6,
+                    "loss": 1.5217068006121923
+                },
+                {
+                    "client_id": 7,
+                    "loss": 1.5336519877115886
+                },
+                {
+                    "client_id": 8,
+                    "loss": 1.523211991976178
+                },
+                {
+                    "client_id": 9,
+                    "loss": 1.5114255481296115
+                }
+            ],
+            "cluster_results": [
+                [
+                    0,
+                    0,
+                    0
+                ],
+                [
+                    1,
+                    1,
+                    1
+                ],
+                [
+                    2,
+                    0,
+                    0
+                ],
+                [
+                    3,
+                    1,
+                    1
+                ],
+                [
+                    4,
+                    0,
+                    0
+                ],
+                [
+                    5,
+                    1,
+                    1
+                ],
+                [
+                    6,
+                    0,
+                    0
+                ],
+                [
+                    7,
+                    1,
+                    1
+                ],
+                [
+                    8,
+                    0,
+                    0
+                ],
+                [
+                    9,
+                    1,
+                    1
+                ]
+            ]
+        },
+        {
+            "round": 26,
+            "accuracies": [
+                {
+                    "client_id": 0,
+                    "accuracy": 0.4475
+                },
+                {
+                    "client_id": 1,
+                    "accuracy": 0.4505
+                },
+                {
+                    "client_id": 2,
+                    "accuracy": 0.4575
+                },
+                {
+                    "client_id": 3,
+                    "accuracy": 0.4495
+                },
+                {
+                    "client_id": 4,
+                    "accuracy": 0.4655
+                },
+                {
+                    "client_id": 5,
+                    "accuracy": 0.475
+                },
+                {
+                    "client_id": 6,
+                    "accuracy": 0.4325
+                },
+                {
+                    "client_id": 7,
+                    "accuracy": 0.4315
+                },
+                {
+                    "client_id": 8,
+                    "accuracy": 0.4335
+                },
+                {
+                    "client_id": 9,
+                    "accuracy": 0.4455
+                }
+            ],
+            "losses": [
+                {
+                    "client_id": 0,
+                    "loss": 1.5158739998227073
+                },
+                {
+                    "client_id": 1,
+                    "loss": 1.515519969047062
+                },
+                {
+                    "client_id": 2,
+                    "loss": 1.5230106228873843
+                },
+                {
+                    "client_id": 3,
+                    "loss": 1.5311493419465565
+                },
+                {
+                    "client_id": 4,
+                    "loss": 1.4945406838068886
+                },
+                {
+                    "client_id": 5,
+                    "loss": 1.4735999618257796
+                },
+                {
+                    "client_id": 6,
+                    "loss": 1.5142760645775568
+                },
+                {
+                    "client_id": 7,
+                    "loss": 1.5242468610642448
+                },
+                {
+                    "client_id": 8,
+                    "loss": 1.5166154475439162
+                },
+                {
+                    "client_id": 9,
+                    "loss": 1.503380330782088
+                }
+            ],
+            "cluster_results": [
+                [
+                    0,
+                    0,
+                    0
+                ],
+                [
+                    1,
+                    1,
+                    1
+                ],
+                [
+                    2,
+                    0,
+                    0
+                ],
+                [
+                    3,
+                    1,
+                    1
+                ],
+                [
+                    4,
+                    0,
+                    0
+                ],
+                [
+                    5,
+                    1,
+                    1
+                ],
+                [
+                    6,
+                    0,
+                    0
+                ],
+                [
+                    7,
+                    1,
+                    1
+                ],
+                [
+                    8,
+                    0,
+                    0
+                ],
+                [
+                    9,
+                    1,
+                    1
+                ]
+            ]
+        },
+        {
+            "round": 27,
+            "accuracies": [
+                {
+                    "client_id": 0,
+                    "accuracy": 0.4475
+                },
+                {
+                    "client_id": 1,
+                    "accuracy": 0.4505
+                },
+                {
+                    "client_id": 2,
+                    "accuracy": 0.4525
+                },
+                {
+                    "client_id": 3,
+                    "accuracy": 0.4535
+                },
+                {
+                    "client_id": 4,
+                    "accuracy": 0.47
+                },
+                {
+                    "client_id": 5,
+                    "accuracy": 0.476
+                },
+                {
+                    "client_id": 6,
+                    "accuracy": 0.44
+                },
+                {
+                    "client_id": 7,
+                    "accuracy": 0.4355
+                },
+                {
+                    "client_id": 8,
+                    "accuracy": 0.4345
+                },
+                {
+                    "client_id": 9,
+                    "accuracy": 0.4525
+                }
+            ],
+            "losses": [
+                {
+                    "client_id": 0,
+                    "loss": 1.5127636345606001
+                },
+                {
+                    "client_id": 1,
+                    "loss": 1.5106924715496244
+                },
+                {
+                    "client_id": 2,
+                    "loss": 1.5188856503320118
+                },
+                {
+                    "client_id": 3,
+                    "loss": 1.5253011253145006
+                },
+                {
+                    "client_id": 4,
+                    "loss": 1.4911774150908939
+                },
+                {
+                    "client_id": 5,
+                    "loss": 1.4672459950522772
+                },
+                {
+                    "client_id": 6,
+                    "loss": 1.5097122078850156
+                },
+                {
+                    "client_id": 7,
+                    "loss": 1.5165194613592965
+                },
+                {
+                    "client_id": 8,
+                    "loss": 1.514195203781128
+                },
+                {
+                    "client_id": 9,
+                    "loss": 1.4977555615561349
+                }
+            ],
+            "cluster_results": [
+                [
+                    0,
+                    0,
+                    0
+                ],
+                [
+                    1,
+                    1,
+                    1
+                ],
+                [
+                    2,
+                    0,
+                    0
+                ],
+                [
+                    3,
+                    1,
+                    1
+                ],
+                [
+                    4,
+                    0,
+                    0
+                ],
+                [
+                    5,
+                    1,
+                    1
+                ],
+                [
+                    6,
+                    0,
+                    0
+                ],
+                [
+                    7,
+                    1,
+                    1
+                ],
+                [
+                    8,
+                    0,
+                    0
+                ],
+                [
+                    9,
+                    1,
+                    1
+                ]
+            ]
+        },
+        {
+            "round": 28,
+            "accuracies": [
+                {
+                    "client_id": 0,
+                    "accuracy": 0.45
+                },
+                {
+                    "client_id": 1,
+                    "accuracy": 0.452
+                },
+                {
+                    "client_id": 2,
+                    "accuracy": 0.456
+                },
+                {
+                    "client_id": 3,
+                    "accuracy": 0.4585
+                },
+                {
+                    "client_id": 4,
+                    "accuracy": 0.473
+                },
+                {
+                    "client_id": 5,
+                    "accuracy": 0.4785
+                },
+                {
+                    "client_id": 6,
+                    "accuracy": 0.4445
+                },
+                {
+                    "client_id": 7,
+                    "accuracy": 0.4385
+                },
+                {
+                    "client_id": 8,
+                    "accuracy": 0.438
+                },
+                {
+                    "client_id": 9,
+                    "accuracy": 0.4515
+                }
+            ],
+            "losses": [
+                {
+                    "client_id": 0,
+                    "loss": 1.5081205689717854
+                },
+                {
+                    "client_id": 1,
+                    "loss": 1.5033002675525726
+                },
+                {
+                    "client_id": 2,
+                    "loss": 1.5138043392272222
+                },
+                {
+                    "client_id": 3,
+                    "loss": 1.5170219512212844
+                },
+                {
+                    "client_id": 4,
+                    "loss": 1.4854945171447027
+                },
+                {
+                    "client_id": 5,
+                    "loss": 1.458160918856424
+                },
+                {
+                    "client_id": 6,
+                    "loss": 1.5036319437481107
+                },
+                {
+                    "client_id": 7,
+                    "loss": 1.5071477379117693
+                },
+                {
+                    "client_id": 8,
+                    "loss": 1.5104009064417037
+                },
+                {
+                    "client_id": 9,
+                    "loss": 1.4907205388659523
+                }
+            ],
+            "cluster_results": [
+                [
+                    0,
+                    0,
+                    0
+                ],
+                [
+                    1,
+                    1,
+                    1
+                ],
+                [
+                    2,
+                    0,
+                    0
+                ],
+                [
+                    3,
+                    1,
+                    1
+                ],
+                [
+                    4,
+                    0,
+                    0
+                ],
+                [
+                    5,
+                    1,
+                    1
+                ],
+                [
+                    6,
+                    0,
+                    0
+                ],
+                [
+                    7,
+                    1,
+                    1
+                ],
+                [
+                    8,
+                    0,
+                    0
+                ],
+                [
+                    9,
+                    1,
+                    1
+                ]
+            ]
+        },
+        {
+            "round": 29,
+            "accuracies": [
+                {
+                    "client_id": 0,
+                    "accuracy": 0.448
+                },
+                {
+                    "client_id": 1,
+                    "accuracy": 0.4525
+                },
+                {
+                    "client_id": 2,
+                    "accuracy": 0.4535
+                },
+                {
+                    "client_id": 3,
+                    "accuracy": 0.4595
+                },
+                {
+                    "client_id": 4,
+                    "accuracy": 0.472
+                },
+                {
+                    "client_id": 5,
+                    "accuracy": 0.4825
+                },
+                {
+                    "client_id": 6,
+                    "accuracy": 0.452
+                },
+                {
+                    "client_id": 7,
+                    "accuracy": 0.4385
+                },
+                {
+                    "client_id": 8,
+                    "accuracy": 0.44
+                },
+                {
+                    "client_id": 9,
+                    "accuracy": 0.4525
+                }
+            ],
+            "losses": [
+                {
+                    "client_id": 0,
+                    "loss": 1.503332781413245
+                },
+                {
+                    "client_id": 1,
+                    "loss": 1.497350530018882
+                },
+                {
+                    "client_id": 2,
+                    "loss": 1.5085595846176147
+                },
+                {
+                    "client_id": 3,
+                    "loss": 1.510731231598627
+                },
+                {
+                    "client_id": 4,
+                    "loss": 1.4807097552314636
+                },
+                {
+                    "client_id": 5,
+                    "loss": 1.451885768345424
+                },
+                {
+                    "client_id": 6,
+                    "loss": 1.498141332278176
+                },
+                {
+                    "client_id": 7,
+                    "loss": 1.4996306309624323
+                },
+                {
+                    "client_id": 8,
+                    "loss": 1.5065043691604856
+                },
+                {
+                    "client_id": 9,
+                    "loss": 1.4848074421050057
+                }
+            ],
+            "cluster_results": [
+                [
+                    0,
+                    0,
+                    0
+                ],
+                [
+                    1,
+                    1,
+                    1
+                ],
+                [
+                    2,
+                    0,
+                    0
+                ],
+                [
+                    3,
+                    1,
+                    1
+                ],
+                [
+                    4,
+                    0,
+                    0
+                ],
+                [
+                    5,
+                    1,
+                    1
+                ],
+                [
+                    6,
+                    0,
+                    0
+                ],
+                [
+                    7,
+                    1,
+                    1
+                ],
+                [
+                    8,
+                    0,
+                    0
+                ],
+                [
+                    9,
+                    1,
+                    1
+                ]
+            ]
+        },
+        {
+            "round": 30,
+            "accuracies": [
+                {
+                    "client_id": 0,
+                    "accuracy": 0.452
+                },
+                {
+                    "client_id": 1,
+                    "accuracy": 0.4535
+                },
+                {
+                    "client_id": 2,
+                    "accuracy": 0.4595
+                },
+                {
+                    "client_id": 3,
+                    "accuracy": 0.4625
+                },
+                {
+                    "client_id": 4,
+                    "accuracy": 0.4745
+                },
+                {
+                    "client_id": 5,
+                    "accuracy": 0.483
+                },
+                {
+                    "client_id": 6,
+                    "accuracy": 0.4515
+                },
+                {
+                    "client_id": 7,
+                    "accuracy": 0.443
+                },
+                {
+                    "client_id": 8,
+                    "accuracy": 0.4385
+                },
+                {
+                    "client_id": 9,
+                    "accuracy": 0.4525
+                }
+            ],
+            "losses": [
+                {
+                    "client_id": 0,
+                    "loss": 1.4987474850245885
+                },
+                {
+                    "client_id": 1,
+                    "loss": 1.4917574818172152
+                },
+                {
+                    "client_id": 2,
+                    "loss": 1.5033534594944544
+                },
+                {
+                    "client_id": 3,
+                    "loss": 1.5050510678972517
+                },
+                {
+                    "client_id": 4,
+                    "loss": 1.4762377738952637
+                },
+                {
+                    "client_id": 5,
+                    "loss": 1.4468087355295818
+                },
+                {
+                    "client_id": 6,
+                    "loss": 1.4917876408213662
+                },
+                {
+                    "client_id": 7,
+                    "loss": 1.4921256511930436
+                },
+                {
+                    "client_id": 8,
+                    "loss": 1.5028265033449446
+                },
+                {
+                    "client_id": 9,
+                    "loss": 1.4795165724224515
+                }
+            ],
+            "cluster_results": [
+                [
+                    0,
+                    0,
+                    0
+                ],
+                [
+                    1,
+                    1,
+                    1
+                ],
+                [
+                    2,
+                    0,
+                    0
+                ],
+                [
+                    3,
+                    1,
+                    1
+                ],
+                [
+                    4,
+                    0,
+                    0
+                ],
+                [
+                    5,
+                    1,
+                    1
+                ],
+                [
+                    6,
+                    0,
+                    0
+                ],
+                [
+                    7,
+                    1,
+                    1
+                ],
+                [
+                    8,
+                    0,
+                    0
+                ],
+                [
+                    9,
+                    1,
+                    1
+                ]
+            ]
+        },
+        {
+            "round": 31,
+            "accuracies": [
+                {
+                    "client_id": 0,
+                    "accuracy": 0.457
+                },
+                {
+                    "client_id": 1,
+                    "accuracy": 0.4525
+                },
+                {
+                    "client_id": 2,
+                    "accuracy": 0.4615
+                },
+                {
+                    "client_id": 3,
+                    "accuracy": 0.4655
+                },
+                {
+                    "client_id": 4,
+                    "accuracy": 0.473
+                },
+                {
+                    "client_id": 5,
+                    "accuracy": 0.485
+                },
+                {
+                    "client_id": 6,
+                    "accuracy": 0.457
+                },
+                {
+                    "client_id": 7,
+                    "accuracy": 0.447
+                },
+                {
+                    "client_id": 8,
+                    "accuracy": 0.4425
+                },
+                {
+                    "client_id": 9,
+                    "accuracy": 0.4555
+                }
+            ],
+            "losses": [
+                {
+                    "client_id": 0,
+                    "loss": 1.4945776935607669
+                },
+                {
+                    "client_id": 1,
+                    "loss": 1.4867367233548845
+                },
+                {
+                    "client_id": 2,
+                    "loss": 1.498997792365059
+                },
+                {
+                    "client_id": 3,
+                    "loss": 1.499891824192471
+                },
+                {
+                    "client_id": 4,
+                    "loss": 1.4716476750752283
+                },
+                {
+                    "client_id": 5,
+                    "loss": 1.4411139147622245
+                },
+                {
+                    "client_id": 6,
+                    "loss": 1.486644642693656
+                },
+                {
+                    "client_id": 7,
+                    "loss": 1.4852307921364194
+                },
+                {
+                    "client_id": 8,
+                    "loss": 1.5001287611704024
+                },
+                {
+                    "client_id": 9,
+                    "loss": 1.4750489393870037
+                }
+            ],
+            "cluster_results": [
+                [
+                    0,
+                    0,
+                    0
+                ],
+                [
+                    1,
+                    1,
+                    1
+                ],
+                [
+                    2,
+                    0,
+                    0
+                ],
+                [
+                    3,
+                    1,
+                    1
+                ],
+                [
+                    4,
+                    0,
+                    0
+                ],
+                [
+                    5,
+                    1,
+                    1
+                ],
+                [
+                    6,
+                    0,
+                    0
+                ],
+                [
+                    7,
+                    1,
+                    1
+                ],
+                [
+                    8,
+                    0,
+                    0
+                ],
+                [
+                    9,
+                    1,
+                    1
+                ]
+            ]
+        },
+        {
+            "round": 32,
+            "accuracies": [
+                {
+                    "client_id": 0,
+                    "accuracy": 0.4575
+                },
+                {
+                    "client_id": 1,
+                    "accuracy": 0.451
+                },
+                {
+                    "client_id": 2,
+                    "accuracy": 0.4625
+                },
+                {
+                    "client_id": 3,
+                    "accuracy": 0.4665
+                },
+                {
+                    "client_id": 4,
+                    "accuracy": 0.476
+                },
+                {
+                    "client_id": 5,
+                    "accuracy": 0.489
+                },
+                {
+                    "client_id": 6,
+                    "accuracy": 0.454
+                },
+                {
+                    "client_id": 7,
+                    "accuracy": 0.445
+                },
+                {
+                    "client_id": 8,
+                    "accuracy": 0.446
+                },
+                {
+                    "client_id": 9,
+                    "accuracy": 0.4595
+                }
+            ],
+            "losses": [
+                {
+                    "client_id": 0,
+                    "loss": 1.4913535628999983
+                },
+                {
+                    "client_id": 1,
+                    "loss": 1.4838645893429954
+                },
+                {
+                    "client_id": 2,
+                    "loss": 1.4958775554384505
+                },
+                {
+                    "client_id": 3,
+                    "loss": 1.4965812100304499
+                },
+                {
+                    "client_id": 4,
+                    "loss": 1.4685901479115562
+                },
+                {
+                    "client_id": 5,
+                    "loss": 1.4375974867078993
+                },
+                {
+                    "client_id": 6,
+                    "loss": 1.482377845143515
+                },
+                {
+                    "client_id": 7,
+                    "loss": 1.4796796072097051
+                },
+                {
+                    "client_id": 8,
+                    "loss": 1.4984353553681147
+                },
+                {
+                    "client_id": 9,
+                    "loss": 1.472336905343192
+                }
+            ],
+            "cluster_results": [
+                [
+                    0,
+                    0,
+                    0
+                ],
+                [
+                    1,
+                    1,
+                    1
+                ],
+                [
+                    2,
+                    0,
+                    0
+                ],
+                [
+                    3,
+                    1,
+                    1
+                ],
+                [
+                    4,
+                    0,
+                    0
+                ],
+                [
+                    5,
+                    1,
+                    1
+                ],
+                [
+                    6,
+                    0,
+                    0
+                ],
+                [
+                    7,
+                    1,
+                    1
+                ],
+                [
+                    8,
+                    0,
+                    0
+                ],
+                [
+                    9,
+                    1,
+                    1
+                ]
+            ]
+        },
+        {
+            "round": 33,
+            "accuracies": [
+                {
+                    "client_id": 0,
+                    "accuracy": 0.458
+                },
+                {
+                    "client_id": 1,
+                    "accuracy": 0.4535
+                },
+                {
+                    "client_id": 2,
+                    "accuracy": 0.4645
+                },
+                {
+                    "client_id": 3,
+                    "accuracy": 0.473
+                },
+                {
+                    "client_id": 4,
+                    "accuracy": 0.4775
+                },
+                {
+                    "client_id": 5,
+                    "accuracy": 0.4915
+                },
+                {
+                    "client_id": 6,
+                    "accuracy": 0.458
+                },
+                {
+                    "client_id": 7,
+                    "accuracy": 0.4505
+                },
+                {
+                    "client_id": 8,
+                    "accuracy": 0.449
+                },
+                {
+                    "client_id": 9,
+                    "accuracy": 0.463
+                }
+            ],
+            "losses": [
+                {
+                    "client_id": 0,
+                    "loss": 1.486473558441041
+                },
+                {
+                    "client_id": 1,
+                    "loss": 1.4777475973916432
+                },
+                {
+                    "client_id": 2,
+                    "loss": 1.4897314915581354
+                },
+                {
+                    "client_id": 3,
+                    "loss": 1.4895006683137682
+                },
+                {
+                    "client_id": 4,
+                    "loss": 1.4627837415725466
+                },
+                {
+                    "client_id": 5,
+                    "loss": 1.431125249181475
+                },
+                {
+                    "client_id": 6,
+                    "loss": 1.4763526840815469
+                },
+                {
+                    "client_id": 7,
+                    "loss": 1.4718962283361525
+                },
+                {
+                    "client_id": 8,
+                    "loss": 1.4940788594503251
+                },
+                {
+                    "client_id": 9,
+                    "loss": 1.4666759873193407
+                }
+            ],
+            "cluster_results": [
+                [
+                    0,
+                    0,
+                    0
+                ],
+                [
+                    1,
+                    1,
+                    1
+                ],
+                [
+                    2,
+                    0,
+                    0
+                ],
+                [
+                    3,
+                    1,
+                    1
+                ],
+                [
+                    4,
+                    0,
+                    0
+                ],
+                [
+                    5,
+                    1,
+                    1
+                ],
+                [
+                    6,
+                    0,
+                    0
+                ],
+                [
+                    7,
+                    1,
+                    1
+                ],
+                [
+                    8,
+                    0,
+                    0
+                ],
+                [
+                    9,
+                    1,
+                    1
+                ]
+            ]
+        },
+        {
+            "round": 34,
+            "accuracies": [
+                {
+                    "client_id": 0,
+                    "accuracy": 0.4605
+                },
+                {
+                    "client_id": 1,
+                    "accuracy": 0.4535
+                },
+                {
+                    "client_id": 2,
+                    "accuracy": 0.4705
+                },
+                {
+                    "client_id": 3,
+                    "accuracy": 0.4715
+                },
+                {
+                    "client_id": 4,
+                    "accuracy": 0.4815
+                },
+                {
+                    "client_id": 5,
+                    "accuracy": 0.4915
+                },
+                {
+                    "client_id": 6,
+                    "accuracy": 0.4585
+                },
+                {
+                    "client_id": 7,
+                    "accuracy": 0.4545
+                },
+                {
+                    "client_id": 8,
+                    "accuracy": 0.4515
+                },
+                {
+                    "client_id": 9,
+                    "accuracy": 0.4665
+                }
+            ],
+            "losses": [
+                {
+                    "client_id": 0,
+                    "loss": 1.4833989729956976
+                },
+                {
+                    "client_id": 1,
+                    "loss": 1.4730281489236015
+                },
+                {
+                    "client_id": 2,
+                    "loss": 1.4863919000776986
+                },
+                {
+                    "client_id": 3,
+                    "loss": 1.485649275401282
+                },
+                {
+                    "client_id": 4,
+                    "loss": 1.4591384709827484
+                },
+                {
+                    "client_id": 5,
+                    "loss": 1.426777788570949
+                },
+                {
+                    "client_id": 6,
+                    "loss": 1.4728686222954401
+                },
+                {
+                    "client_id": 7,
+                    "loss": 1.46633304584594
+                },
+                {
+                    "client_id": 8,
+                    "loss": 1.4917654442408728
+                },
+                {
+                    "client_id": 9,
+                    "loss": 1.4624438247983418
+                }
+            ],
+            "cluster_results": [
+                [
+                    0,
+                    0,
+                    0
+                ],
+                [
+                    1,
+                    1,
+                    1
+                ],
+                [
+                    2,
+                    0,
+                    0
+                ],
+                [
+                    3,
+                    1,
+                    1
+                ],
+                [
+                    4,
+                    0,
+                    0
+                ],
+                [
+                    5,
+                    1,
+                    1
+                ],
+                [
+                    6,
+                    0,
+                    0
+                ],
+                [
+                    7,
+                    1,
+                    1
+                ],
+                [
+                    8,
+                    0,
+                    0
+                ],
+                [
+                    9,
+                    1,
+                    1
+                ]
+            ]
+        },
+        {
+            "round": 35,
+            "accuracies": [
+                {
+                    "client_id": 0,
+                    "accuracy": 0.462
+                },
+                {
+                    "client_id": 1,
+                    "accuracy": 0.457
+                },
+                {
+                    "client_id": 2,
+                    "accuracy": 0.473
+                },
+                {
+                    "client_id": 3,
+                    "accuracy": 0.473
+                },
+                {
+                    "client_id": 4,
+                    "accuracy": 0.486
+                },
+                {
+                    "client_id": 5,
+                    "accuracy": 0.492
+                },
+                {
+                    "client_id": 6,
+                    "accuracy": 0.4605
+                },
+                {
+                    "client_id": 7,
+                    "accuracy": 0.459
+                },
+                {
+                    "client_id": 8,
+                    "accuracy": 0.4555
+                },
+                {
+                    "client_id": 9,
+                    "accuracy": 0.466
+                }
+            ],
+            "losses": [
+                {
+                    "client_id": 0,
+                    "loss": 1.4797749746413458
+                },
+                {
+                    "client_id": 1,
+                    "loss": 1.4675800535413954
+                },
+                {
+                    "client_id": 2,
+                    "loss": 1.4822327295939128
+                },
+                {
+                    "client_id": 3,
+                    "loss": 1.4799621899922688
+                },
+                {
+                    "client_id": 4,
+                    "loss": 1.4551335648884849
+                },
+                {
+                    "client_id": 5,
+                    "loss": 1.4210955945272294
+                },
+                {
+                    "client_id": 6,
+                    "loss": 1.468606556218768
+                },
+                {
+                    "client_id": 7,
+                    "loss": 1.459633381593795
+                },
+                {
+                    "client_id": 8,
+                    "loss": 1.488428066647242
+                },
+                {
+                    "client_id": 9,
+                    "loss": 1.4573236855249556
+                }
+            ],
+            "cluster_results": [
+                [
+                    0,
+                    0,
+                    0
+                ],
+                [
+                    1,
+                    1,
+                    1
+                ],
+                [
+                    2,
+                    0,
+                    0
+                ],
+                [
+                    3,
+                    1,
+                    1
+                ],
+                [
+                    4,
+                    0,
+                    0
+                ],
+                [
+                    5,
+                    1,
+                    1
+                ],
+                [
+                    6,
+                    0,
+                    0
+                ],
+                [
+                    7,
+                    1,
+                    1
+                ],
+                [
+                    8,
+                    0,
+                    0
+                ],
+                [
+                    9,
+                    1,
+                    1
+                ]
+            ]
+        },
+        {
+            "round": 36,
+            "accuracies": [
+                {
+                    "client_id": 0,
+                    "accuracy": 0.461
+                },
+                {
+                    "client_id": 1,
+                    "accuracy": 0.457
+                },
+                {
+                    "client_id": 2,
+                    "accuracy": 0.4765
+                },
+                {
+                    "client_id": 3,
+                    "accuracy": 0.473
+                },
+                {
+                    "client_id": 4,
+                    "accuracy": 0.4865
+                },
+                {
+                    "client_id": 5,
+                    "accuracy": 0.4895
+                },
+                {
+                    "client_id": 6,
+                    "accuracy": 0.4615
+                },
+                {
+                    "client_id": 7,
+                    "accuracy": 0.4605
+                },
+                {
+                    "client_id": 8,
+                    "accuracy": 0.456
+                },
+                {
+                    "client_id": 9,
+                    "accuracy": 0.4685
+                }
+            ],
+            "losses": [
+                {
+                    "client_id": 0,
+                    "loss": 1.476824925059364
+                },
+                {
+                    "client_id": 1,
+                    "loss": 1.4637233208096216
+                },
+                {
+                    "client_id": 2,
+                    "loss": 1.4794361212896923
+                },
+                {
+                    "client_id": 3,
+                    "loss": 1.4760418827571566
+                },
+                {
+                    "client_id": 4,
+                    "loss": 1.4514075025679574
+                },
+                {
+                    "client_id": 5,
+                    "loss": 1.4168982827474201
+                },
+                {
+                    "client_id": 6,
+                    "loss": 1.4656471789829315
+                },
+                {
+                    "client_id": 7,
+                    "loss": 1.4541337944212414
+                },
+                {
+                    "client_id": 8,
+                    "loss": 1.4858607015912495
+                },
+                {
+                    "client_id": 9,
+                    "loss": 1.4533729723521642
+                }
+            ],
+            "cluster_results": [
+                [
+                    0,
+                    0,
+                    0
+                ],
+                [
+                    1,
+                    1,
+                    1
+                ],
+                [
+                    2,
+                    0,
+                    0
+                ],
+                [
+                    3,
+                    1,
+                    1
+                ],
+                [
+                    4,
+                    0,
+                    0
+                ],
+                [
+                    5,
+                    1,
+                    1
+                ],
+                [
+                    6,
+                    0,
+                    0
+                ],
+                [
+                    7,
+                    1,
+                    1
+                ],
+                [
+                    8,
+                    0,
+                    0
+                ],
+                [
+                    9,
+                    1,
+                    1
+                ]
+            ]
+        },
+        {
+            "round": 37,
+            "accuracies": [
+                {
+                    "client_id": 0,
+                    "accuracy": 0.464
+                },
+                {
+                    "client_id": 1,
+                    "accuracy": 0.458
+                },
+                {
+                    "client_id": 2,
+                    "accuracy": 0.4795
+                },
+                {
+                    "client_id": 3,
+                    "accuracy": 0.471
+                },
+                {
+                    "client_id": 4,
+                    "accuracy": 0.4915
+                },
+                {
+                    "client_id": 5,
+                    "accuracy": 0.489
+                },
+                {
+                    "client_id": 6,
+                    "accuracy": 0.4605
+                },
+                {
+                    "client_id": 7,
+                    "accuracy": 0.463
+                },
+                {
+                    "client_id": 8,
+                    "accuracy": 0.4585
+                },
+                {
+                    "client_id": 9,
+                    "accuracy": 0.469
+                }
+            ],
+            "losses": [
+                {
+                    "client_id": 0,
+                    "loss": 1.47267917035118
+                },
+                {
+                    "client_id": 1,
+                    "loss": 1.4612663624778626
+                },
+                {
+                    "client_id": 2,
+                    "loss": 1.474929275966826
+                },
+                {
+                    "client_id": 3,
+                    "loss": 1.4739245876433358
+                },
+                {
+                    "client_id": 4,
+                    "loss": 1.4466590957036094
+                },
+                {
+                    "client_id": 5,
+                    "loss": 1.4143113995355272
+                },
+                {
+                    "client_id": 6,
+                    "loss": 1.460747139794486
+                },
+                {
+                    "client_id": 7,
+                    "loss": 1.4502516379432073
+                },
+                {
+                    "client_id": 8,
+                    "loss": 1.4820537832048204
+                },
+                {
+                    "client_id": 9,
+                    "loss": 1.45160364537012
+                }
+            ],
+            "cluster_results": [
+                [
+                    0,
+                    0,
+                    0
+                ],
+                [
+                    1,
+                    1,
+                    1
+                ],
+                [
+                    2,
+                    0,
+                    0
+                ],
+                [
+                    3,
+                    1,
+                    1
+                ],
+                [
+                    4,
+                    0,
+                    0
+                ],
+                [
+                    5,
+                    1,
+                    1
+                ],
+                [
+                    6,
+                    0,
+                    0
+                ],
+                [
+                    7,
+                    1,
+                    1
+                ],
+                [
+                    8,
+                    0,
+                    0
+                ],
+                [
+                    9,
+                    1,
+                    1
+                ]
+            ]
+        },
+        {
+            "round": 38,
+            "accuracies": [
+                {
+                    "client_id": 0,
+                    "accuracy": 0.461
+                },
+                {
+                    "client_id": 1,
+                    "accuracy": 0.4575
+                },
+                {
+                    "client_id": 2,
+                    "accuracy": 0.482
+                },
+                {
+                    "client_id": 3,
+                    "accuracy": 0.4705
+                },
+                {
+                    "client_id": 4,
+                    "accuracy": 0.492
+                },
+                {
+                    "client_id": 5,
+                    "accuracy": 0.492
+                },
+                {
+                    "client_id": 6,
+                    "accuracy": 0.4605
+                },
+                {
+                    "client_id": 7,
+                    "accuracy": 0.466
+                },
+                {
+                    "client_id": 8,
+                    "accuracy": 0.4575
+                },
+                {
+                    "client_id": 9,
+                    "accuracy": 0.4725
+                }
+            ],
+            "losses": [
+                {
+                    "client_id": 0,
+                    "loss": 1.4696135010038103
+                },
+                {
+                    "client_id": 1,
+                    "loss": 1.4560201073449754
+                },
+                {
+                    "client_id": 2,
+                    "loss": 1.4721540647839744
+                },
+                {
+                    "client_id": 3,
+                    "loss": 1.4692790905634563
+                },
+                {
+                    "client_id": 4,
+                    "loss": 1.4431164018691531
+                },
+                {
+                    "client_id": 5,
+                    "loss": 1.4090388199639698
+                },
+                {
+                    "client_id": 6,
+                    "loss": 1.4577121015578982
+                },
+                {
+                    "client_id": 7,
+                    "loss": 1.443913185407245
+                },
+                {
+                    "client_id": 8,
+                    "loss": 1.4801689802654205
+                },
+                {
+                    "client_id": 9,
+                    "loss": 1.447064719502888
+                }
+            ],
+            "cluster_results": [
+                [
+                    0,
+                    0,
+                    0
+                ],
+                [
+                    1,
+                    1,
+                    1
+                ],
+                [
+                    2,
+                    0,
+                    0
+                ],
+                [
+                    3,
+                    1,
+                    1
+                ],
+                [
+                    4,
+                    0,
+                    0
+                ],
+                [
+                    5,
+                    1,
+                    1
+                ],
+                [
+                    6,
+                    0,
+                    0
+                ],
+                [
+                    7,
+                    1,
+                    1
+                ],
+                [
+                    8,
+                    0,
+                    0
+                ],
+                [
+                    9,
+                    1,
+                    1
+                ]
+            ]
+        },
+        {
+            "round": 39,
+            "accuracies": [
+                {
+                    "client_id": 0,
+                    "accuracy": 0.465
+                },
+                {
+                    "client_id": 1,
+                    "accuracy": 0.458
+                },
+                {
+                    "client_id": 2,
+                    "accuracy": 0.482
+                },
+                {
+                    "client_id": 3,
+                    "accuracy": 0.47
+                },
+                {
+                    "client_id": 4,
+                    "accuracy": 0.494
+                },
+                {
+                    "client_id": 5,
+                    "accuracy": 0.493
+                },
+                {
+                    "client_id": 6,
+                    "accuracy": 0.459
+                },
+                {
+                    "client_id": 7,
+                    "accuracy": 0.4625
+                },
+                {
+                    "client_id": 8,
+                    "accuracy": 0.457
+                },
+                {
+                    "client_id": 9,
+                    "accuracy": 0.4725
+                }
+            ],
+            "losses": [
+                {
+                    "client_id": 0,
+                    "loss": 1.4680684785994271
+                },
+                {
+                    "client_id": 1,
+                    "loss": 1.454391116187686
+                },
+                {
+                    "client_id": 2,
+                    "loss": 1.469866018446665
+                },
+                {
+                    "client_id": 3,
+                    "loss": 1.46810025260562
+                },
+                {
+                    "client_id": 4,
+                    "loss": 1.4415925173532396
+                },
+                {
+                    "client_id": 5,
+                    "loss": 1.4074893565404982
+                },
+                {
+                    "client_id": 6,
+                    "loss": 1.4554089657844058
+                },
+                {
+                    "client_id": 7,
+                    "loss": 1.440810035145472
+                },
+                {
+                    "client_id": 8,
+                    "loss": 1.4792328297145783
+                },
+                {
+                    "client_id": 9,
+                    "loss": 1.4459114415305
+                }
+            ],
+            "cluster_results": [
+                [
+                    0,
+                    0,
+                    0
+                ],
+                [
+                    1,
+                    1,
+                    1
+                ],
+                [
+                    2,
+                    0,
+                    0
+                ],
+                [
+                    3,
+                    1,
+                    1
+                ],
+                [
+                    4,
+                    0,
+                    0
+                ],
+                [
+                    5,
+                    1,
+                    1
+                ],
+                [
+                    6,
+                    0,
+                    0
+                ],
+                [
+                    7,
+                    1,
+                    1
+                ],
+                [
+                    8,
+                    0,
+                    0
+                ],
+                [
+                    9,
+                    1,
+                    1
+                ]
+            ]
+        },
+        {
+            "round": 40,
+            "accuracies": [
+                {
+                    "client_id": 0,
+                    "accuracy": 0.463
+                },
+                {
+                    "client_id": 1,
+                    "accuracy": 0.46
+                },
+                {
+                    "client_id": 2,
+                    "accuracy": 0.4825
+                },
+                {
+                    "client_id": 3,
+                    "accuracy": 0.469
+                },
+                {
+                    "client_id": 4,
+                    "accuracy": 0.496
+                },
+                {
+                    "client_id": 5,
+                    "accuracy": 0.4885
+                },
+                {
+                    "client_id": 6,
+                    "accuracy": 0.4605
+                },
+                {
+                    "client_id": 7,
+                    "accuracy": 0.4635
+                },
+                {
+                    "client_id": 8,
+                    "accuracy": 0.46
+                },
+                {
+                    "client_id": 9,
+                    "accuracy": 0.4765
+                }
+            ],
+            "losses": [
+                {
+                    "client_id": 0,
+                    "loss": 1.4667325701032365
+                },
+                {
+                    "client_id": 1,
+                    "loss": 1.4492807445071993
+                },
+                {
+                    "client_id": 2,
+                    "loss": 1.4689576928577726
+                },
+                {
+                    "client_id": 3,
+                    "loss": 1.4638009809312367
+                },
+                {
+                    "client_id": 4,
+                    "loss": 1.4400559550239926
+                },
+                {
+                    "client_id": 5,
+                    "loss": 1.403624275374034
+                },
+                {
+                    "client_id": 6,
+                    "loss": 1.4538450411387853
+                },
+                {
+                    "client_id": 7,
+                    "loss": 1.43553066064441
+                },
+                {
+                    "client_id": 8,
+                    "loss": 1.4782595426317244
+                },
+                {
+                    "client_id": 9,
+                    "loss": 1.441246227612571
+                }
+            ],
+            "cluster_results": [
+                [
+                    0,
+                    0,
+                    0
+                ],
+                [
+                    1,
+                    1,
+                    1
+                ],
+                [
+                    2,
+                    0,
+                    0
+                ],
+                [
+                    3,
+                    1,
+                    1
+                ],
+                [
+                    4,
+                    0,
+                    0
+                ],
+                [
+                    5,
+                    1,
+                    1
+                ],
+                [
+                    6,
+                    0,
+                    0
+                ],
+                [
+                    7,
+                    1,
+                    1
+                ],
+                [
+                    8,
+                    0,
+                    0
+                ],
+                [
+                    9,
+                    1,
+                    1
+                ]
+            ]
+        },
+        {
+            "round": 41,
+            "accuracies": [
+                {
+                    "client_id": 0,
+                    "accuracy": 0.4635
+                },
+                {
+                    "client_id": 1,
+                    "accuracy": 0.4615
+                },
+                {
+                    "client_id": 2,
+                    "accuracy": 0.4865
+                },
+                {
+                    "client_id": 3,
+                    "accuracy": 0.4705
+                },
+                {
+                    "client_id": 4,
+                    "accuracy": 0.4985
+                },
+                {
+                    "client_id": 5,
+                    "accuracy": 0.4925
+                },
+                {
+                    "client_id": 6,
+                    "accuracy": 0.4655
+                },
+                {
+                    "client_id": 7,
+                    "accuracy": 0.4665
+                },
+                {
+                    "client_id": 8,
+                    "accuracy": 0.458
+                },
+                {
+                    "client_id": 9,
+                    "accuracy": 0.4765
+                }
+            ],
+            "losses": [
+                {
+                    "client_id": 0,
+                    "loss": 1.4623986369087583
+                },
+                {
+                    "client_id": 1,
+                    "loss": 1.448086657221355
+                },
+                {
+                    "client_id": 2,
+                    "loss": 1.46425199508667
+                },
+                {
+                    "client_id": 3,
+                    "loss": 1.4626866711510553
+                },
+                {
+                    "client_id": 4,
+                    "loss": 1.4356365487689065
+                },
+                {
+                    "client_id": 5,
+                    "loss": 1.4026941950359042
+                },
+                {
+                    "client_id": 6,
+                    "loss": 1.4492803594422718
+                },
+                {
+                    "client_id": 7,
+                    "loss": 1.4339771280213007
+                },
+                {
+                    "client_id": 8,
+                    "loss": 1.4751227261528137
+                },
+                {
+                    "client_id": 9,
+                    "loss": 1.4407004136887809
+                }
+            ],
+            "cluster_results": [
+                [
+                    0,
+                    0,
+                    0
+                ],
+                [
+                    1,
+                    1,
+                    1
+                ],
+                [
+                    2,
+                    0,
+                    0
+                ],
+                [
+                    3,
+                    1,
+                    1
+                ],
+                [
+                    4,
+                    0,
+                    0
+                ],
+                [
+                    5,
+                    1,
+                    1
+                ],
+                [
+                    6,
+                    0,
+                    0
+                ],
+                [
+                    7,
+                    1,
+                    1
+                ],
+                [
+                    8,
+                    0,
+                    0
+                ],
+                [
+                    9,
+                    1,
+                    1
+                ]
+            ]
+        },
+        {
+            "round": 42,
+            "accuracies": [
+                {
+                    "client_id": 0,
+                    "accuracy": 0.4645
+                },
+                {
+                    "client_id": 1,
+                    "accuracy": 0.462
+                },
+                {
+                    "client_id": 2,
+                    "accuracy": 0.488
+                },
+                {
+                    "client_id": 3,
+                    "accuracy": 0.4705
+                },
+                {
+                    "client_id": 4,
+                    "accuracy": 0.499
+                },
+                {
+                    "client_id": 5,
+                    "accuracy": 0.492
+                },
+                {
+                    "client_id": 6,
+                    "accuracy": 0.4695
+                },
+                {
+                    "client_id": 7,
+                    "accuracy": 0.472
+                },
+                {
+                    "client_id": 8,
+                    "accuracy": 0.462
+                },
+                {
+                    "client_id": 9,
+                    "accuracy": 0.482
+                }
+            ],
+            "losses": [
+                {
+                    "client_id": 0,
+                    "loss": 1.4602681606534929
+                },
+                {
+                    "client_id": 1,
+                    "loss": 1.4452907509273953
+                },
+                {
+                    "client_id": 2,
+                    "loss": 1.4621507648437742
+                },
+                {
+                    "client_id": 3,
+                    "loss": 1.4598082833819919
+                },
+                {
+                    "client_id": 4,
+                    "loss": 1.4329759582640633
+                },
+                {
+                    "client_id": 5,
+                    "loss": 1.4001294525842818
+                },
+                {
+                    "client_id": 6,
+                    "loss": 1.4465650405202592
+                },
+                {
+                    "client_id": 7,
+                    "loss": 1.4302151240999736
+                },
+                {
+                    "client_id": 8,
+                    "loss": 1.473702281240433
+                },
+                {
+                    "client_id": 9,
+                    "loss": 1.4381867779625788
+                }
+            ],
+            "cluster_results": [
+                [
+                    0,
+                    0,
+                    0
+                ],
+                [
+                    1,
+                    1,
+                    1
+                ],
+                [
+                    2,
+                    0,
+                    0
+                ],
+                [
+                    3,
+                    1,
+                    1
+                ],
+                [
+                    4,
+                    0,
+                    0
+                ],
+                [
+                    5,
+                    1,
+                    1
+                ],
+                [
+                    6,
+                    0,
+                    0
+                ],
+                [
+                    7,
+                    1,
+                    1
+                ],
+                [
+                    8,
+                    0,
+                    0
+                ],
+                [
+                    9,
+                    1,
+                    1
+                ]
+            ]
+        },
+        {
+            "round": 43,
+            "accuracies": [
+                {
+                    "client_id": 0,
+                    "accuracy": 0.467
+                },
+                {
+                    "client_id": 1,
+                    "accuracy": 0.46
+                },
+                {
+                    "client_id": 2,
+                    "accuracy": 0.4895
+                },
+                {
+                    "client_id": 3,
+                    "accuracy": 0.4705
+                },
+                {
+                    "client_id": 4,
+                    "accuracy": 0.501
+                },
+                {
+                    "client_id": 5,
+                    "accuracy": 0.494
+                },
+                {
+                    "client_id": 6,
+                    "accuracy": 0.4705
+                },
+                {
+                    "client_id": 7,
+                    "accuracy": 0.4735
+                },
+                {
+                    "client_id": 8,
+                    "accuracy": 0.466
+                },
+                {
+                    "client_id": 9,
+                    "accuracy": 0.482
+                }
+            ],
+            "losses": [
+                {
+                    "client_id": 0,
+                    "loss": 1.4545802956535703
+                },
+                {
+                    "client_id": 1,
+                    "loss": 1.440645350350274
+                },
+                {
+                    "client_id": 2,
+                    "loss": 1.4571373916807628
+                },
+                {
+                    "client_id": 3,
+                    "loss": 1.45600059865013
+                },
+                {
+                    "client_id": 4,
+                    "loss": 1.4271649746667772
+                },
+                {
+                    "client_id": 5,
+                    "loss": 1.3959930207994249
+                },
+                {
+                    "client_id": 6,
+                    "loss": 1.4417423104482985
+                },
+                {
+                    "client_id": 7,
+                    "loss": 1.425848166147868
+                },
+                {
+                    "client_id": 8,
+                    "loss": 1.46839229644291
+                },
+                {
+                    "client_id": 9,
+                    "loss": 1.4341060566523718
+                }
+            ],
+            "cluster_results": [
+                [
+                    0,
+                    0,
+                    0
+                ],
+                [
+                    1,
+                    1,
+                    1
+                ],
+                [
+                    2,
+                    0,
+                    0
+                ],
+                [
+                    3,
+                    1,
+                    1
+                ],
+                [
+                    4,
+                    0,
+                    0
+                ],
+                [
+                    5,
+                    1,
+                    1
+                ],
+                [
+                    6,
+                    0,
+                    0
+                ],
+                [
+                    7,
+                    1,
+                    1
+                ],
+                [
+                    8,
+                    0,
+                    0
+                ],
+                [
+                    9,
+                    1,
+                    1
+                ]
+            ]
+        },
+        {
+            "round": 44,
+            "accuracies": [
+                {
+                    "client_id": 0,
+                    "accuracy": 0.465
+                },
+                {
+                    "client_id": 1,
+                    "accuracy": 0.462
+                },
+                {
+                    "client_id": 2,
+                    "accuracy": 0.4865
+                },
+                {
+                    "client_id": 3,
+                    "accuracy": 0.475
+                },
+                {
+                    "client_id": 4,
+                    "accuracy": 0.501
+                },
+                {
+                    "client_id": 5,
+                    "accuracy": 0.498
+                },
+                {
+                    "client_id": 6,
+                    "accuracy": 0.471
+                },
+                {
+                    "client_id": 7,
+                    "accuracy": 0.4735
+                },
+                {
+                    "client_id": 8,
+                    "accuracy": 0.463
+                },
+                {
+                    "client_id": 9,
+                    "accuracy": 0.484
+                }
+            ],
+            "losses": [
+                {
+                    "client_id": 0,
+                    "loss": 1.4548336153938657
+                },
+                {
+                    "client_id": 1,
+                    "loss": 1.4393628419391693
+                },
+                {
+                    "client_id": 2,
+                    "loss": 1.4567371777125768
+                },
+                {
+                    "client_id": 3,
+                    "loss": 1.4551686862158397
+                },
+                {
+                    "client_id": 4,
+                    "loss": 1.426005106123667
+                },
+                {
+                    "client_id": 5,
+                    "loss": 1.3952474196751912
+                },
+                {
+                    "client_id": 6,
+                    "loss": 1.4408048069666302
+                },
+                {
+                    "client_id": 7,
+                    "loss": 1.4232449815386818
+                },
+                {
+                    "client_id": 8,
+                    "loss": 1.469425742588346
+                },
+                {
+                    "client_id": 9,
+                    "loss": 1.4332451517619784
+                }
+            ],
+            "cluster_results": [
+                [
+                    0,
+                    0,
+                    0
+                ],
+                [
+                    1,
+                    1,
+                    1
+                ],
+                [
+                    2,
+                    0,
+                    0
+                ],
+                [
+                    3,
+                    1,
+                    1
+                ],
+                [
+                    4,
+                    0,
+                    0
+                ],
+                [
+                    5,
+                    1,
+                    1
+                ],
+                [
+                    6,
+                    0,
+                    0
+                ],
+                [
+                    7,
+                    1,
+                    1
+                ],
+                [
+                    8,
+                    0,
+                    0
+                ],
+                [
+                    9,
+                    1,
+                    1
+                ]
+            ]
+        },
+        {
+            "round": 45,
+            "accuracies": [
+                {
+                    "client_id": 0,
+                    "accuracy": 0.4655
+                },
+                {
+                    "client_id": 1,
+                    "accuracy": 0.467
+                },
+                {
+                    "client_id": 2,
+                    "accuracy": 0.491
+                },
+                {
+                    "client_id": 3,
+                    "accuracy": 0.475
+                },
+                {
+                    "client_id": 4,
+                    "accuracy": 0.5025
+                },
+                {
+                    "client_id": 5,
+                    "accuracy": 0.5005
+                },
+                {
+                    "client_id": 6,
+                    "accuracy": 0.468
+                },
+                {
+                    "client_id": 7,
+                    "accuracy": 0.475
+                },
+                {
+                    "client_id": 8,
+                    "accuracy": 0.4675
+                },
+                {
+                    "client_id": 9,
+                    "accuracy": 0.4825
+                }
+            ],
+            "losses": [
+                {
+                    "client_id": 0,
+                    "loss": 1.450718671556503
+                },
+                {
+                    "client_id": 1,
+                    "loss": 1.4371719577955822
+                },
+                {
+                    "client_id": 2,
+                    "loss": 1.4516443184443883
+                },
+                {
+                    "client_id": 3,
+                    "loss": 1.4528574186658103
+                },
+                {
+                    "client_id": 4,
+                    "loss": 1.4218537996685694
+                },
+                {
+                    "client_id": 5,
+                    "loss": 1.3931334680981107
+                },
+                {
+                    "client_id": 6,
+                    "loss": 1.4372588396072388
+                },
+                {
+                    "client_id": 7,
+                    "loss": 1.4206201453057548
+                },
+                {
+                    "client_id": 8,
+                    "loss": 1.465062760171436
+                },
+                {
+                    "client_id": 9,
+                    "loss": 1.4306681629211184
+                }
+            ],
+            "cluster_results": [
+                [
+                    0,
+                    0,
+                    0
+                ],
+                [
+                    1,
+                    1,
+                    1
+                ],
+                [
+                    2,
+                    0,
+                    0
+                ],
+                [
+                    3,
+                    1,
+                    1
+                ],
+                [
+                    4,
+                    0,
+                    0
+                ],
+                [
+                    5,
+                    1,
+                    1
+                ],
+                [
+                    6,
+                    0,
+                    0
+                ],
+                [
+                    7,
+                    1,
+                    1
+                ],
+                [
+                    8,
+                    0,
+                    0
+                ],
+                [
+                    9,
+                    1,
+                    1
+                ]
+            ]
+        },
+        {
+            "round": 46,
+            "accuracies": [
+                {
+                    "client_id": 0,
+                    "accuracy": 0.4695
+                },
+                {
+                    "client_id": 1,
+                    "accuracy": 0.4695
+                },
+                {
+                    "client_id": 2,
+                    "accuracy": 0.4915
+                },
+                {
+                    "client_id": 3,
+                    "accuracy": 0.4755
+                },
+                {
+                    "client_id": 4,
+                    "accuracy": 0.501
+                },
+                {
+                    "client_id": 5,
+                    "accuracy": 0.5025
+                },
+                {
+                    "client_id": 6,
+                    "accuracy": 0.4695
+                },
+                {
+                    "client_id": 7,
+                    "accuracy": 0.479
+                },
+                {
+                    "client_id": 8,
+                    "accuracy": 0.4685
+                },
+                {
+                    "client_id": 9,
+                    "accuracy": 0.484
+                }
+            ],
+            "losses": [
+                {
+                    "client_id": 0,
+                    "loss": 1.44961460809859
+                },
+                {
+                    "client_id": 1,
+                    "loss": 1.4331542272416373
+                },
+                {
+                    "client_id": 2,
+                    "loss": 1.4495022788880363
+                },
+                {
+                    "client_id": 3,
+                    "loss": 1.4490830765830145
+                },
+                {
+                    "client_id": 4,
+                    "loss": 1.420054138652862
+                },
+                {
+                    "client_id": 5,
+                    "loss": 1.3901268433010767
+                },
+                {
+                    "client_id": 6,
+                    "loss": 1.4351862366237338
+                },
+                {
+                    "client_id": 7,
+                    "loss": 1.4162691746439253
+                },
+                {
+                    "client_id": 8,
+                    "loss": 1.4636421109002733
+                },
+                {
+                    "client_id": 9,
+                    "loss": 1.4274306448679122
+                }
+            ],
+            "cluster_results": [
+                [
+                    0,
+                    0,
+                    0
+                ],
+                [
+                    1,
+                    1,
+                    1
+                ],
+                [
+                    2,
+                    0,
+                    0
+                ],
+                [
+                    3,
+                    1,
+                    1
+                ],
+                [
+                    4,
+                    0,
+                    0
+                ],
+                [
+                    5,
+                    1,
+                    1
+                ],
+                [
+                    6,
+                    0,
+                    0
+                ],
+                [
+                    7,
+                    1,
+                    1
+                ],
+                [
+                    8,
+                    0,
+                    0
+                ],
+                [
+                    9,
+                    1,
+                    1
+                ]
+            ]
+        },
+        {
+            "round": 47,
+            "accuracies": [
+                {
+                    "client_id": 0,
+                    "accuracy": 0.47
+                },
+                {
+                    "client_id": 1,
+                    "accuracy": 0.4695
+                },
+                {
+                    "client_id": 2,
+                    "accuracy": 0.4925
+                },
+                {
+                    "client_id": 3,
+                    "accuracy": 0.478
+                },
+                {
+                    "client_id": 4,
+                    "accuracy": 0.507
+                },
+                {
+                    "client_id": 5,
+                    "accuracy": 0.5045
+                },
+                {
+                    "client_id": 6,
+                    "accuracy": 0.469
+                },
+                {
+                    "client_id": 7,
+                    "accuracy": 0.4805
+                },
+                {
+                    "client_id": 8,
+                    "accuracy": 0.4695
+                },
+                {
+                    "client_id": 9,
+                    "accuracy": 0.4815
+                }
+            ],
+            "losses": [
+                {
+                    "client_id": 0,
+                    "loss": 1.4475749352621654
+                },
+                {
+                    "client_id": 1,
+                    "loss": 1.431845798378899
+                },
+                {
+                    "client_id": 2,
+                    "loss": 1.447980729360429
+                },
+                {
+                    "client_id": 3,
+                    "loss": 1.4484587888869027
+                },
+                {
+                    "client_id": 4,
+                    "loss": 1.4174171856471471
+                },
+                {
+                    "client_id": 5,
+                    "loss": 1.3896465169058905
+                },
+                {
+                    "client_id": 6,
+                    "loss": 1.43333790888862
+                },
+                {
+                    "client_id": 7,
+                    "loss": 1.4146456027787828
+                },
+                {
+                    "client_id": 8,
+                    "loss": 1.462155132066636
+                },
+                {
+                    "client_id": 9,
+                    "loss": 1.4262837890594724
+                }
+            ],
+            "cluster_results": [
+                [
+                    0,
+                    0,
+                    0
+                ],
+                [
+                    1,
+                    1,
+                    1
+                ],
+                [
+                    2,
+                    0,
+                    0
+                ],
+                [
+                    3,
+                    1,
+                    1
+                ],
+                [
+                    4,
+                    0,
+                    0
+                ],
+                [
+                    5,
+                    1,
+                    1
+                ],
+                [
+                    6,
+                    0,
+                    0
+                ],
+                [
+                    7,
+                    1,
+                    1
+                ],
+                [
+                    8,
+                    0,
+                    0
+                ],
+                [
+                    9,
+                    1,
+                    1
+                ]
+            ]
+        },
+        {
+            "round": 48,
+            "accuracies": [
+                {
+                    "client_id": 0,
+                    "accuracy": 0.4705
+                },
+                {
+                    "client_id": 1,
+                    "accuracy": 0.4715
+                },
+                {
+                    "client_id": 2,
+                    "accuracy": 0.493
+                },
+                {
+                    "client_id": 3,
+                    "accuracy": 0.482
+                },
+                {
+                    "client_id": 4,
+                    "accuracy": 0.5065
+                },
+                {
+                    "client_id": 5,
+                    "accuracy": 0.5045
+                },
+                {
+                    "client_id": 6,
+                    "accuracy": 0.471
+                },
+                {
+                    "client_id": 7,
+                    "accuracy": 0.48
+                },
+                {
+                    "client_id": 8,
+                    "accuracy": 0.471
+                },
+                {
+                    "client_id": 9,
+                    "accuracy": 0.4845
+                }
+            ],
+            "losses": [
+                {
+                    "client_id": 0,
+                    "loss": 1.4441979290947082
+                },
+                {
+                    "client_id": 1,
+                    "loss": 1.4279823359988986
+                },
+                {
+                    "client_id": 2,
+                    "loss": 1.4443143511575365
+                },
+                {
+                    "client_id": 3,
+                    "loss": 1.4448151910115803
+                },
+                {
+                    "client_id": 4,
+                    "loss": 1.4142815026025923
+                },
+                {
+                    "client_id": 5,
+                    "loss": 1.3873453670077853
+                },
+                {
+                    "client_id": 6,
+                    "loss": 1.4295087399936857
+                },
+                {
+                    "client_id": 7,
+                    "loss": 1.4110302773732988
+                },
+                {
+                    "client_id": 8,
+                    "loss": 1.45828454267411
+                },
+                {
+                    "client_id": 9,
+                    "loss": 1.422776699066162
+                }
+            ],
+            "cluster_results": [
+                [
+                    0,
+                    0,
+                    0
+                ],
+                [
+                    1,
+                    1,
+                    1
+                ],
+                [
+                    2,
+                    0,
+                    0
+                ],
+                [
+                    3,
+                    1,
+                    1
+                ],
+                [
+                    4,
+                    0,
+                    0
+                ],
+                [
+                    5,
+                    1,
+                    1
+                ],
+                [
+                    6,
+                    0,
+                    0
+                ],
+                [
+                    7,
+                    1,
+                    1
+                ],
+                [
+                    8,
+                    0,
+                    0
+                ],
+                [
+                    9,
+                    1,
+                    1
+                ]
+            ]
+        },
+        {
+            "round": 49,
+            "accuracies": [
+                {
+                    "client_id": 0,
+                    "accuracy": 0.475
+                },
+                {
+                    "client_id": 1,
+                    "accuracy": 0.4745
+                },
+                {
+                    "client_id": 2,
+                    "accuracy": 0.4935
+                },
+                {
+                    "client_id": 3,
+                    "accuracy": 0.483
+                },
+                {
+                    "client_id": 4,
+                    "accuracy": 0.5045
+                },
+                {
+                    "client_id": 5,
+                    "accuracy": 0.5065
+                },
+                {
+                    "client_id": 6,
+                    "accuracy": 0.468
+                },
+                {
+                    "client_id": 7,
+                    "accuracy": 0.482
+                },
+                {
+                    "client_id": 8,
+                    "accuracy": 0.4725
+                },
+                {
+                    "client_id": 9,
+                    "accuracy": 0.49
+                }
+            ],
+            "losses": [
+                {
+                    "client_id": 0,
+                    "loss": 1.445835482506525
+                },
+                {
+                    "client_id": 1,
+                    "loss": 1.4263038237889607
+                },
+                {
+                    "client_id": 2,
+                    "loss": 1.4457532110668363
+                },
+                {
+                    "client_id": 3,
+                    "loss": 1.4426960869440957
+                },
+                {
+                    "client_id": 4,
+                    "loss": 1.4155353742932517
+                },
+                {
+                    "client_id": 5,
+                    "loss": 1.3859523421242124
+                },
+                {
+                    "client_id": 6,
+                    "loss": 1.430496546957228
+                },
+                {
+                    "client_id": 7,
+                    "loss": 1.4076720797826374
+                },
+                {
+                    "client_id": 8,
+                    "loss": 1.460456369415162
+                },
+                {
+                    "client_id": 9,
+                    "loss": 1.421107982832288
+                }
+            ],
+            "cluster_results": [
+                [
+                    0,
+                    0,
+                    0
+                ],
+                [
+                    1,
+                    1,
+                    1
+                ],
+                [
+                    2,
+                    0,
+                    0
+                ],
+                [
+                    3,
+                    1,
+                    1
+                ],
+                [
+                    4,
+                    0,
+                    0
+                ],
+                [
+                    5,
+                    1,
+                    1
+                ],
+                [
+                    6,
+                    0,
+                    0
+                ],
+                [
+                    7,
+                    1,
+                    1
+                ],
+                [
+                    8,
+                    0,
+                    0
+                ],
+                [
+                    9,
+                    1,
+                    1
+                ]
+            ]
+        }
+    ],
+    "config": {
+        "description": "baseline (no clustering,fedavg whole network). cifar10, 2 clusters rotated",
+        "clients": 10,
+        "num_clusters": 2,
+        "num_rounds": 50,
+        "local_epochs": 1,
+        "train_sample_rate": 1.0,
+        "initial_epochs": 0,
+        "evaluation_sampling_rate": 1.0,
+        "task": "cifar10",
+        "aggregator": "fedavg",
+        "lr": 0.01,
+        "cluster_split_type": "rotation",
+        "baseline_avg_whole_network": true,
+        "cluster": "kmeans",
+        "cluster_params": {
+            "k_iter": 10,
+            "filter_distance": "max"
+        }
+    }
+}
