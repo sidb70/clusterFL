@@ -51,22 +51,26 @@ class Cifar100CNN(nn.Module):
 
     def __init__(self, out_dim=10):
         super(Cifar100CNN, self).__init__()
-        self.nn = nn.Sequential(
-            nn.Conv2d(3, 16, 5),
+        self.nn =nn.Sequential(
+            nn.Conv2d(in_channels=3, out_channels=16, kernel_size=3, stride=1, padding=1),
             nn.ReLU(),
-            nn.MaxPool2d(2, 2),
-            nn.Conv2d(16, 32, 5),
-            nn.ReLU(),
-            nn.MaxPool2d(2, 2),
-            nn.Flatten(),
-            nn.Linear(32 * 5 * 5, 256),
-            nn.ReLU(),
-            nn.Linear(256, 128),
-            nn.ReLU(),
-            nn.Linear(128, 100),
-        )
-        self.apply(init_weights)
+            nn.MaxPool2d(kernel_size=2),
 
+            nn.Conv2d(in_channels=16, out_channels=32, kernel_size=3, stride=1, padding=1),
+            nn.ReLU(),
+            nn.MaxPool2d(kernel_size=2),
+
+            nn.Conv2d(in_channels=32, out_channels=64, kernel_size=3, stride=1, padding=1),
+            nn.ReLU(),
+            nn.MaxPool2d(kernel_size=2),
+
+            nn.Conv2d(in_channels=64, out_channels=128, kernel_size=3, stride=1, padding=1),
+            nn.ReLU(),
+            nn.MaxPool2d(kernel_size=2),
+            nn.Flatten(),
+            nn.Linear(128 * 2 * 2, 256),
+            nn.Linear(256, 100)
+        )
     def forward(self, x):
         return self.nn(x)
 
