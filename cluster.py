@@ -5,6 +5,7 @@ import torch
 from aggregation.strategies import load_aggregator
 import numpy as np
 from sklearn.cluster import KMeans
+from sklearn_extra.cluster import KMedoids
 
 
 def tensorSum(tensors):
@@ -73,6 +74,8 @@ class PointWiseKMeans(ClusterAlgorithm):
         clusterList = [[] for i in range(self.clusters)]
         clients = [i for i in range(len(state_dicts))]
 
+        km = KMedoids(n_clusters=self.clusters, metric="manhattan")
+
         # Assign intial centroids
         for clus in clusterList:
             randK = random.choice(clients)
@@ -81,6 +84,18 @@ class PointWiseKMeans(ClusterAlgorithm):
 
         # Calculate each clients distance from the centroid node
         weights = normalize(state_dicts) if normalize else state_dicts
+        flattened_weights = []
+        for state_dict in weights:
+            flattened_weights.append(
+                torch.cat([tensor.detach().cpu().flatten() for tensor in state_dict.values()]).numpy()
+            )
+        flattened_weights = np.array(flattened_weights)
+        km.fit(flattened_weights)
+        labels = km.labels_.tolist()
+        cluster_list = [[] for _ in range(self.clusters)]
+        for i, label in enumerate(labels):
+            cluster_list[label].append(i)
+        return cluster_list
         # print(type(weights[]))
         firstPass = True
         for i in range(k_iter):
