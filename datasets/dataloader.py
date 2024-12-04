@@ -176,7 +176,7 @@ def create_clustered_dataset(
                 list(range(len(dataset.classes))), num_clusters
             )
         ]
-        print(cluster_classes)
+        print("label distribution: ", cluster_classes)
         datasets = {i: [] for i in range(num_clusters)}
         for i in range(len(dataset)):
             data, label = dataset[i]

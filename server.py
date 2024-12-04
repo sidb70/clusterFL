@@ -76,23 +76,23 @@ class Server:
             config["cluster"], clusters=self.num_clusters, **self.cluster_params
         )
     def load_data(self,  num_clusters, cluster_split_type):
-        if not os.path.exists(f'./datasets/clustered_datasets/{self.task}_{num_clusters}_{cluster_split_type}_train.pt'):
-            print("Creating clustered datasets")
-            self.clustered_train_sets = create_clustered_dataset(
-            self.global_train_set, num_clusters, cluster_split_type
-            )
-            self.clustered_test_sets = create_clustered_dataset(
-                self.global_test_set, num_clusters, cluster_split_type
-            )
+        # if not os.path.exists(f'./datasets/clustered_datasets/{self.task}_{num_clusters}_{cluster_split_type}_train.pt'):
+        print("Creating clustered datasets")
+        self.clustered_train_sets = create_clustered_dataset(
+        self.global_train_set, num_clusters, cluster_split_type
+        )
+        self.clustered_test_sets = create_clustered_dataset(
+            self.global_test_set, num_clusters, cluster_split_type
+        )
 
-            # save
-            os.makedirs('./datasets/clustered_datasets', exist_ok=True)
-            torch.save(self.clustered_train_sets, f'./datasets/clustered_datasets/{self.task}_{num_clusters}_{cluster_split_type}_train.pt')
-            torch.save(self.clustered_test_sets, f'./datasets/clustered_datasets/{self.task}_{num_clusters}_{cluster_split_type}_test.pt')
-        else:
-            print("Loading clustered datasets")
-            self.clustered_train_sets = torch.load(f'./datasets/clustered_datasets/{self.task}_{num_clusters}_{cluster_split_type}_train.pt')
-            self.clustered_test_sets = torch.load(f'./datasets/clustered_datasets/{self.task}_{num_clusters}_{cluster_split_type}_test.pt')
+        # # save
+        #     os.makedirs('./datasets/clustered_datasets', exist_ok=True)
+        #     torch.save(self.clustered_train_sets, f'./datasets/clustered_datasets/{self.task}_{num_clusters}_{cluster_split_type}_train.pt')
+        #     torch.save(self.clustered_test_sets, f'./datasets/clustered_datasets/{self.task}_{num_clusters}_{cluster_split_type}_test.pt')
+        # else:
+        #     print("Loading clustered datasets")
+        #     self.clustered_train_sets = torch.load(f'./datasets/clustered_datasets/{self.task}_{num_clusters}_{cluster_split_type}_train.pt')
+        #     self.clustered_test_sets = torch.load(f'./datasets/clustered_datasets/{self.task}_{num_clusters}_{cluster_split_type}_test.pt')
     def create_clusters(self, uneven_clusters: bool=False):
         if not uneven_clusters:
             self.clients_to_clusters = [
@@ -100,12 +100,20 @@ class Server:
             ]
         else:
             self.clients_to_clusters = []
-            for i in range(self.num_clients):
-                # first half of clients are in cluster 0, rest are evenly distributed among the remaining clusters
-                if i < self.num_clients // 2:
-                    self.clients_to_clusters.append(0)
-                else:
-                    self.clients_to_clusters.append(i % (self.num_clusters - 1) + 1)
+            # put more clients in first few clusters with categorical distribution
+            # categorical distribution should be a list of probabilities that sum to 1 in descending order
+            # number of categories should be equal to number of clusters
+            p = []
+            for j in range(self.num_clusters):
+                p.append(1/(j+1))
+            sum_p = sum(p)
+            p = [i/sum_p for i in p]
+            # random select by categorical distribution
+            for i, proportion in enumerate(p):
+                num_clients_in_cluster = int(proportion * self.num_clients)
+                self.clients_to_clusters.extend([i] * num_clients_in_cluster)
+            # fill the rest of the clients with the last cluster
+            self.clients_to_clusters.extend([self.num_clusters-1] * (self.num_clients - len(self.clients_to_clusters)))
         self.clusters_to_clients = {}
         for i, cluster in enumerate(self.clients_to_clusters):
             if cluster not in self.clusters_to_clients:
