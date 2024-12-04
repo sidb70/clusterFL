@@ -1,18 +1,18 @@
-description: "kmeans. cifar10, 5 clusters rotation"
+description: "basline. 5 uneven clusters rotation, cifar10"
 clients: 25
 num_clusters: 5
-num_rounds: 30
+uneven_clusters: true
+num_rounds: 50
 local_epochs: 1
 train_sample_rate: 1.0
-initial_epochs: 1
+initial_epochs: 0
 evaluation_sampling_rate: 1.0
-
-task: 'cifar100'
+task: 'cifar10'
 aggregator: 'fedavg'
 lr: 0.01
 
 cluster_split_type: 'rotation'
-baseline_avg_whole_network: false
+baseline_avg_whole_network: true
 
 cluster: 'kmeans'
   #'validation_loss'
