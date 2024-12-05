@@ -16702,7 +16702,7 @@
         }
     ],
     "config": {
-        "description": "baseline 5 uneven clusters selected_classes, cifar10",
+        "description": "Selected Classes, No clustering",
         "clients": 25,
         "num_clusters": 5,
         "uneven_clusters": true,
