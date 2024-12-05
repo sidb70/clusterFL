@@ -234,7 +234,7 @@ class Server:
         return self.cluster_algorithm.cluster(state_dicts, **self.cluster_params)
 
     def run_local_update_worker(
-        self, client_id: int
+        self, client_id: int, num_epochs: int = None
     ) -> Tuple[int, int, Dict[str, torch.Tensor]]:
         """
         Run a local update on a single client
@@ -261,7 +261,7 @@ class Server:
             client_train_loader,
             criterion,
             optimizer,
-            self.local_epochs,
+            num_epochs,
         )
         return client_id, cluster_id, updated_model
 
@@ -276,7 +276,7 @@ class Server:
         with ThreadPoolExecutor(max_workers=len(DEVICES)) as executor:
             futures = []
             for client in self.clients:
-                futures.append(executor.submit(self.run_local_update_worker, client.id))
+                futures.append(executor.submit(self.run_local_update_worker, client.id, self.initial_epochs))
             for future in futures:
                 client_id, _, updated_model = future.result()
                 # clients_models.append((client_id, updated_model.state_dict()))
@@ -307,7 +307,7 @@ class Server:
         with ThreadPoolExecutor(max_workers=len(DEVICES)) as executor:
             futures = []
             for client in sampled_clients:
-                futures.append(executor.submit(self.run_local_update_worker, client.id))
+                futures.append(executor.submit(self.run_local_update_worker, client.id, self.local_epochs))
             for future in futures:
                 client_id, cluster_id, updated_model = future.result()
                 updated_models[cluster_id].append(updated_model.state_dict())
