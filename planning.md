@@ -25,5 +25,41 @@
     
 
 **Experiment**: Try to break the k-means clustering
-- try on cifar 100, where each distribution has many types of data
-- clustering performance and model performance of evenly split clusters (10 client, 5 client, 5 clients) vs even split (5 clients in each cluster).
+~~- try on cifar 100, where each distribution has many types of data.~~  Done
+- ~~clustering performance and model performance of evenly split clusters (10 client, 5 client, 5 clients) vs even split (5 clients in each cluster).~~ Done
+
+
+
+## Consolidating results
+
+
+
+<make a table of results>
+
+| Experiment Type | Dataset       | Clusters | Clients | Results Summary                                                                 |
+|-----------------|---------------|----------|---------|---------------------------------------------------------------------------------|
+| Even Clusters   | MNIST, CIFAR-10 | 5        | 25      | Rotations and Selected classes.                                                 |
+| Even Clusters   | MNIST, CIFAR-10, CIFAR-100 | 2        | 10      | Rotations and Selected classes. CIFAR-100 different initial epochs.             |
+| Uneven Clusters | MNIST, CIFAR-10 | 5        | 25      | Rotations and Selected classes.                                                 |
+| Uneven Clusters | MNIST, CIFAR-10 | 2        | 10      | Rotations and Selected classes.                                                 |
+
+
+| even vs uneven | dataset | # of clusters | type of split | init epochs | cluster algo | accuracy | cluster purity
+| Even vs Uneven | Dataset       | # of Clusters | Type of Split | Init Epochs | Cluster Algo | Accuracy change | Cluster Purity |
+|----------------|---------------|---------------|---------------|-------------|--------------|----------|----------------|
+| Even           | MNIST         | 2             | Rotation          | 1          | K-means      | 5%      | 1.0          |
+| Even           | CIFAR-10      | 2             | Rotation          | 1          | K-means      | 5%      | 1.0          |
+| Even           | CIFAR-100     | 2             | Rotation          | 1          | K-means      | -%     | -            |
+| Even           | MNIST         | 2             | Selected Classes  | 1          | K-means      | 3%      | 1.0          |
+| Even           | CIFAR-10      | 2             | Selected Classes  | 1          | K-means      | 28%     | 1.0          |
+| Even           | CIFAR-100     | 2             | Selected Classes  | 1          | K-means      | -%      | -            |
+| Even           | MNIST         | 5             | Rotation          | 1          | K-means      | 21%     | 0.88         |
+| Even           | CIFAR-10      | 5             | Rotation          | 1          | K-means      | 17%     | 1.0          |
+| Even           | CIFAR-100     | 5             | Rotation          | 1          | K-means      | -%      | -            |
+| Even           | MNIST         | 5             | Selected Classes  | 1          | K-means      | 12%     | 0.88         |
+| Even           | CIFAR-10      | 5             | Selected Classes  | 1          | K-means      | 50%     | 1.0          |
+| Even           | CIFAR-100     | 5             | Selected Classes  | 1          | K-means      | -%      | -            |
+| Uneven         | CIFAR-10      | 2             | Rotation          | 1          | K-means      | 7%      | 1.0          |
+| Uneven         | CIFAR-10      | 5             | Rotation          | 1          | K-means      | 12%     | 1.0          |
+| Uneven         | CIFAR-10      | 2             | Selected Classes  | 1          | K-means      | 25%     | 1.0          |
+| Uneven         | CIFAR-10      | 5             | Selected Classes  | 1          | K-means      | 43%     | 1.0          |
