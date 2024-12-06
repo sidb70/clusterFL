@@ -44,15 +44,14 @@
 | Uneven Clusters | MNIST, CIFAR-10 | 2        | 10      | Rotations and Selected classes.                                                 |
 
 
-| even vs uneven | dataset | # of clusters | type of split | init epochs | cluster algo | accuracy | cluster purity
 | Even vs Uneven | Dataset       | # of Clusters | Type of Split | Init Epochs | Cluster Algo | Accuracy change | Cluster Purity |
 |----------------|---------------|---------------|---------------|-------------|--------------|----------|----------------|
 | Even           | MNIST         | 2             | Rotation          | 1          | K-means      | 5%      | 1.0          |
 | Even           | CIFAR-10      | 2             | Rotation          | 1          | K-means      | 5%      | 1.0          |
-| Even           | CIFAR-100     | 2             | Rotation          | 1          | K-means      | -%     | -            |
+| Even           | CIFAR-100     | 2             | Rotation          | 1          | K-means      | 0%      | 1.0          |
 | Even           | MNIST         | 2             | Selected Classes  | 1          | K-means      | 3%      | 1.0          |
 | Even           | CIFAR-10      | 2             | Selected Classes  | 1          | K-means      | 28%     | 1.0          |
-| Even           | CIFAR-100     | 2             | Selected Classes  | 1          | K-means      | -%      | -            |
+| Even           | CIFAR-100     | 2             | Selected Classes  | 1          | K-means      | 10%     | 1.0          |
 | Even           | MNIST         | 5             | Rotation          | 1          | K-means      | 21%     | 0.88         |
 | Even           | CIFAR-10      | 5             | Rotation          | 1          | K-means      | 17%     | 1.0          |
 | Even           | CIFAR-100     | 5             | Rotation          | 1          | K-means      | -%      | -            |
