@@ -2,8 +2,9 @@
 
 ## Instructions
 
-To run the clustered federated learning experiment, modify the `config.yaml` file with the desired experimental section.
+To parse the experimental result files into readable format and figures, run the notebook in ./experiments/results/results.ipynb. 
 
+To run the clustered federated learning experiment, modify the `config.yaml` file with the desired experimental parameters.
 
 To run the experiment, use the following command:
 
@@ -12,9 +13,6 @@ python3 experiment_runner.py
 ```
 
  Below is an example configuration:
-
-
-
 ```yaml
 description: "baseline 5 clusters cifar 100 selected classes"
 clients: 25
