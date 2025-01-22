@@ -1,5 +1,18 @@
 # clusterFL
 
+**Abstract**\
+Federated learning (FL) requires each client device in a collaborative training network to train a local model
+using on-device training data for some iterations, then transmitting the model updates to a central server,
+which will aggregate received updates and send back the global model. However, clients in the network may
+have local training data generated from different statistical distributions, violating the common assumption of
+independently and identically distributed (iid) data in machine learning. Thus, we consider a network of clients
+with different distributions of training data (non-iid), with the objective of minimizing the loss function of
+each client within their respective domains. We evaluate the ability of state-of-the-art unsupervised clustering
+algorithms to correctly cluster clients based on their model parameters and to converge the global models
+within each cluster.
+
+[Manuscript](https://github.com/sidb70/clusterFL/blob/main/bhattacharya_aridi.pdf)
+
 ## Instructions
 
 To parse the experimental result files into readable format and figures, run the notebook in ./experiments/results/results.ipynb. 
